@@ -3,7 +3,8 @@ package Core;
 public class Game {
 
 	public static void main(String[] args) {
-		System.out.println("Bienvenido a Calabozos y Profesores");
+		// TODO Auto-generated method stub
+
 	}
 
 }
