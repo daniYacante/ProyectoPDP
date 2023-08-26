@@ -3,16 +3,60 @@ package Core.Clases;
 abstract class Human {
     //Atributos
     protected String nombre="";
-    protected int vida=0;
-    protected int mana=0;
-    protected int nivel=0;
-    protected boolean isDead= false;
+    
+    
+    //ACLARACION: Hay valores que les di por tirar una idea, luego los modificamos si queremos.
+    //Tres tipos de vida
+    //1. vidaBase que represente la vida que toma desde un inicio
+    //2. vidaMaxima la vida que el personaje tenga como maxima por subir de nivel, usar items (cartas), etc.
+    //3. vidaActual la que va a representar el estado del personaje (si malherido, si esta muerto, si esta sano, etc.).
+    protected int vidaBase = 80;
+    protected int vidaMaxima = 0;
+    protected int vidaActual = 0;
+    
+    //Supongo que pasaria lo mismo con el mana
+    protected int manaBase = 50;
+    protected int manaMaximo = 0;
+    protected int manaActual = 0;
+    
+    //daño de Ataque
+    protected int dañoAtaqueBase = 10;
+    protected int dañoAtaqueActual = 0;
+    
+    //el nivel y la experiencia
+    //Se podria desbloquear la habilidad especial a tal nivel, ¿o les permitimos el uso desde un inicio?
+    //la barra de experiencia luego de completarse, automaticamente debe de volver a 0 (y sumarle lo que quedo restando).
+    //realizar aumentos de la vida, del mana y la fuerza.
+    //la experienciaRequerida se refiere a la cantidad que se necesita para subir al siguiente nivel.
+    //Se podria realizar una funcion subirNivel() (que la llame en el momento que barraExperiencia >= experienciaRequerida) que pase como parametro el nivel actual, y adentro que haya un switch dependiendo del nivel. Se aumentan las stats ahi.
+    protected int nivel = 1;
+    protected int nivelMaximo = 10;
+    protected int barraExperiencia = 0;
+    protected int experienciaRequerida = 15;
+    
+    //¿Esta muerto?
+    //realizar una funcion que se deberia usar frecuentemente durante el combate (antes de cederle el turno al siguiente personaje) que revise la vidaActual de cada uno.
+    // si vidaActual <= 0, de alguna forma "hacerlo invisible" para que no pueda realizar acciones. isDead darlo por true.
+    protected boolean isDead = false;
+    
+    //Aliados
+    //Pensaba que estaria bueno un array que nos muestre los aliados (maximo como 10 por el tema de que son 10 heroes). 
+    //No se bien si se inicializa asi, pero por el momento para que darnos la idea.
+    //Asi en los combates, supongamos el caso de que algun heroe tiene la habilidad especial de potenciar/curar a algun aliado suyo.
+    //Y asi si hubiera uno de aliados, ¿habria que hacer uno de enemigos?
+    protected String[] aliados = new String[10];
+    
+    //Objetos
+    //Un almacenamiento de objetos (pequeño) para asi llevar la Carta, consumibles, etc.
+    protected String[] objetos = new String[3];
+    
+    
     //Metodos
     protected int getVida(){
-        return this.vida;
+        return this.vidaBase;
     }
     protected int getMana(){
-        return this.mana;
+        return this.manaBase;
     }
     protected int getNivel(){
         return this.nivel;
@@ -20,7 +64,25 @@ abstract class Human {
     protected boolean checkDead(){
         return this.isDead;
     }
-    protected void recibirDaÃ±o() {
+    protected void recibirDaño() {
     	
     };
+    
+    //Durante o antes de un combate, el jugador deberia tener la opcion de usar algun consumible de los objetos que lleva.
+    //Revisara cuales objetos son consumibles y los muestra por pantalla.
+    protected void usarObjeto(){
+    
+    }
+    
+    protected void subirNivel(){
+    
+    }
+    
+    protected void recuperarMana(){
+    
+    }
+    
+    protected void atacarObjetivo(){
+    
+    }
 }
