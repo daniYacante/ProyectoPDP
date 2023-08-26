@@ -1,12 +1,12 @@
-package Clases;
+package Core.Clases;
 
 abstract class Human {
     //Atributos
     protected String nombre="";
-    protected int vida=null;
-    protected int mana=null;
-    protected int nivel=null;
-    protected boolean isDead= False;
+    protected int vida=0;
+    protected int mana=0;
+    protected int nivel=0;
+    protected boolean isDead= false;
     //Metodos
     protected int getVida(){
         return this.vida;
@@ -17,8 +17,10 @@ abstract class Human {
     protected int getNivel(){
         return this.nivel;
     }
-    protected checkDead(){
+    protected boolean checkDead(){
         return this.isDead;
     }
-    protected recibirDaño();
+    protected void recibirDaño() {
+    	
+    };
 }
