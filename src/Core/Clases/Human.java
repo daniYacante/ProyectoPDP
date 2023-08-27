@@ -12,19 +12,18 @@ abstract class Human {
     //3. vidaActual la que va a representar el estado del personaje (si malherido, si esta muerto, si esta sano, etc.).
     protected int vidaBase = 80;
     protected int vidaMaxima = 0;
-    protected int vidaActual = 0;
+    protected int vidaActual = 80;
     
     //Supongo que pasaria lo mismo con el mana
     protected int manaBase = 50;
     protected int manaMaximo = 0;
     protected int manaActual = 0;
     
-    //daño de Ataque
-    protected int dañoAtaqueBase = 10;
-    protected int dañoAtaqueActual = 0;
+    //DaÃ±o de Ataque
+    protected int modAtaquete = 0;
     
     //el nivel y la experiencia
-    //Se podria desbloquear la habilidad especial a tal nivel, ¿o les permitimos el uso desde un inicio?
+    //Se podria desbloquear la habilidad especial a tal nivel, ï¿½o les permitimos el uso desde un inicio?
     //la barra de experiencia luego de completarse, automaticamente debe de volver a 0 (y sumarle lo que quedo restando).
     //realizar aumentos de la vida, del mana y la fuerza.
     //la experienciaRequerida se refiere a la cantidad que se necesita para subir al siguiente nivel.
@@ -34,7 +33,7 @@ abstract class Human {
     protected int barraExperiencia = 0;
     protected int experienciaRequerida = 15;
     
-    //¿Esta muerto?
+    //ï¿½Esta muerto?
     //realizar una funcion que se deberia usar frecuentemente durante el combate (antes de cederle el turno al siguiente personaje) que revise la vidaActual de cada uno.
     // si vidaActual <= 0, de alguna forma "hacerlo invisible" para que no pueda realizar acciones. isDead darlo por true.
     protected boolean isDead = false;
@@ -43,17 +42,17 @@ abstract class Human {
     //Pensaba que estaria bueno un array que nos muestre los aliados (maximo como 10 por el tema de que son 10 heroes). 
     //No se bien si se inicializa asi, pero por el momento para que darnos la idea.
     //Asi en los combates, supongamos el caso de que algun heroe tiene la habilidad especial de potenciar/curar a algun aliado suyo.
-    //Y asi si hubiera uno de aliados, ¿habria que hacer uno de enemigos?
+    //Y asi si hubiera uno de aliados, ï¿½habria que hacer uno de enemigos?
     protected String[] aliados = new String[10];
     
     //Objetos
-    //Un almacenamiento de objetos (pequeño) para asi llevar la Carta, consumibles, etc.
+    //Un almacenamiento de objetos (pequeï¿½o) para asi llevar la Carta, consumibles, etc.
     protected String[] objetos = new String[3];
     
     
     //Metodos
-    protected int getVida(){
-        return this.vidaBase;
+    public int getVida(){
+        return this.vidaActual;
     }
     protected int getMana(){
         return this.manaBase;
@@ -64,9 +63,15 @@ abstract class Human {
     protected boolean checkDead(){
         return this.isDead;
     }
-    protected void recibirDaño() {
-    	
+    protected void recibirDmg(int dmg) {
+    	this.vidaActual-=dmg;
     };
+    protected void curarse() {
+    	
+    }
+    protected void modificarAtaque(int mod) {
+    	this.modAtaquete=mod;
+    }
     
     //Durante o antes de un combate, el jugador deberia tener la opcion de usar algun consumible de los objetos que lleva.
     //Revisara cuales objetos son consumibles y los muestra por pantalla.
