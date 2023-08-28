@@ -10,14 +10,12 @@ abstract class Human {
     //1. vidaBase que represente la vida que toma desde un inicio
     //2. vidaMaxima la vida que el personaje tenga como maxima por subir de nivel, usar items (cartas), etc.
     //3. vidaActual la que va a representar el estado del personaje (si malherido, si esta muerto, si esta sano, etc.).
-    protected int vidaBase = 80;
-    protected int vidaMaxima = 0;
+    protected int vidaMaxima = 80;
     protected int vidaActual = 80;
     
     //Supongo que pasaria lo mismo con el mana
-    protected int manaBase = 50;
-    protected int manaMaximo = 0;
-    protected int manaActual = 0;
+    protected int manaMaximo = 100;
+    protected int manaActual = 100;
     
     //Daño de Ataque
     protected int modAtaquete = 0;
@@ -58,7 +56,7 @@ abstract class Human {
         return this.vidaActual;
     }
     protected int getMana(){
-        return this.manaBase;
+        return this.manaActual;
     }
     protected int getNivel(){
         return this.nivel;
@@ -67,12 +65,23 @@ abstract class Human {
         return this.isDead;
     }
     protected void recibirDmg(int dmg) {
-    	this.vidaActual-=dmg;
     	System.out.println(String.format("%s ha recibido %s puntos de daño", this.nombre,dmg));
+    	if ((this.vidaActual-dmg)<=0) {
+    		this.vidaActual=0;
+    		this.isDead=true;
+    		System.out.println(String.format("%s ha muerto!!", this.nombre));
+    	}else {
+    		this.vidaActual-=dmg;
+    	}
     };
     protected void curarse(int vida) {
-    	this.vidaActual+=vida;
-    	System.out.println(String.format("%s ha recuperado %s puntos de vida", this.nombre,vida));
+    	if ((this.vidaActual+vida)>this.vidaMaxima) {
+    		this.vidaActual=this.vidaMaxima;
+    		System.out.println(String.format("%s esta al maximo vida", this.nombre));
+    	}else {
+    		this.vidaActual+=vida; 		
+    		System.out.println(String.format("%s ha recuperado %s puntos de vida", this.nombre,vida));
+    	}
     }
     protected void modificarAtaque(int mod) {
     	this.modAtaquete=mod;
@@ -89,10 +98,6 @@ abstract class Human {
     }
     
     protected void recuperarMana(){
-    
-    }
-    
-    protected void atacarObjetivo(){
     
     }
 }
