@@ -37,14 +37,16 @@ public class Game {
 		return;
 	}
 	public static void lucha() {
-		Heroe humano1=new Heroe(1);
-		Heroe enemigo1=new Heroe(1);
+		Heroe humano1=new Heroe("Heroe 1",1);
+		Heroe enemigo1=new Heroe("Enemigo 1",1);
 		System.out.println("Estado del enemigo");
 		System.out.println(enemigo1.getVida());
 		System.out.println(String.format("El heroe va a atacar al enemigo con %s",humano1.getClase().getHabilidad1().getNombre()));
 		humano1.usarH1(enemigo1);
 		System.out.println("Estado del enemigo");
 		System.out.println(enemigo1.getVida());
+		humano1.usarH2(humano1);
+		System.out.println(String.format("Salud del %s: %s", humano1.getNombre(),humano1.getVida()));
 		pressToContinue();
 	}
 }

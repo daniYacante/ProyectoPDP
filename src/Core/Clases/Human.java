@@ -51,6 +51,9 @@ abstract class Human {
     
     
     //Metodos
+    public String getNombre() {
+		return nombre;
+	}
     public int getVida(){
         return this.vidaActual;
     }
@@ -65,9 +68,11 @@ abstract class Human {
     }
     protected void recibirDmg(int dmg) {
     	this.vidaActual-=dmg;
+    	System.out.println(String.format("%s ha recibido %s puntos de daño", this.nombre,dmg));
     };
-    protected void curarse() {
-    	
+    protected void curarse(int vida) {
+    	this.vidaActual+=vida;
+    	System.out.println(String.format("%s ha recuperado %s puntos de vida", this.nombre,vida));
     }
     protected void modificarAtaque(int mod) {
     	this.modAtaquete=mod;
