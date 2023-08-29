@@ -1,8 +1,10 @@
 package Core;
 import java.util.Scanner;
+//import java.util.concurrent.TimeUnit;
 import Core.Clases.*;
 public class Game {
 	static Scanner scanner =new Scanner(System.in);
+	private static boolean Fin=false;
 	public static void main(String[] args) {
 
 		System.out.println(" _____       _       _                                ______           __                              \r\n"
@@ -14,6 +16,9 @@ public class Game {
 				+ "                                                __/ |                                                  \r\n"
 				+ "                                               |___/                                                   ");
 		pressToContinue();
+		do {
+			
+		} while (!Fin);
 		lucha();
 	}
 
@@ -48,5 +53,9 @@ public class Game {
 		humano1.usarH2(humano1);
 		System.out.println(String.format("Salud del %s: %s", humano1.getNombre(),humano1.getVida()));
 		pressToContinue();
+	}
+	public static Sala crearSala() {
+		Sala sala=new Sala();
+		return sala;
 	}
 }

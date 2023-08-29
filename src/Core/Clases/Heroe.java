@@ -13,6 +13,8 @@ public class Heroe extends Human {
 		if (this.clase.getHabilidad1().getEfectoManaLanzador()<this.manaActual) {
 			this.clase.getHabilidad1().usar(objetivo,this.modAtaquete);
 			this.manaActual-=this.clase.getHabilidad1().getEfectoManaLanzador();
+		}else {
+			System.out.println("Mana insuficiente!!");
 		}
 		
 	}
