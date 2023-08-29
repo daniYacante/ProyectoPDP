@@ -1,8 +1,10 @@
 package Core;
 import java.util.Scanner;
-
+//import java.util.concurrent.TimeUnit;
+import Core.Clases.*;
 public class Game {
 	static Scanner scanner =new Scanner(System.in);
+	private static boolean Fin=false;
 	public static void main(String[] args) {
 
 		System.out.println(" _____       _       _                                ______           __                              \r\n"
@@ -14,6 +16,10 @@ public class Game {
 				+ "                                                __/ |                                                  \r\n"
 				+ "                                               |___/                                                   ");
 		pressToContinue();
+		do {
+			
+		} while (!Fin);
+		lucha();
 	}
 
 	public static int readConsole(String mensaje,int maxOpciones) {
@@ -34,5 +40,22 @@ public class Game {
 		System.out.println("Presione cualquier tecla plara continuar");
 		scanner.nextLine();
 		return;
+	}
+	public static void lucha() {
+		Heroe humano1=new Heroe("Heroe 1",1);
+		Heroe enemigo1=new Heroe("Enemigo 1",1);
+		System.out.println("Estado del enemigo");
+		System.out.println(enemigo1.getVida());
+		System.out.println(String.format("El heroe va a atacar al enemigo con %s",humano1.getClase().getHabilidad1().getNombre()));
+		humano1.usarH1(enemigo1);
+		System.out.println("Estado del enemigo");
+		System.out.println(enemigo1.getVida());
+		humano1.usarH2(humano1);
+		System.out.println(String.format("Salud del %s: %s", humano1.getNombre(),humano1.getVida()));
+		pressToContinue();
+	}
+	public static Sala crearSala() {
+		Sala sala=new Sala();
+		return sala;
 	}
 }
