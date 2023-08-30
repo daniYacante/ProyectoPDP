@@ -43,14 +43,17 @@ public class Game {
 	}
 	public static void lucha() {
 		Heroe humano1=new Heroe("Heroe 1",1);
-		Heroe enemigo1=new Heroe("Enemigo 1",1);
-		System.out.println("Estado del enemigo");
+		Jefe enemigo1 = new Jefe("JEFE", 7);
+		System.out.println("Estado del jefe");
 		System.out.println(enemigo1.getVida());
-		System.out.println(String.format("El heroe va a atacar al enemigo con %s",humano1.getClase().getHabilidad1().getNombre()));
+		System.out.println(String.format("El heroe va a atacar al jefe con %s",humano1.getClase().getHabilidad1().getNombre()));
 		humano1.usarH1(enemigo1);
-		System.out.println("Estado del enemigo");
+		System.out.println("Estado del jefe");
 		System.out.println(enemigo1.getVida());
-		humano1.usarH2(humano1);
+		System.out.println("Estado del humano");
+		System.out.println(humano1.getVida());
+		System.out.println(String.format("El jefe va a atacar al heroe con %s",enemigo1.getClase().getHabilidad1().getNombre()));
+		enemigo1.usarH1(humano1);
 		System.out.println(String.format("Salud del %s: %s", humano1.getNombre(),humano1.getVida()));
 		pressToContinue();
 	}

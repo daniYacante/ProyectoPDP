@@ -37,6 +37,25 @@ public class Rol {
 			this.habilidad2=new Habilidad("");//Tengo que buscar mas sobre los rogue
 			this.habilidadEspecial=new Habilidad("Golpe Mortal");
 			break;
+			//CASOS JEFES (Comprobar que cuando cree HEROES el numero sea menor que 5)
+		case 5:
+			this.clase="Profe1";
+			this.descripcion="Profe1";
+			this.habilidad1=new Habilidad("Bastonazo");;
+			this.habilidadEspecial=new Habilidad("Jefe1");
+			break;
+		case 6:
+			this.clase="Profe2";
+			this.descripcion="Profe2";
+			this.habilidad1=new Habilidad("Bastonazo");;
+			this.habilidadEspecial=new Habilidad("Jefe2");
+			break;
+		case 7:
+			this.clase="Profe3";
+			this.descripcion="Profe3";
+			this.habilidad1=new Habilidad("Bastonazo");;
+			this.habilidadEspecial=new Habilidad("Jefe3");
+			break;
 		default:
 			break;
 		}

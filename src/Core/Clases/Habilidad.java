@@ -43,6 +43,16 @@ public class Habilidad {
 			this.efectoVidaObjetivo=15;
 			break;
 		//Faltan las otras habilidades con sus respectivos efectos
+		//HABILIDADES JEFE (FALTAN PONER LAS HABILIDADES QUE SE VAN A UTILIZAR)
+		case "Jefe 1":
+			this.efectoVidaObjetivo=30;
+			break;
+		case "Jefe 2":
+			this.efectoVidaObjetivo=40;
+			break;
+		case "Jefe 3":
+			this.efectoVidaObjetivo=50;
+			break;
 		default:
 			break;
 		}

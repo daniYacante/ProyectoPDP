@@ -2,48 +2,41 @@ package Core.Clases;
 
 public class Jefe extends Human {
     //Declare como string hasta que tengamos la clase esbirro
+    private Rol clase;
     protected String[] esbirros = new String[10];
-    protected String habilidadEspecial = "";
-    //Al ser una sola habilidad basica la puse como string
-    protected String habilidadBasica = ""; 
 
     //Herede todos los atributos de la clase humanos que debemos inicializar para cada Jefe
     //Contructor de la clase
-    public Jefe(String nombre, int vidaBase, int vidaMaxima, int danoAtaqueBase, int nivel, boolean isDead){
+    public Jefe(String nombre, int tipo) {
         super.nombre = nombre;
-        super.vidaBase = vidaBase;
-        //super.vidaActual = vidaActual;
-        super.vidaMaxima = vidaMaxima;
-        super.danoAtaqueBase = danoAtaqueBase;
-        super.nivel = nivel;
-        super.isDead = isDead;
-    //Los atributos heredados comentados, son utilizados por los metodos, por eso no hace falta inicializarlos, y si los inicializamos tendrian que ser con los valores maximos.
-    }    
+        this.clase = new Rol(tipo);
+        switch (tipo) {
+            case 5: //3er Jefe
+                super.vidaActual = 120;
+                break;
+            case 6: //2do Jefe
+                super.vidaActual = 200;
+                break;
+            case 7: //3er Jefe
+                super.vidaActual = 300;
+                break;
+            default:
+                break;
+        }
+    }
 
     //METODO
-    //Por ahora van a devolver el nombre de la habilidad
-    protected String usarHabilidadBasica(){ 
-        return this.habilidadBasica;
+
+    public Rol getClase() {
+        return clase;
     }
-    protected String usarHabilidadEspecial(){
-        return this.habilidadEspecial;
+    public void usarH1(Human objetivo){
+        this.clase.getHabilidad1().usar(objetivo,this.modAtaquete);
+        //this.manaActual-=this.clase.getHabilidad1().getEfectoManaLanzador();
     }
 
-    //Heredamos los metodos
-    protected int getVida(){
-        super.getVida();
-    }
-    protected int getNivel(){
-        super.getNivel();
-    }
-    protected boolean checkDead(){
-        super.checkDead();
-    }
-    protected void recibirDano() {
-    	super.recibirDano();
-    };
-
-    protected void atacarObjetivo(){
-        super.atacarObjetivo();
+    public void usarEsp(Human objetivo) {
+        this.clase.getHabilidadEspecial().usar(objetivo,0);
+        //this.manaActual-=this.clase.getHabilidadEspecial().getEfectoManaLanzador();
     }
 }
