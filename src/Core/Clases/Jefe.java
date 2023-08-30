@@ -11,17 +11,17 @@ public class Jefe extends Human {
         super.nombre = nombre;
         this.clase = new Rol(tipo);
         switch (tipo) {
-            case 5: //3er Jefe
-                super.vidaActual = 120;
-                break;
-            case 6: //2do Jefe
-                super.vidaActual = 200;
-                break;
-            case 7: //3er Jefe
-                super.vidaActual = 300;
-                break;
-            default:
-                break;
+        case 5: //3er Jefe
+            super.vidaActual = 120;
+            break;
+        case 6: //2do Jefe
+            super.vidaActual = 200;
+            break;
+        case 7: //3er Jefe
+            super.vidaActual = 300;
+            break;
+        default:
+            break;
         }
     }
 

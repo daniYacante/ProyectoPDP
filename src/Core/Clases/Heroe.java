@@ -6,34 +6,34 @@ public class Heroe extends Human {
 		this.nombre=nombre;
 		this.clase=new Rol(tipo);
 		switch (tipo) {
-            case 1: //Paladin d10
-				//Coloque mana = vidaActual por simplicidad
-				//vidaActual es d10 * 12
-                super.vidaActual = 120;
-                super.vidaMaxima = 180;
-                super.manaActual = 100;
-                super.manaMaximo = 180;
-				break;
-            case 2: //Clerigo d8
-				super.vidaActual = 96;
-				super.vidaMaxima = 160;
-				super.manaActual = 96;
-				super.manaMaximo = 160;
-				break;
-			case 3: //Mago d6
-				super.vidaActual = 72;
-				super.vidaMaxima = 140;
-				super.manaActual = 72;
-				super.manaMaximo = 140;
-				break;
-			case 4: //Rogue d8.1
-				super.vidaActual = 97;
-				super.vidaMaxima = 161;
-				super.manaActual = 97;
-				super.manaMaximo = 161;
-				break;
-			default:
-				break;
+		case 1: //Paladin d10
+			//Coloque mana = vidaActual por simplicidad
+			//vidaActual es d10 * 12
+			super.vidaActual = 120;
+			super.vidaMaxima = 180;
+			super.manaActual = 100;
+			super.manaMaximo = 180;
+			break;
+		case 2: //Clerigo d8
+			super.vidaActual = 96;
+			super.vidaMaxima = 160;
+			super.manaActual = 96;
+			super.manaMaximo = 160;
+			break;
+		case 3: //Mago d6
+			super.vidaActual = 72;
+			super.vidaMaxima = 140;
+			super.manaActual = 72;
+			super.manaMaximo = 140;
+			break;
+		case 4: //Rogue d8.1
+			super.vidaActual = 97;
+			super.vidaMaxima = 161;
+			super.manaActual = 97;
+			super.manaMaximo = 161;
+			break;
+		default:
+			break;
         }
 	}
 	public Rol getClase() {
