@@ -56,6 +56,16 @@ public class Rol {
 			this.habilidad1=new Habilidad("Bastonazo");;
 			this.habilidadEspecial=new Habilidad("Jefe3");
 			break;
+		//CASOS ESBIRROS
+		case 8:
+			this.clase="Ayudante";
+			this.descripcion="Ayudante de catedra";
+			this.habilidad1=new Habilidad("Bastonazo");
+			break;
+		case 9:
+			this.clase="Celador";
+			this.descripcion="Celador de la facultad";
+			this.habilidad1=new Habilidad("Bastonazo");
 		default:
 			break;
 		}

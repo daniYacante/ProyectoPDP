@@ -59,20 +59,6 @@ public class Game {
 		Human target = null;
 		int contHeroes=0;
 		Heroe heroe;
-		/*Heroe humano1=new Heroe("Heroe 1",1);
-		Jefe enemigo1 = new Jefe("JEFE", 7);
-		System.out.println("Estado del jefe");
-		System.out.println(enemigo1.getVida());
-		System.out.println(String.format("El heroe va a atacar al jefe con %s",humano1.getClase().getHabilidad1().getNombre()));
-		humano1.usarH1(enemigo1);
-		System.out.println("Estado del jefe");
-		System.out.println(enemigo1.getVida());
-		System.out.println("Estado del humano");
-		System.out.println(humano1.getVida());
-		System.out.println(String.format("El jefe va a atacar al heroe con %s",enemigo1.getClase().getHabilidad1().getNombre()));
-		enemigo1.usarH1(humano1);
-		System.out.println(String.format("Salud del %s: %s", humano1.getNombre(),humano1.getVida()));
-		pressToContinue();*/
 		do {
 			heroe=listaHeroesVivos.get(contHeroes);
 			if (!heroe.checkDead()) {
