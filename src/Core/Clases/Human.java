@@ -1,6 +1,6 @@
 package Core.Clases;
 
-abstract class Human {
+public abstract class Human {
     //Atributos
     protected String nombre="";
     
@@ -61,7 +61,7 @@ abstract class Human {
     protected int getNivel(){
         return this.nivel;
     }
-    protected boolean checkDead(){
+    public boolean checkDead(){
         return this.isDead;
     }
     protected void recibirDmg(int dmg) {
