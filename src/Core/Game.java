@@ -47,6 +47,7 @@ public class Game {
                     switch(valor){
                         case 1:
                             opcion1();
+                            break;
                         case 2:
                             opcion2();
                             //Para que empiece el menu de vuelta luego de la opcion 2 y 3, podria ser con esto?:
@@ -59,11 +60,14 @@ public class Game {
                         case 4: 
                             System.out.println("¡Gracias por jugar!");
                             break;
+                        default:
+                            System.out.println("El numero: "+ valor +" no es ninguna opcion, el juego se cerrara automaticamente.");
+                            break;
                     }
                 }catch(java.util.InputMismatchException e){
                     System.out.println("Â¡Opcion no valida!, por favor intente de vuelta.");
                     respuesta = false;
-                    sc.next();
+                    sc.nextLine();
                 }
                 
                 
@@ -116,11 +120,14 @@ public class Game {
         System.out.println("Selecciona la cantidad de jugadores:");
         System.out.println("  [1]  [2]  [3]  [4]  ");
         int i = sc.nextInt();
-        
+        sc.nextLine();
         for (int j = 1; j < i + 1; j++){
             System.out.println("Jugador "+j+", Â¿cual es tu nombre?");
+            //No me lee el nombre, ¿es este el problema de limpiar el buffer?
+            
             String nombre = sc.nextLine();
             boolean seguirAvanzando = false;
+            boolean seguirAvanzando2 = false;
             do{
                 System.out.println("Muy bien,"+nombre+". Elige tu personaje:");
                 System.out.println("[1] Paladin");
@@ -128,7 +135,28 @@ public class Game {
                 System.out.println("[3] Sacerdote");
                 System.out.println("[4] Rogue");
                 //Seleccion de personaje, aca le mostraremos las stats y darle la opcion de que si confirma ser el heroe seleccionado o buscar otro.
-                int respuestaUsuario = sc.nextInt();
+                //Que no se pase de vivo y que agregue un numero valido
+                int respuestaUsuario = 0;
+                boolean siguienteJugador;
+                //estara bien asi?
+                do{
+                    siguienteJugador = true;
+   
+
+                    try {
+                        respuestaUsuario = sc.nextInt() - 1;
+                        if (respuestaUsuario < 0 || respuestaUsuario >= seleccionHeroes.size()){
+                            System.out.println("Por favor, un numero de los que aparecen en pantalla. Intente de vuelta.");
+                        }
+                    }catch(java.util.InputMismatchException e){
+                        siguienteJugador = false;
+                        System.out.println("¡Eso no es un numero!, intente de vuelta.");
+                        sc.nextLine();
+                    }
+
+                }while((respuestaUsuario < 0 || respuestaUsuario  >= seleccionHeroes.size()) || siguienteJugador == false);
+
+                
                 HeroePrueba seleccionHeroe;
                 seleccionHeroe = seleccionHeroes.get(respuestaUsuario);
                 //Imprimir stats
@@ -138,15 +166,37 @@ public class Game {
                 System.out.println("Daño: "+ seleccionHeroe.get_danioAtaque());
                 System.out.println("----------------------------------------------------------------------------------------------------------");
             
-                System.out.println("¿Seleccionar? [1] Si [2] No");
-                respuestaUsuario = sc.nextInt();
+                //Para establecer un numero donde no haya errores.
+                respuestaUsuario = -1;
+                //Otro Try/catch en caso de que no este poniendo algo adecuado.
+                do {
+                    System.out.println("¿Seleccionar? [1] Si [2] No");
+                    try{
+                        respuestaUsuario = sc.nextInt();
+                        if (respuestaUsuario == 1 || respuestaUsuario == 2){
+                            seguirAvanzando = true;
+                        }else{
+                            System.out.println("No es un numero valido ese, intentelo de vuelta");
+                        } 
+                    }catch(java.util.InputMismatchException e){
+                    
+                        System.out.println("Esa no es ninguna opcion, por favor intente de vuelta");
+                        //Si agrega mas parametros de lo normal
+                        
+          
+                    }
+                    sc.nextLine();
+                    
+                }while(seguirAvanzando == false);
+
+                
                 //por simpleza si el usuario ingresa 2 o alguna otra cosa, que se reinicie. Luego vemos el tema de excepciones
                 if (respuestaUsuario == 1){
                     System.out.println("¡Eres "+ nombre +", el "+ seleccionHeroe.get_clase() +"!");
                     //Otra cosa, aca se podria entonces ya crear lo que seria la lista de Aliados, los vamos agregando.
-                    seguirAvanzando = true;
+                    seguirAvanzando2 = true;
                 } 
-            }while(seguirAvanzando == false);
+            }while(seguirAvanzando2 == false);
 
         }
         System.out.println("¡Los jugadores estan listos! comenzamos...");
