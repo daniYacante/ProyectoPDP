@@ -46,9 +46,24 @@ public abstract class Human {
     //Objetos
     //Un almacenamiento de objetos (peque�o) para asi llevar la Carta, consumibles, etc.
     protected String[] objetos = new String[3];
-    
-    
+    //Tipo (Heroe, Enemigo(Jefe y esbirro))
+    protected String tipo;
+    //Clase
+    protected String clase="";
+    protected String descripcion="";
+    //Habilidades
+    protected Habilidad habilidad1;
+	protected Habilidad habilidad2;
+	protected Habilidad habilidadEspecial;
+
+
     //Metodos
+	public String getTipo(){
+		return tipo;
+	}
+    public String getDescripcion(){
+        return descripcion;
+    }
     public String getNombre() {
 		return nombre;
 	}
@@ -86,7 +101,50 @@ public abstract class Human {
     protected void modificarAtaque(int mod) {
     	this.modAtaquete=mod;
     }
+    public String getClase() {
+		return clase;
+	}
+	public Habilidad getHabilidad1() {
+		return habilidad1;
+	}
+	public Habilidad getHabilidad2() {
+		return habilidad2;
+	}
+	public Habilidad getHabilidadEspecial() {
+		return habilidadEspecial;
+	}
     
+    public void usarH1(Human objetivo) {
+        String usuario = this.getTipo();
+        //Si es enemigo hace el ataque
+        if (usuario.equals("Enemigo")){
+            this.getHabilidad1().usar(objetivo, 0);
+        //Si es heroe verifica el mana
+        }else if (this.getHabilidad1().getEfectoManaLanzador()<this.manaActual) {
+			this.getHabilidad1().usar(objetivo, 0);
+			this.manaActual-=this.getHabilidad1().getEfectoManaLanzador();
+		}
+	}
+    public void usarH2(Human objetivo) {
+        String usuario = this.getTipo();
+        if (usuario.equals("Enemigo")){
+            this.getHabilidad2().usar(objetivo, 0);
+        }
+		else if (this.getHabilidad2().getEfectoManaLanzador()<this.manaActual) {
+            this.getHabilidad2().usar(objetivo, 0);
+            this.manaActual-=this.getHabilidad2().getEfectoManaLanzador();
+		}
+	}
+	public void usarEsp(Human objetivo) {
+        String usuario = this.getTipo();
+        if (usuario.equals("Enemigo")){
+            this.getHabilidad2().usar(objetivo, 0);
+        }
+		else if (this.getHabilidadEspecial().getEfectoManaLanzador()<this.manaActual) {
+			this.getHabilidadEspecial().usar(objetivo,0);
+			this.manaActual-=this.getHabilidadEspecial().getEfectoManaLanzador();
+		}
+	}
     //Durante o antes de un combate, el jugador deberia tener la opcion de usar algun consumible de los objetos que lleva.
     //Revisara cuales objetos son consumibles y los muestra por pantalla.
     protected void usarObjeto(){
