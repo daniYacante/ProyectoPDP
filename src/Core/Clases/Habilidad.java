@@ -36,11 +36,15 @@ public class Habilidad {
 		case "Bola de Fuego":
 			this.efectoVidaObjetivo=-15;
 			break;
-		case "Aucuchillada":
+		case "Acuchillada":
 			this.efectoVidaObjetivo=-8;
 			break;
 		case "Golpe Mortal":
 			this.efectoVidaObjetivo=-15;
+			break;
+		//Especial
+		case "Bestia":
+			this.efectoVidaObjetivo=-22;
 			break;
 		//Faltan las otras habilidades con sus respectivos efectos
 		//HABILIDADES JEFE (FALTAN PONER LAS HABILIDADES QUE SE VAN A UTILIZAR)
