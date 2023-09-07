@@ -7,6 +7,7 @@ public class Clerigo extends Core.Clases.Human{
     //vidaActual es d8 * 12
     public Clerigo(String nombre){
         //Clerigo d8
+        super.nombre = nombre;
         super.tipo = "Heroe";
         super.vidaActual = 96;
         super.vidaMaxima = 160;

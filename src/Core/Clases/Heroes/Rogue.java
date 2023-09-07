@@ -7,6 +7,7 @@ public class Rogue extends Core.Clases.Human {
     //vidaActual es d8.1 * 12
     public Rogue(String nombre){
        //Rogue d8.1
+        super.nombre = nombre;
         super.tipo = "Heroe";
         super.vidaActual = 97;
         super.vidaMaxima = 161;

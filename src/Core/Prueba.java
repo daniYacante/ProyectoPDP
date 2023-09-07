@@ -1,5 +1,4 @@
 package Core;
-import Core.Clases.*;
 import Core.Clases.Heroes.Paladin;
 import Core.Clases.Jefes.Jefe1;
 public class Prueba {

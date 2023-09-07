@@ -5,6 +5,7 @@ import Core.Clases.Habilidad;
 
 public class Celador extends Core.Clases.Human{
     public Celador(String nombre){
+        super.nombre = nombre;
         super.vidaActual = 20;
         super.tipo = "Enemigo";
         this.descripcion="Celador de catedra";

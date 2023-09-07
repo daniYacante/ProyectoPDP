@@ -4,6 +4,7 @@ import Core.Clases.Habilidad;
 public class Jefe2 extends Core.Clases.Human{
     
     public Jefe2(String nombre){
+        super.nombre = nombre;
         super.tipo = "Enemigo";
         super.vidaActual = 200;
         this.clase="Profe2";

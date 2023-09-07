@@ -7,6 +7,7 @@ public class Paladin extends Core.Clases.Human {
     //Coloque mana = vidaActual por simplicidad
     //vidaActual es d10 * 12
     public Paladin(String nombre){
+        super.nombre = nombre;
         super.tipo = "Heroe";
         super.vidaActual = 120;
         super.vidaMaxima = 180;

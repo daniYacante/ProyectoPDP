@@ -7,6 +7,7 @@ public class Mago extends Core.Clases.Human {
     //vidaActual es d6 * 12
     public Mago(String nombre){
         //Mago d6
+        super.nombre = nombre;
         super.tipo = "Heroe";
         super.vidaActual = 72;
         super.vidaMaxima = 140;
