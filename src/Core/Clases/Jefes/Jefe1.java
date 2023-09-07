@@ -1,6 +1,8 @@
-package Core.Clases;
+package Core.Clases.Jefes;
 
-public class Jefe1 extends Human{
+import Core.Clases.Habilidad;
+
+public class Jefe1 extends Core.Clases.Human{
     public Jefe1(String nombre){
         super.tipo = "Enemigo";
         super.vidaActual = 120;

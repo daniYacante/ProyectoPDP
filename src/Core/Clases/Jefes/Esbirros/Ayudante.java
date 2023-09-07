@@ -1,6 +1,8 @@
-package Core.Clases;
+package Core.Clases.Jefes.Esbirros;
 
-public class Ayudante extends Human {
+import Core.Clases.Habilidad;
+
+public class Ayudante extends Core.Clases.Human {
     public Ayudante(String nombre){
         super.vidaActual = 30;
         super.tipo = "Enemigo";

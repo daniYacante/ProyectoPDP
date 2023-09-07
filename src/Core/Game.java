@@ -2,6 +2,7 @@ package Core;
 import java.util.ArrayList;
 import java.util.Scanner;
 import Core.Clases.*;
+import Core.Clases.Heroes.Heroe;
 //import java.util.concurrent.TimeUnit;
 public class Game {
 	static Scanner scanner =new Scanner(System.in);

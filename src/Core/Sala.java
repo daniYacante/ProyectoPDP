@@ -1,5 +1,7 @@
 package Core;
 import Core.Clases.*;
+import Core.Clases.Jefes.Jefe;
+
 import java.util.ArrayList;
 
 public class Sala {

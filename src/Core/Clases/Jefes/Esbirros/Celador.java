@@ -1,6 +1,9 @@
-package Core.Clases;
+package Core.Clases.Jefes.Esbirros;
 
-public class Celador extends Human{
+import Core.Clases.Habilidad;
+
+
+public class Celador extends Core.Clases.Human{
     public Celador(String nombre){
         super.vidaActual = 20;
         super.tipo = "Enemigo";

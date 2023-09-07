@@ -1,6 +1,8 @@
-package Core.Clases;
+package Core.Clases.Heroes;
 
-public class Rogue extends Human {
+import Core.Clases.Habilidad;
+
+public class Rogue extends Core.Clases.Human {
     //Coloque mana = vidaActual por simplicidad
     //vidaActual es d8.1 * 12
     public Rogue(String nombre){

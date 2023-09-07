@@ -1,6 +1,8 @@
-package Core.Clases;
+package Core.Clases.Heroes;
 
-public class Mago extends Human {
+import Core.Clases.Habilidad;
+
+public class Mago extends Core.Clases.Human {
     //Coloque mana = vidaActual por simplicidad
     //vidaActual es d6 * 12
     public Mago(String nombre){
