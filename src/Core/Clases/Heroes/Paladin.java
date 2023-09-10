@@ -2,7 +2,7 @@ package Core.Clases.Heroes;
 
 import Core.Clases.Habilidad;
 
-public class Paladin extends Core.Clases.Human {
+public class Paladin extends Core.Clases.Heroes.Heroe {
     //Paladin d10
     //Coloque mana = vidaActual por simplicidad
     //vidaActual es d10 * 12

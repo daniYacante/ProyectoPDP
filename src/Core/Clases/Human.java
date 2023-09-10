@@ -158,4 +158,17 @@ public abstract class Human {
     protected void recuperarMana(){
     
     }
+
+    public void setMana(int cantMana){
+        this.manaActual += cantMana;
+    }
+    //Para una carta:
+    public int getVidaMaxima(){
+        return this.vidaMaxima;
+    }
+    //Para una carta:
+    public void keyCurarse(int cantVida){
+        curarse(cantVida);
+    }
+
 }

@@ -2,7 +2,7 @@ package Core.Clases.Heroes;
 
 import Core.Clases.Habilidad;
 
-public class Clerigo extends Core.Clases.Human{
+public class Clerigo extends Core.Clases.Heroes.Heroe{
     //Coloque mana = vidaActual por simplicidad
     //vidaActual es d8 * 12
     public Clerigo(String nombre){

@@ -28,7 +28,8 @@ public class Habilidad {
 			this.efectoVidaObjetivo=20;
 			break;
 		case "Bastonazo":
-			this.efectoVidaObjetivo=-5;
+			//CAMBIO PARA EXPERIMENTAR
+			this.efectoVidaObjetivo=-85;
 			break;
 		case "Manos Quemantes":
 			this.efectoVidaObjetivo=-8;
@@ -77,5 +78,16 @@ public class Habilidad {
 	}
 	public int getEfectoManaLanzador() {
 		return efectoManaLanzador;
+	}
+
+	public void setEfectoManaLanzador(int nuevoEfectoMana){
+		this.efectoManaLanzador = nuevoEfectoMana;
+	}
+	//Para uso de cartas
+	public void setEfectoVidaObjetivo(int nuevoEfectoVida){
+		this.efectoVidaObjetivo = nuevoEfectoVida;
+	}
+	public int getEfectoVidaObjetivo(){
+		return this.efectoVidaObjetivo;
 	}
 }
