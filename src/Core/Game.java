@@ -1,5 +1,6 @@
 package Core;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 import Core.Clases.*;
 import Core.Clases.Heroes.*;
@@ -14,6 +15,7 @@ public class Game {
 	private static int respObjetivo;
 	private static String msg;
 	private static ArrayList<Heroe> listaHeroesVivos= new ArrayList<Heroe>(nHeroes);
+	public static Random intRandom=new Random();
 	public static void main(String[] args) {
 		System.out.println(" _____       _       _                                ______           __                              \r\n"
 				+ "/  __ \\     | |     | |                               | ___ \\         / _|                             \r\n"
@@ -125,54 +127,67 @@ public class Game {
 		String msg="";
 		ArrayList<? extends Human> listaEnemigos= sala.getListaEnemigo();
 		Human target = null;
-		int contHeroes=0;
+		int contHeroes;
+		int contEnemigos;
 		Heroe heroe;
 		do {
-			heroe=listaHeroesVivos.get(contHeroes);
-			if (!heroe.checkDead()) {
-				msg=String.format("¿Que hara nuestro heroe %s?\n1-%s\n2-%s\n3-%s", heroe.getNombre(),heroe.getHabilidad1().getNombre(),heroe.getHabilidad2().getNombre(),heroe.getHabilidadEspecial().getNombre());
-				respAccion=readConsoleInt(msg, 3);
-				respObjetivo=readConsoleInt("¿A...\n1-Aliados?\n2-Enemigo?",2);
-				if (respObjetivo==1) {
-					for (Heroe aliado: listaHeroesVivos) {
-						if (!heroe.getNombre().equals(aliado.getNombre())) {
-							System.out.println(aliado.getNombre());
+			contHeroes=0;
+			contEnemigos=0;	
+			do {
+				heroe=listaHeroesVivos.get(contHeroes);
+				if (!heroe.checkDead()) {
+					msg=String.format("¿Que hara nuestro heroe %s?\n1-%s\n2-%s\n3-%s", heroe.getNombre(),heroe.getHabilidad1().getNombre(),heroe.getHabilidad2().getNombre(),heroe.getHabilidadEspecial().getNombre());
+					respAccion=readConsoleInt(msg, 3);
+					respObjetivo=readConsoleInt("¿A...\n1-Aliados?\n2-Enemigo?",2);
+					if (respObjetivo==1) {
+						for (Heroe aliado: listaHeroesVivos) {
+							if (!heroe.getNombre().equals(aliado.getNombre())) {
+								System.out.println(aliado.getNombre());
+							}
 						}
+					}else {
+						int cont=1;
+						msg="Enemigos:\n";
+						for (Human enemigo: listaEnemigos) {
+							msg=msg.concat(String.format("%d-%s\n",cont ,enemigo.getNombre()));
+							cont++;
+						}
+						respObjetivo=readConsoleInt(msg, listaEnemigos.size());
+						target=listaEnemigos.get(respObjetivo-1);
 					}
-				}else {
-					int cont=1;
-					msg="Enemigos:\n";
-					for (Human enemigo: listaEnemigos) {
-						msg=msg.concat(String.format("%d-%s\n",cont ,enemigo.getNombre()));
-						cont++;
+					switch (respAccion) {
+					case 1:
+						System.out.println(String.format("El heroe %s uso %s contra %s", heroe.getNombre(),heroe.getHabilidad1().getNombre(),target.getNombre()));
+						heroe.usarH1(target);
+						break;
+					case 2:
+						System.out.println(String.format("El heroe %s uso %s contra %s", heroe.getNombre(),heroe.getHabilidad2().getNombre(),target.getNombre()));
+						heroe.usarH2(target);
+						break;
+					case 3:
+						System.out.println(String.format("El heroe %s uso %s contra %s", heroe.getNombre(),heroe.getHabilidadEspecial().getNombre(),target.getNombre()));
+						heroe.usarEsp(target);
+						break;
+					default:
+						break;
 					}
-					respObjetivo=readConsoleInt(msg, listaEnemigos.size());
-					target=listaEnemigos.get(respObjetivo-1);
+					if (target.checkDead()) {
+						System.out.println(String.format("%s ha caido", target.getNombre()));
+						listaEnemigos.remove(respObjetivo-1);
+					}else {
+						System.out.println(String.format("La vida de %s es: %d", target.getNombre(),target.getVida()));
+					}
 				}
-				switch (respAccion) {
-				case 1:
-					System.out.println(String.format("El heroe %s uso %s contra %s", heroe.getNombre(),heroe.getHabilidad1().getNombre(),target.getNombre()));
-					heroe.usarH1(target);
-					break;
-				case 2:
-					System.out.println(String.format("El heroe %s uso %s contra %s", heroe.getNombre(),heroe.getHabilidad2().getNombre(),target.getNombre()));
-					heroe.usarH2(target);
-					break;
-				case 3:
-					System.out.println(String.format("El heroe %s uso %s contra %s", heroe.getNombre(),heroe.getHabilidadEspecial().getNombre(),target.getNombre()));
-					heroe.usarEsp(target);
-					break;
-				default:
-					break;
-				}
-				if (target.checkDead()) {
-					System.out.println(String.format("%s ha caido", target.getNombre()));
-					listaEnemigos.remove(respObjetivo-1);
-				}else {
+				contHeroes++;
+				}while(contHeroes<listaHeroesVivos.size());
+				do {
+					Human enemigo=listaEnemigos.get(contEnemigos);
+					System.out.println(String.format("%s ataca!!", enemigo.getNombre()));
+					target=listaHeroesVivos.get(intRandom.nextInt(listaHeroesVivos.size()-1));
+					enemigo.usarH1(target);
 					System.out.println(String.format("La vida de %s es: %d", target.getNombre(),target.getVida()));
-				}
-			}
-		
+					contEnemigos++;
+				}while(contEnemigos<listaEnemigos.size());
 		} while (listaHeroesVivos.size()!=0 || listaEnemigos.size()!=0);
 		if (listaHeroesVivos.size()==0) {
 			return -1;
