@@ -3,7 +3,7 @@ package Core.Clases.Jefes;
 import Core.Clases.Habilidad;
 
 
-public class Jefe3 extends Core.Clases.Human{
+public class Jefe3 extends Jefe{
     public Jefe3(String nombre){
         super.nombre = nombre;
         super.tipo = "Enemigo";
