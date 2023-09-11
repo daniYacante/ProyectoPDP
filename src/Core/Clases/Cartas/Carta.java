@@ -18,7 +18,7 @@ public abstract class Carta  extends Core.Clases.Heroes.Heroe{
     }
 
     public void realizarEfecto(){
-
+    	System.out.println("No hay ningun efecto");
     }
     
 	public void setPortador(Heroe portadorCarta) {

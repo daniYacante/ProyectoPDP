@@ -103,8 +103,8 @@ public class Game {
         			}
         			respInt=readConsoleInt("",listaHeroesVivos.size());
 					item.setPortador(listaHeroesVivos.get(respInt-1));
-					listaHeroesVivos.get(respInt).setCartaElegida(item);
-					System.out.println(String.format("%s ahora lleva %s", listaHeroesVivos.get(respInt-1).getNombre(),item.getNombreCarta()));
+					listaHeroesVivos.get(respInt-1).setCartaElegida(item);
+					System.out.println(String.format("%s ahora lleva %s", listaHeroesVivos.get(respInt-1).getNombre(),listaHeroesVivos.get(respInt-1).getCartaElegida().getNombreCarta()));
         		}else {
         			System.out.println("Lo dejas donde estaba...");
         		}
@@ -164,46 +164,59 @@ public class Game {
 			do {
 				heroe=listaHeroesVivos.get(contHeroes);
 				if (!heroe.checkDead()) {
-					msg=String.format("¿Que hara nuestro heroe %s?\n1-%s\n2-%s\n3-%s", heroe.getNombre(),heroe.getHabilidad1().getNombre(),heroe.getHabilidad2().getNombre(),heroe.getHabilidadEspecial().getNombre());
-					respAccion=readConsoleInt(msg, 3);
-					respObjetivo=readConsoleInt("¿A...\n1-Aliados?\n2-Enemigo?",2);
-					if (respObjetivo==1) {
-						for (Heroe aliado: listaHeroesVivos) {
-							if (!heroe.getNombre().equals(aliado.getNombre())) {
-								System.out.println(aliado.getNombre());
+					msg=String.format("¿Que hara nuestro heroe %s?\n[1]- Atacar \n[2]- Usar Objeto", heroe.getNombre());
+					respAccion=readConsoleInt(msg, 2);
+					if (respAccion==1){
+						msg=String.format("¿Como quiere atacar?\n1-%s\n2-%s\n3-%s",heroe.getHabilidad1().getNombre(),heroe.getHabilidad2().getNombre(),heroe.getHabilidadEspecial().getNombre());
+						respAccion=readConsoleInt(msg, 3);
+						respObjetivo=readConsoleInt("¿A...\n1-Aliados?\n2-Enemigo?",2);
+						if (respObjetivo==1) {
+							for (Heroe aliado: listaHeroesVivos) {
+								if (!heroe.getNombre().equals(aliado.getNombre())) {
+									System.out.println(aliado.getNombre());
+								}
 							}
+						}else {
+							int cont=1;
+							msg="Enemigos:\n";
+							for (Human enemigo: listaEnemigos) {
+								msg=msg.concat(String.format("%d-%s\n",cont ,enemigo.getNombre()));
+								cont++;
+							}
+							respObjetivo=readConsoleInt(msg, listaEnemigos.size());
+							target=listaEnemigos.get(respObjetivo-1);
+						}
+						switch (respAccion) {
+						case 1:
+							System.out.println(String.format("El heroe %s uso %s contra %s", heroe.getNombre(),heroe.getHabilidad1().getNombre(),target.getNombre()));
+							heroe.usarH1(target);
+							break;
+						case 2:
+							System.out.println(String.format("El heroe %s uso %s contra %s", heroe.getNombre(),heroe.getHabilidad2().getNombre(),target.getNombre()));
+							heroe.usarH2(target);
+							break;
+						case 3:
+							System.out.println(String.format("El heroe %s uso %s contra %s", heroe.getNombre(),heroe.getHabilidadEspecial().getNombre(),target.getNombre()));
+							heroe.usarEsp(target);
+							break;
+						default:
+							break;
+						}
+						if (target.checkDead()) {
+							System.out.println(String.format("%s ha caido", target.getNombre()));
+							listaEnemigos.remove(respObjetivo-1);
+						}else {
+							System.out.println(String.format("La vida de %s es: %d", target.getNombre(),target.getVida()));
 						}
 					}else {
-						int cont=1;
-						msg="Enemigos:\n";
-						for (Human enemigo: listaEnemigos) {
-							msg=msg.concat(String.format("%d-%s\n",cont ,enemigo.getNombre()));
-							cont++;
+						if (heroe.getCartaElegida()!=null) {
+							//System.out.println("Has usado el item, este tendra efecto en proximo turno");
+							heroe.getCartaElegida().realizarEfecto();
+						}else {
+							System.out.println("No lleva nada para usar!!");
+							//Forma de que no pierda el turno xD
+							contHeroes--;
 						}
-						respObjetivo=readConsoleInt(msg, listaEnemigos.size());
-						target=listaEnemigos.get(respObjetivo-1);
-					}
-					switch (respAccion) {
-					case 1:
-						System.out.println(String.format("El heroe %s uso %s contra %s", heroe.getNombre(),heroe.getHabilidad1().getNombre(),target.getNombre()));
-						heroe.usarH1(target);
-						break;
-					case 2:
-						System.out.println(String.format("El heroe %s uso %s contra %s", heroe.getNombre(),heroe.getHabilidad2().getNombre(),target.getNombre()));
-						heroe.usarH2(target);
-						break;
-					case 3:
-						System.out.println(String.format("El heroe %s uso %s contra %s", heroe.getNombre(),heroe.getHabilidadEspecial().getNombre(),target.getNombre()));
-						heroe.usarEsp(target);
-						break;
-					default:
-						break;
-					}
-					if (target.checkDead()) {
-						System.out.println(String.format("%s ha caido", target.getNombre()));
-						listaEnemigos.remove(respObjetivo-1);
-					}else {
-						System.out.println(String.format("La vida de %s es: %d", target.getNombre(),target.getVida()));
 					}
 				}
 				contHeroes++;
