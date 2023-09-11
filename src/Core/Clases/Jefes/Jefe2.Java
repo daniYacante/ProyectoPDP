@@ -5,7 +5,6 @@ public class Jefe2 extends Jefe{
     
     public Jefe2(String nombre){
         super.nombre = nombre;
-        super.tipo = "Enemigo";
         super.vidaActual = 200;
         this.clase="Profe2";
         this.descripcion="Profe2";
