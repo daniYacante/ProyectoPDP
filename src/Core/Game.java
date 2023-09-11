@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 import Core.Clases.*;
+import Core.Clases.Cartas.Carta;
 import Core.Clases.Heroes.*;
 //import java.util.concurrent.TimeUnit;
 public class Game {
@@ -63,6 +64,9 @@ public class Game {
 
 	
     public static void opcion1(){
+    	//String respString;
+    	int respInt;
+    	Sala stage;
     	String nombre = readConsoleString("Jugador, ¿cual es tu nombre?");
         System.out.println("Muy bien,"+nombre+". Elige tus 5 personajes que iran en el equipo:");
         do {
@@ -82,15 +86,39 @@ public class Game {
 	        }
         } while (listaHeroesVivos.size()<5);
         System.out.println("¡Los jugadores estan listos! comenzamos...");
+        Carta item;
         //Lucha
         do {
-        	System.out.println("A luchaaaaar!!!!");
-        	status=lucha(crearSala(nSala));
-        	if ((status==-1) || (nSala==2)) {
+        	stage=crearSala(nSala);
+        	System.out.println("Entras a una sala donde la luz escasea, sientes el olor a humedad en el aire, sobre una mesa ves"
+        			+" algo que brilla y hacia tu derecha ves lo que parece ser una puerta.");
+        	respInt=readConsoleInt("¿Que decides hacer?\n[1] Investigar que es lo que brilla \n[2] Ir hacia la \"puerta\"",2);
+        	if (respInt==1) {
+        		item=stage.investigar();
+        		respInt=readConsoleInt("Deseas guardartelo?\n[1] Si \n[2] No", 2);
+        		if (respInt==1) {
+        			System.out.println("Quien deberia llevarlo?");
+        			for (int i=0;i<listaHeroesVivos.size();i++) {
+        				System.out.println(String.format("[%d] - %s",i+1,listaHeroesVivos.get(i).getNombre()));
+        			}
+        			respInt=readConsoleInt("",listaHeroesVivos.size());
+					item.setPortador(listaHeroesVivos.get(respInt-1));
+					listaHeroesVivos.get(respInt).setCartaElegida(item);
+					System.out.println(String.format("%s ahora lleva %s", listaHeroesVivos.get(respInt-1).getNombre(),item.getNombreCarta()));
+        		}else {
+        			System.out.println("Lo dejas donde estaba...");
+        		}
+        		
+        		System.out.println("Luego de ver que es lo que brillaba, te diriges hacia la puerta y...");
+        	}
+    		System.out.println("A luchaaaaar!!!!");
+    		status=lucha(stage);
+    		if ((status==-1) || (nSala==2)) {
         		Fin=true;
         	}else {
         		nSala++;
         	}
+        	
         } while (!Fin);
         //End Lucha
     }

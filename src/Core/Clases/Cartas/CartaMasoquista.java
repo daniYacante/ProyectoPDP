@@ -1,18 +1,19 @@
 package Core.Clases.Cartas;
 
 import Core.Clases.Heroes.Heroe;
-import Core.Clases.Human;
-
 
 public class CartaMasoquista extends Carta{
     protected int vidaAnterior;
     protected int vidaPerdida;
     protected int manaGanado;
     //protected Human ayuda;
-    public CartaMasoquista(Heroe portadorCarta){
-        super.nombreCarta = "Carta del Masoquista";
+    public CartaMasoquista() {
+    	super.nombreCarta = "Carta del Masoquista";
         super.descripcion = "cuando el portador reciba daño del enemigo, este sera multiplicado por dos veces. PERO ganara una gran cantidad de mana";
-        super.portador = portadorCarta;
+    }
+    @Override
+    public void setPortador(Heroe portadorCarta) {
+    	super.portador = portadorCarta;
 
         //this.ayuda = (Human) portadorCarta;
         //¿Como darse cuenta de que le pegaron mientras estamos en lucha?

@@ -1,5 +1,4 @@
 package Core.Clases.Cartas;
-
 import Core.Clases.Heroes.Heroe;
 
 public abstract class Carta  extends Core.Clases.Heroes.Heroe{
@@ -21,4 +20,9 @@ public abstract class Carta  extends Core.Clases.Heroes.Heroe{
     public void realizarEfecto(){
 
     }
+    
+	public void setPortador(Heroe portadorCarta) {
+		// TODO Auto-generated method stub
+		
+	}
 }

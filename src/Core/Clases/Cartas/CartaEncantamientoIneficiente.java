@@ -11,10 +11,12 @@ public class CartaEncantamientoIneficiente extends Carta{
     protected int manaPortador1;
     protected int manaPortador2;
     protected int manaPortador3;
-
-    public CartaEncantamientoIneficiente(Heroe portadorCarta){
-        super.nombreCarta = "Carta del Encantamiento Ineficiente";
+    public CartaEncantamientoIneficiente() {
+    	super.nombreCarta = "Carta del Encantamiento Ineficiente";
         super.descripcion = "el costo de mana de tus habilidades se reducira un 50%, PERO el daño de tus habilidades tambien se reduciran el mismo porcentaje";
+    }
+    @Override
+    public void setPortador(Heroe portadorCarta){
         super.portador = portadorCarta;
         this.fueUsada = false;
         //Tomar el daño de las habilidades

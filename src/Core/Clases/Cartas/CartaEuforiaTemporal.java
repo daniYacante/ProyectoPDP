@@ -7,10 +7,12 @@ public class CartaEuforiaTemporal extends Carta{
     protected int danioPortador1;
     protected int danioPortador2;
     protected int danioPortador3;
-
-    public CartaEuforiaTemporal(Heroe portadorCarta){
-        super.nombreCarta = "carta de la Euforia Temporal";
+    public CartaEuforiaTemporal() {
+    	super.nombreCarta = "carta de la Euforia Temporal";
         super.descripcion = "cuando tu vida sea mas del 65% de su vida maxima, el daño de tus habilidades aumenta. PERO si baja a menos del 65%, tus habilidades empezaran a ser mas debiles";
+    }
+    @Override
+    public void setPortador(Heroe portadorCarta) {
         super.portador = portadorCarta;
         this.vidaMaximaPortador = portador.getVidaMaxima();
         this.vidaActualPortador = portador.getVida();

@@ -6,10 +6,14 @@ public class cartaUltimaEsperanza extends Carta{
 
     // Esta carta va a tener que ser una "especial" podemos decir, ya que necesita de este atributo
     protected boolean fueUsada = false;
-    public cartaUltimaEsperanza(Heroe portadorCarta){
-        super.nombreCarta = "Carta de la Ultima Esperanza";
+    public cartaUltimaEsperanza() {
+    	super.nombreCarta = "Carta de la Ultima Esperanza";
         super.descripcion = "cuando tu vida baje mas de un 80% POR SOLO UNA VEZ, volvera al maximo PERO tus ataques seran mas debiles";
-        super.portador = portadorCarta;
+    }
+    
+    @Override
+    public void setPortador(Heroe portadorCarta) {
+    	super.portador = portadorCarta;
         this.vidaMaximaPortador = portador.getVidaMaxima();
     }
 
