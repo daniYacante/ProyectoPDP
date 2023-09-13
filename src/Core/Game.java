@@ -1,5 +1,7 @@
 package Core;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 import Core.Clases.*;
@@ -26,18 +28,15 @@ public class Game {
 				+ " \\____/\\__,_|_|\\__,_|_.__/ \\___/___\\___/|___/  \\__, | \\_|  |_|  \\___/|_| \\___||___/\\___/|_|  \\___||___/\r\n"
 				+ "                                                __/ |                                                  \r\n"
 				+ "                                               |___/                                                   ");
-        System.out.println("Existe la profecia de unos estudiantes que lograrian completar la carrera en 5 anios, los profesores creian que esto era un absurdo, que nadie asi llegaria algun dia... ");
-        System.out.println("HASTA ESTE DIA... TU ERES UNO.");
-        System.out.println("----------------------------------------------------------------------------------------------------------");
-        System.out.println("----------------------------------------------------------------------------------------------------------");
-		pressToContinue();
+        imprimir("Existe la profecia de unos estudiantes que lograrian completar la carrera en 5 anios, los profesores creian que esto era un absurdo, que nadie asi llegaria algun dia...\nHASTA ESTE DIA... TU ERES UNO.");
+        pressToContinue();
         System.out.println("----------------------------------------------------------------------------------------------------------");
         System.out.println("                                           Menu                                                           ");
         System.out.println("----------------------------------------------------------------------------------------------------------");
-
 //Menu de opciones:
         int valor = 0;
         msg="Por favor, elija una opcion\n[1] JUGAR\n[2] COMO JUGAR\n[3] CREDITOS\n[4] SALIR\n";
+        //imprimir(msg);
         valor=readConsoleInt(msg, 4);
         switch(valor){
             case 1:
@@ -75,11 +74,10 @@ public class Game {
 	        Heroe seleccionHeroe=crearHeroe(respuestaUsuario);
 	        
 	        //Imprimir stats
-	        System.out.println("----------------------------------------------------------------------------------------------------------");
-	        System.out.println("Clase: "+ seleccionHeroe.getClase());
-	        System.out.println("Vida: "+ seleccionHeroe.getVidaMaxima());
+	        
+	        imprimir("Clase: "+ seleccionHeroe.getClase()+"\n"+"Vida: "+ seleccionHeroe.getVidaMaxima());
 	        //System.out.println("Ataque: "+ seleccionHeroe.get());
-	        System.out.println("----------------------------------------------------------------------------------------------------------");
+	        
 	        respuestaUsuario=readConsoleInt("¿Seleccionar?\n[1] Si \n[2] No",2);
 	        if (respuestaUsuario==1) {
 	        	listaHeroesVivos.add(seleccionHeroe);
@@ -248,7 +246,8 @@ public class Game {
     public static int readConsoleInt(String mensaje,int maxOpciones) {
 		int input;
 		do {
-			System.out.println(mensaje);
+			//System.out.println(mensaje);
+			imprimir(mensaje);
 			try {
 				input=Integer.parseInt(scanner.next());
 			} catch (Exception e) {
@@ -262,7 +261,8 @@ public class Game {
     public static String readConsoleString(String mensaje) {
     	String input;
     	boolean leido=false;
-    	System.out.println(mensaje);
+    	//System.out.println(mensaje);
+    	imprimir(mensaje);
     	do {
 			try {
 				input=scanner.next();
@@ -299,5 +299,56 @@ public class Game {
 			break;
 		}
 		return H;
+	}
+	public static void imprimir(String mensaje) {
+		int maxHorizontal=100;
+		int maxVertical=10;
+		String format = "|\t%-91s|";
+		String[] mensj=mensaje.split("\n");
+		int lenMensj=mensj.length;
+		int iMensj=0;
+		ArrayList<String> pantalla= new ArrayList<String>(maxVertical);
+		List<String> lineas = Arrays.asList(mensj);
+		String linea;
+		String cadTemp;
+		for (int j=0; j<lineas.size()+2;j++) {
+			linea="";
+			if(j==0 || j==lineas.size()+1) {
+				for(int i=0;i<maxHorizontal;i++) {
+					if (i==0 || i==maxHorizontal-1) {
+						linea+="+";
+					}else{
+						linea+="~";
+					}
+				}
+			}else {
+				if (iMensj<lenMensj) {
+					cadTemp=lineas.get(iMensj);
+					if (cadTemp.length()<80) {
+						linea=String.format(format,cadTemp );
+						iMensj++;
+					}else {
+						//Hacer que divida la linea en multiples
+						int numChar=0;
+						String lineaTemp="";
+						for (String palabra:cadTemp.split(" ")) {
+							if (linea.length()+palabra.length()<80) {
+								linea+=palabra+" ";
+							}else {
+								lineaTemp+=palabra+" ";
+							}
+						}
+						//System.out.println(lineaTemp);
+					}
+				}else {
+					linea=String.format(format, " ");
+				}
+			}
+			
+			pantalla.add(linea);
+		}
+		for (String line:pantalla) {
+			System.out.println(line);
+		}
 	}
 }
