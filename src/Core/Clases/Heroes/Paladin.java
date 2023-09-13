@@ -1,11 +1,13 @@
 package Core.Clases.Heroes;
-
+import Core.Game;
 import Core.Clases.Habilidad;
 
 public class Paladin extends Core.Clases.Heroes.Heroe {
     //Paladin d10
     //Coloque mana = vidaActual por simplicidad
     //vidaActual es d10 * 12
+	
+	
     public Paladin(String nombre){
         super.nombre = nombre;
         super.tipo = "Heroe";
@@ -18,6 +20,9 @@ public class Paladin extends Core.Clases.Heroes.Heroe {
         this.habilidad1=new Habilidad("Espadazo");
         this.habilidad2=new Habilidad("Imposicion de Manos");
         this.habilidadEspecial=new Habilidad("Golpe Divino");
+    }
+    public static void getStats() {
+    	Game.imprimir("");
     }
 }
 

@@ -28,7 +28,7 @@ public class Game {
 				+ " \\____/\\__,_|_|\\__,_|_.__/ \\___/___\\___/|___/  \\__, | \\_|  |_|  \\___/|_| \\___||___/\\___/|_|  \\___||___/\r\n"
 				+ "                                                __/ |                                                  \r\n"
 				+ "                                               |___/                                                   ");
-        imprimir("Existe la profecia de unos estudiantes que lograrian completar la carrera en 5 anios, los profesores creian que esto era un absurdo, que nadie asi llegaria algun dia...\nHASTA ESTE DIA... TU ERES UNO.");
+        imprimir("Existe la profecia de unos estudiantes que lograrian completar la carrera en 5 años, los profesores creian que esto era un absurdo, que nadie asi llegaria algun dia...\nHASTA ESTE DIA... TU ERES UNO.");
         pressToContinue();
         System.out.println("----------------------------------------------------------------------------------------------------------");
         System.out.println("                                           Menu                                                           ");
@@ -88,7 +88,7 @@ public class Game {
         //Lucha
         do {
         	stage=crearSala(nSala);
-        	System.out.println("Entras a una sala donde la luz escasea, sientes el olor a humedad en el aire, sobre una mesa ves"
+        	imprimir("Entras a una sala donde la luz escasea, sientes el olor a humedad en el aire, sobre una mesa ves"
         			+" algo que brilla y hacia tu derecha ves lo que parece ser una puerta.");
         	respInt=readConsoleInt("¿Que decides hacer?\n[1] Investigar que es lo que brilla \n[2] Ir hacia la \"puerta\"",2);
         	if (respInt==1) {
@@ -302,13 +302,16 @@ public class Game {
 	}
 	public static void imprimir(String mensaje) {
 		int maxHorizontal=100;
-		int maxVertical=10;
+		//int maxVertical=10;
 		String format = "|\t%-91s|";
 		String[] mensj=mensaje.split("\n");
 		int lenMensj=mensj.length;
 		int iMensj=0;
-		ArrayList<String> pantalla= new ArrayList<String>(maxVertical);
-		List<String> lineas = Arrays.asList(mensj);
+		ArrayList<String> pantalla= new ArrayList<String>();
+		ArrayList<String> lineas = new ArrayList<String>();
+		for(String cadenas:mensj) {
+			lineas.add(cadenas);
+		}
 		String linea;
 		String cadTemp;
 		for (int j=0; j<lineas.size()+2;j++) {
@@ -322,26 +325,24 @@ public class Game {
 					}
 				}
 			}else {
-				if (iMensj<lenMensj) {
-					cadTemp=lineas.get(iMensj);
-					if (cadTemp.length()<80) {
-						linea=String.format(format,cadTemp );
-						iMensj++;
-					}else {
-						//Hacer que divida la linea en multiples
-						int numChar=0;
-						String lineaTemp="";
-						for (String palabra:cadTemp.split(" ")) {
-							if (linea.length()+palabra.length()<80) {
-								linea+=palabra+" ";
-							}else {
-								lineaTemp+=palabra+" ";
-							}
-						}
-						//System.out.println(lineaTemp);
-					}
+				cadTemp=lineas.get(iMensj);
+				if (cadTemp.length()<80) {
+					linea=String.format(format,cadTemp );
+					iMensj++;
 				}else {
-					linea=String.format(format, " ");
+					//Hacer que divida la linea en multiples
+					String lineaTemp="";
+					for (String palabra:cadTemp.split(" ")) {
+						if (linea.length()+palabra.length()<80) {
+							linea+=palabra+" ";
+						}else {
+							lineaTemp+=palabra+" ";
+						}
+					}
+					linea=String.format(format, linea);
+					lineas.add(iMensj+1,lineaTemp);
+					iMensj++;
+					//System.out.println(lineaTemp.getClass());
 				}
 			}
 			
