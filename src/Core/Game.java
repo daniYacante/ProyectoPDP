@@ -1,7 +1,5 @@
 package Core;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 import Core.Clases.*;
@@ -80,6 +78,7 @@ public class Game {
 	        
 	        respuestaUsuario=readConsoleInt("¿Seleccionar?\n[1] Si \n[2] No",2);
 	        if (respuestaUsuario==1) {
+	        	seleccionHeroe.setNombre(readConsoleString(String.format("Ingrese nombre para el %s",seleccionHeroe.getClase())));
 	        	listaHeroesVivos.add(seleccionHeroe);
 	        }
         } while (listaHeroesVivos.size()<5);
@@ -283,19 +282,19 @@ public class Game {
 		Heroe H;
 		switch (tipo) {
 		case 1:
-			H=new Paladin("pala");
+			H=new Paladin();
 			break;
 		case 2:
-			H=new Mago("mago");
+			H=new Mago();
 			break;
 		case 3:
-			H=new Clerigo("clerigo");
+			H=new Clerigo();
 			break;
 		case 4:
-			H=new Rogue("rouge");
+			H=new Rogue();
 			break;
 		default:
-			H=new Paladin("pala1");
+			H=new Paladin();
 			break;
 		}
 		return H;
@@ -305,7 +304,6 @@ public class Game {
 		//int maxVertical=10;
 		String format = "|\t%-91s|";
 		String[] mensj=mensaje.split("\n");
-		int lenMensj=mensj.length;
 		int iMensj=0;
 		ArrayList<String> pantalla= new ArrayList<String>();
 		ArrayList<String> lineas = new ArrayList<String>();

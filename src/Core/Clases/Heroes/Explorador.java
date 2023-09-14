@@ -5,9 +5,8 @@ import Core.Clases.Habilidad;
 public class Explorador extends Core.Clases.Human {
     //Coloque mana = vidaActual por simplicidad
     //vidaActual es d6 * 12
-    public Explorador(String nombre){
+    public Explorador(){
         //Explorador d10
-        super.nombre = nombre;
         super.tipo = "Heroe";
         super.vidaActual = 80;
         super.vidaMaxima = 120;

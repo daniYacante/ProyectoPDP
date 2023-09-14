@@ -8,9 +8,8 @@ public class Paladin extends Core.Clases.Heroes.Heroe {
     //vidaActual es d10 * 12
 	
 	
-    public Paladin(String nombre){
-        super.nombre = nombre;
-        super.tipo = "Heroe";
+    public Paladin(){
+    	super.tipo = "Heroe";
         super.vidaActual = 120;
         super.vidaMaxima = 180;
         super.manaActual = 100;
