@@ -18,14 +18,14 @@ public class Game {
 	private static ArrayList<Heroe> listaHeroesVivos= new ArrayList<Heroe>(nHeroes);
 	public static Random intRandom=new Random();
 	public static void main(String[] args) {
-		System.out.println(" _____       _       _                                ______           __                              \r\n"
+		System.out.println("\u001B[32m"+" _____       _       _                                ______           __                              \r\n"
 				+ "/  __ \\     | |     | |                               | ___ \\         / _|                             \r\n"
 				+ "| /  \\/ __ _| | __ _| |__   ___ _______  ___   _   _  | |_/ / __ ___ | |_ ___  ___  ___  _ __ ___  ___ \r\n"
 				+ "| |    / _` | |/ _` | '_ \\ / _ \\_  / _ \\/ __| | | | | |  __/ '__/ _ \\|  _/ _ \\/ __|/ _ \\| '__/ _ \\/ __|\r\n"
 				+ "| \\__/\\ (_| | | (_| | |_) | (_) / / (_) \\__ \\ | |_| | | |  | | | (_) | ||  __/\\__ \\ (_) | | |  __/\\__ \\\r\n"
 				+ " \\____/\\__,_|_|\\__,_|_.__/ \\___/___\\___/|___/  \\__, | \\_|  |_|  \\___/|_| \\___||___/\\___/|_|  \\___||___/\r\n"
 				+ "                                                __/ |                                                  \r\n"
-				+ "                                               |___/                                                   ");
+				+ "                                               |___/                                                   "+"\u001B[0m");
         imprimir("Existe la profecia de unos estudiantes que lograrian completar la carrera en 5 años, los profesores creian que esto era un absurdo, que nadie asi llegaria algun dia...\nHASTA ESTE DIA... TU ERES UNO.");
         pressToContinue();
         System.out.println("----------------------------------------------------------------------------------------------------------");
@@ -166,7 +166,7 @@ public class Game {
 					if (respAccion==1){
 						msg=String.format("¿Como quiere atacar?\n1-%s\n2-%s\n3-%s",heroe.getHabilidad1().getNombre(),heroe.getHabilidad2().getNombre(),heroe.getHabilidadEspecial().getNombre());
 						respAccion=readConsoleInt(msg, 3);
-						respObjetivo=readConsoleInt("¿A...\n1-Aliados?\n2-Enemigo?",2);
+						respObjetivo=readConsoleInt("¿A...\n1-\u001B[32mAliados?\u001B[0m\n2-\u001B[31mEnemigo\u001B[0m?",2);
 						if (respObjetivo==1) {
 							for (Heroe aliado: listaHeroesVivos) {
 								if (!heroe.getNombre().equals(aliado.getNombre())) {
