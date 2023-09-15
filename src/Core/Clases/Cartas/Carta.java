@@ -1,7 +1,7 @@
 package Core.Clases.Cartas;
 import Core.Clases.Heroes.Heroe;
 
-public abstract class Carta  extends Core.Clases.Heroes.Heroe{
+public abstract class Carta{
     protected String nombreCarta;
     //descripcion de la carta (tanto el efecto positivo como el efecto negativo)
     protected String descripcion;

@@ -6,7 +6,7 @@ public class Paladin extends Core.Clases.Heroes.Heroe {
     //Paladin d10
     //Coloque mana = vidaActual por simplicidad
     //vidaActual es d10 * 12
-    public Paladin(String nombre){
+    public Paladin(){
         super.turnoAnt = 0;
         super.nombre = nombre;
         super.tipo = "Heroe";
