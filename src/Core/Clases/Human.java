@@ -1,9 +1,8 @@
 package Core.Clases;
-
 public abstract class Human {
     //Atributos
     protected String nombre="";
-    
+    protected boolean useEsp = false;
     
     //ACLARACION: Hay valores que les di por tirar una idea, luego los modificamos si queremos.
     //Tres tipos de vida
@@ -55,9 +54,11 @@ public abstract class Human {
     protected Habilidad habilidad1;
 	protected Habilidad habilidad2;
 	protected Habilidad habilidadEspecial;
-
+    protected int turnoAnt = 0;
 
     //Metodos
+
+
 	public String getTipo(){
 		return tipo;
 	}
@@ -143,6 +144,7 @@ public abstract class Human {
 		else if (this.getHabilidadEspecial().getEfectoManaLanzador()<this.manaActual) {
 			this.getHabilidadEspecial().usar(objetivo,0);
 			this.manaActual-=this.getHabilidadEspecial().getEfectoManaLanzador();
+            this.useEsp = true;
 		}
 	}
     //Durante o antes de un combate, el jugador deberia tener la opcion de usar algun consumible de los objetos que lleva.

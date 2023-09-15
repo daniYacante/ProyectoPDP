@@ -9,6 +9,6 @@ public class Celador extends Core.Clases.Human{
         super.vidaActual = 20;
         super.tipo = "Enemigo";
         this.descripcion="Celador de catedra";
-        this.habilidad1=new Habilidad("Bastonazo");
+        this.habilidad1=new Habilidad("Bastonazo", -10, 0, 0);
     }
 }

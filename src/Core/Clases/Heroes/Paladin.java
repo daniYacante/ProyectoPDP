@@ -7,6 +7,7 @@ public class Paladin extends Core.Clases.Heroes.Heroe {
     //Coloque mana = vidaActual por simplicidad
     //vidaActual es d10 * 12
     public Paladin(String nombre){
+        super.turnoAnt = 0;
         super.nombre = nombre;
         super.tipo = "Heroe";
         super.vidaActual = 120;
@@ -15,10 +16,22 @@ public class Paladin extends Core.Clases.Heroes.Heroe {
         super.manaMaximo = 180;
         this.clase="Paladin";
         this.descripcion="Guerrero santo atado a un juramento sagrado";
-        this.habilidad1=new Habilidad("Espadazo");
-        this.habilidad2=new Habilidad("Imposicion de Manos");
-        this.habilidadEspecial=new Habilidad("Golpe Divino");
+        this.habilidad1=new Habilidad("Espadazo", -8, 0, 0);
+        this.habilidad2=new Habilidad("Imposicion de Manos", 10, 0, -10);
+        this.habilidadEspecial=new Habilidad("Golpe Divino (Habilidad Especial)", -16, 0, 0);
+        this.descripcionRes = "Puedes utilizar Golpe Divino cada 3 turnos";
     }
+    //Usar habilidad Especial despues de tres turnos
+
+    public void setRestriccion(){
+        if ((turnos - turnoAnt) >= 2) {
+            turnoAnt = turnos;
+            super.restriccion = true;
+        } else {
+            super.restriccion = false;
+        }
+    }
+    
 }
 
 

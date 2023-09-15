@@ -163,6 +163,19 @@ public class Game {
 			contEnemigos=0;	
 			do {
 				heroe=listaHeroesVivos.get(contHeroes);
+				if (heroe.getCanUse() == false) {
+					heroe.setRestriccion();
+					if (heroe.getCanUse() == false){
+						heroe.aumentarTurno();
+						contHeroes++;
+						if (contHeroes>=listaHeroesVivos.size()) {
+							contHeroes = 0;
+						}
+						if (listaHeroesVivos.size() == 1) break;
+						heroe=listaHeroesVivos.get(contHeroes);
+					}
+
+				}
 				if (!heroe.checkDead()) {
 					msg=String.format("¿Que hara nuestro heroe %s?\n[1]- Atacar \n[2]- Usar Objeto", heroe.getNombre());
 					respAccion=readConsoleInt(msg, 2);
@@ -186,6 +199,18 @@ public class Game {
 							respObjetivo=readConsoleInt(msg, listaEnemigos.size());
 							target=listaEnemigos.get(respObjetivo-1);
 						}
+						if (respAccion == 3) {
+							heroe.setRestriccion();
+							if (heroe.getRestriccion() == true) {
+								System.out.println(String.format("El heroes usara %s, recordamos que %s", heroe.getHabilidadEspecial().getNombre(), heroe.getDescripcionRes()));
+								System.out.println(String.format("El heroe %s uso %s contra %s", heroe.getNombre(),heroe.getHabilidadEspecial().getNombre(),target.getNombre()));
+								heroe.usarEsp(target);
+								break;
+							}else
+								System.out.println(String.format("El heroe %s no cumple con la condicion: %s", heroe.getNombre(),heroe.getDescripcionRes()));
+								msg=String.format("¿Como quiere atacar?\n1-%s\n2-%s",heroe.getHabilidad1().getNombre(),heroe.getHabilidad2().getNombre());
+								respAccion=readConsoleInt(msg, 2);
+						} 
 						switch (respAccion) {
 						case 1:
 							System.out.println(String.format("El heroe %s uso %s contra %s", heroe.getNombre(),heroe.getHabilidad1().getNombre(),target.getNombre()));
@@ -194,10 +219,6 @@ public class Game {
 						case 2:
 							System.out.println(String.format("El heroe %s uso %s contra %s", heroe.getNombre(),heroe.getHabilidad2().getNombre(),target.getNombre()));
 							heroe.usarH2(target);
-							break;
-						case 3:
-							System.out.println(String.format("El heroe %s uso %s contra %s", heroe.getNombre(),heroe.getHabilidadEspecial().getNombre(),target.getNombre()));
-							heroe.usarEsp(target);
 							break;
 						default:
 							break;
@@ -219,11 +240,13 @@ public class Game {
 						}
 					}
 				}
+				heroe.aumentarTurno();
 				contHeroes++;
 				}while(contHeroes<listaHeroesVivos.size());
 				do {
 					Human enemigo=listaEnemigos.get(contEnemigos);
 					System.out.println(String.format("%s ataca!!", enemigo.getNombre()));
+					// cAMBIE PARA PROBAR
 					target=listaHeroesVivos.get(intRandom.nextInt(listaHeroesVivos.size()-1));
 					enemigo.usarH1(target);
 					System.out.println(String.format("La vida de %s es: %d", target.getNombre(),target.getVida()));

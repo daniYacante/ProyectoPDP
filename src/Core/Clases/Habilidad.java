@@ -1,68 +1,18 @@
 package Core.Clases;
 
 public class Habilidad {
-	private String nombre="";
+    private String nombre="";
 	private int efectoVidaObjetivo=0;
 	private int efectoDMGObjetivo=0;
 	private int efectoManaLanzador=0;
-	public Habilidad(String nombre) {
-		this.nombre=nombre;
-		switch (nombre) {
-		case "Espadazo":
-			this.efectoVidaObjetivo=-8;
-			break;
-		case "Imposicion de Manos":
-			this.efectoVidaObjetivo=10;
-			this.efectoManaLanzador=-10;
-			break;
-		case "Golpe Divino":
-			this.efectoVidaObjetivo=-16;
-			break;
-		case "Bendicion":
-			this.efectoDMGObjetivo=4;
-			break;
-		case "Curar Heridas":
-			this.efectoVidaObjetivo=10;
-			break;
-		case "Curar Heridas en Area":
-			this.efectoVidaObjetivo=20;
-			break;
-		case "Bastonazo":
-			//CAMBIO PARA EXPERIMENTAR
-			this.efectoVidaObjetivo=-85;
-			break;
-		case "Manos Quemantes":
-			this.efectoVidaObjetivo=-8;
-			break;
-		case "Bola de Fuego":
-			this.efectoVidaObjetivo=-15;
-			break;
-		case "Acuchillada":
-			this.efectoVidaObjetivo=-8;
-			break;
-		case "Golpe Mortal":
-			this.efectoVidaObjetivo=-15;
-			break;
-		//Especial
-		case "Bestia":
-			this.efectoVidaObjetivo=-22;
-			break;
-		//Faltan las otras habilidades con sus respectivos efectos
-		//HABILIDADES JEFE (FALTAN PONER LAS HABILIDADES QUE SE VAN A UTILIZAR)
-		case "Jefe 1":
-			this.efectoVidaObjetivo=30;
-			break;
-		case "Jefe 2":
-			this.efectoVidaObjetivo=40;
-			break;
-		case "Jefe 3":
-			this.efectoVidaObjetivo=50;
-			break;
-		default:
-			break;
-		}
-	}
-	public void usar(Human target, int modificador) {
+	
+    public Habilidad(String nombre, int efectoVidaObjetivo, int efectoDMGObjetivo, int efectoManaLanzador) {
+        this.nombre = nombre;
+        this.efectoDMGObjetivo = efectoDMGObjetivo;
+        this.efectoManaLanzador = efectoManaLanzador;
+        this.efectoVidaObjetivo = efectoVidaObjetivo;
+    }
+    public void usar(Human target, int modificador) {
 		if (this.efectoVidaObjetivo<0) {
 			target.recibirDmg((-1*this.efectoVidaObjetivo)+modificador);
 		}else if (this.efectoVidaObjetivo>0) {

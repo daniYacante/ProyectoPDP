@@ -7,6 +7,7 @@ public class Rogue extends Core.Clases.Heroes.Heroe {
     //vidaActual es d8.1 * 12
     public Rogue(String nombre){
        //Rogue d8.1
+        super.turnoAnt = 0;
         super.nombre = nombre;
         super.tipo = "Heroe";
         super.vidaActual = 97;
@@ -15,8 +16,21 @@ public class Rogue extends Core.Clases.Heroes.Heroe {
         super.manaMaximo = 161;
         this.clase="Rogue";
         this.descripcion="Malandrin que utiliza el sigilo y artimañas para superar obstaculos y enemigos";
-        this.habilidad1=new Habilidad("Acuchillada");
-        this.habilidad2=new Habilidad("");//Tengo que buscar mas sobre los rogue
-        this.habilidadEspecial=new Habilidad("Golpe Mortal");
+        this.habilidad1=new Habilidad("Acuchillada", -8, 0,0);
+        this.habilidad2=new Habilidad("",0,0,0);//Tengo que buscar mas sobre los rogue
+        this.habilidadEspecial=new Habilidad("Golpe Mortal", -15, 0,0);
+        this.descripcionRes = "Despues de utilizar Golpe Mortal (Habilidad Especial), no podras utilizar a Rogue por 2 turnos";
+    }
+    //Si usas la habilidad Especial despues no podes utilizar el personaje por 2 turnos
+    public void setRestriccion(){
+        restriccion = true;
+        if (useEsp == false){
+            turnoAnt = turnos;
+        }
+        if ((turnos - turnoAnt) == 2) {
+            super.canUse = true;
+            turnoAnt = turnos;
+            super.useEsp = false;
+        }else super.canUse = false;
     }
 }

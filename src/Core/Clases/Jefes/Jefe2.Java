@@ -8,7 +8,7 @@ public class Jefe2 extends Jefe{
         super.vidaActual = 200;
         this.clase="Profe2";
         this.descripcion="Profe2";
-        this.habilidad1=new Habilidad("Bastonazo");;
-        this.habilidadEspecial=new Habilidad("Jefe2");
+        this.habilidad1=new Habilidad("Bastonazo", -10, 0, 0);
+        this.habilidadEspecial=new Habilidad("Hacer Compilador", -33, 0,0);
     }
 }
