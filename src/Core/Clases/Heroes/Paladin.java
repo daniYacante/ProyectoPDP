@@ -1,5 +1,5 @@
 package Core.Clases.Heroes;
-
+import Core.Game;
 import Core.Clases.Habilidad;
 
 public class Paladin extends Core.Clases.Heroes.Heroe {
@@ -32,6 +32,9 @@ public class Paladin extends Core.Clases.Heroes.Heroe {
         }
     }
     
+    public static void getStats() {
+    	Game.imprimir("");
+    }
 }
 
 

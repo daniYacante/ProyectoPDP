@@ -80,6 +80,9 @@ public abstract class Human {
     public boolean checkDead(){
         return this.isDead;
     }
+    public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
     protected void recibirDmg(int dmg) {
     	System.out.println(String.format("%s ha recibido %s puntos de daño", this.getNombre(),dmg));
     	if ((this.vidaActual-dmg)<=0) {

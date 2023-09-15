@@ -7,7 +7,6 @@ public class Guardabosque extends Core.Clases.Human {
     //vidaActual es d6 * 12
     public Guardabosque(String nombre){
         //Explorador d10
-        super.nombre = nombre;
         super.tipo = "Heroe";
         super.vidaActual = 80;
         super.vidaMaxima = 120;

@@ -5,9 +5,8 @@ import Core.Clases.Habilidad;
 public class Clerigo extends Core.Clases.Heroes.Heroe{
     //Coloque mana = vidaActual por simplicidad
     //vidaActual es d8 * 12
-    public Clerigo(String nombre){
+    public Clerigo(){
         //Clerigo d8
-        super.nombre = nombre;
         super.tipo = "Heroe";
         super.vidaActual = 96;
         super.vidaMaxima = 160;
@@ -19,4 +18,5 @@ public class Clerigo extends Core.Clases.Heroes.Heroe{
         this.habilidad2=new Habilidad("Curar Heridas", 10, 0, 0);
         this.habilidadEspecial=new Habilidad("Curar Heridas en Area", 20, 0, 0);
     }
+    
 }

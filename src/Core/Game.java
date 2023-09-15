@@ -18,26 +18,23 @@ public class Game {
 	private static ArrayList<Heroe> listaHeroesVivos= new ArrayList<Heroe>(nHeroes);
 	public static Random intRandom=new Random();
 	public static void main(String[] args) {
-		System.out.println(" _____       _       _                                ______           __                              \r\n"
+		System.out.println("\u001B[32m"+" _____       _       _                                ______           __                              \r\n"
 				+ "/  __ \\     | |     | |                               | ___ \\         / _|                             \r\n"
 				+ "| /  \\/ __ _| | __ _| |__   ___ _______  ___   _   _  | |_/ / __ ___ | |_ ___  ___  ___  _ __ ___  ___ \r\n"
 				+ "| |    / _` | |/ _` | '_ \\ / _ \\_  / _ \\/ __| | | | | |  __/ '__/ _ \\|  _/ _ \\/ __|/ _ \\| '__/ _ \\/ __|\r\n"
 				+ "| \\__/\\ (_| | | (_| | |_) | (_) / / (_) \\__ \\ | |_| | | |  | | | (_) | ||  __/\\__ \\ (_) | | |  __/\\__ \\\r\n"
 				+ " \\____/\\__,_|_|\\__,_|_.__/ \\___/___\\___/|___/  \\__, | \\_|  |_|  \\___/|_| \\___||___/\\___/|_|  \\___||___/\r\n"
 				+ "                                                __/ |                                                  \r\n"
-				+ "                                               |___/                                                   ");
-        System.out.println("Existe la profecia de unos estudiantes que lograrian completar la carrera en 5 anios, los profesores creian que esto era un absurdo, que nadie asi llegaria algun dia... ");
-        System.out.println("HASTA ESTE DIA... TU ERES UNO.");
-        System.out.println("----------------------------------------------------------------------------------------------------------");
-        System.out.println("----------------------------------------------------------------------------------------------------------");
-		pressToContinue();
+				+ "                                               |___/                                                   "+"\u001B[0m");
+        imprimir("Existe la profecia de unos estudiantes que lograrian completar la carrera en 5 años, los profesores creian que esto era un absurdo, que nadie asi llegaria algun dia...\nHASTA ESTE DIA... TU ERES UNO.");
+        pressToContinue();
         System.out.println("----------------------------------------------------------------------------------------------------------");
         System.out.println("                                           Menu                                                           ");
         System.out.println("----------------------------------------------------------------------------------------------------------");
-
 //Menu de opciones:
         int valor = 0;
         msg="Por favor, elija una opcion\n[1] JUGAR\n[2] COMO JUGAR\n[3] CREDITOS\n[4] SALIR\n";
+        //imprimir(msg);
         valor=readConsoleInt(msg, 4);
         switch(valor){
             case 1:
@@ -75,13 +72,13 @@ public class Game {
 	        Heroe seleccionHeroe=crearHeroe(respuestaUsuario);
 	        
 	        //Imprimir stats
-	        System.out.println("----------------------------------------------------------------------------------------------------------");
-	        System.out.println("Clase: "+ seleccionHeroe.getClase());
-	        System.out.println("Vida: "+ seleccionHeroe.getVidaMaxima());
+	        
+	        imprimir("Clase: "+ seleccionHeroe.getClase()+"\n"+"Vida: "+ seleccionHeroe.getVidaMaxima());
 	        //System.out.println("Ataque: "+ seleccionHeroe.get());
-	        System.out.println("----------------------------------------------------------------------------------------------------------");
+	        
 	        respuestaUsuario=readConsoleInt("¿Seleccionar?\n[1] Si \n[2] No",2);
 	        if (respuestaUsuario==1) {
+	        	seleccionHeroe.setNombre(readConsoleString(String.format("Ingrese nombre para el %s",seleccionHeroe.getClase())));
 	        	listaHeroesVivos.add(seleccionHeroe);
 	        }
         } while (listaHeroesVivos.size()<5);
@@ -90,7 +87,7 @@ public class Game {
         //Lucha
         do {
         	stage=crearSala(nSala);
-        	System.out.println("Entras a una sala donde la luz escasea, sientes el olor a humedad en el aire, sobre una mesa ves"
+        	imprimir("Entras a una sala donde la luz escasea, sientes el olor a humedad en el aire, sobre una mesa ves"
         			+" algo que brilla y hacia tu derecha ves lo que parece ser una puerta.");
         	respInt=readConsoleInt("¿Que decides hacer?\n[1] Investigar que es lo que brilla \n[2] Ir hacia la \"puerta\"",2);
         	if (respInt==1) {
@@ -182,7 +179,7 @@ public class Game {
 					if (respAccion==1){
 						msg=String.format("¿Como quiere atacar?\n1-%s\n2-%s\n3-%s",heroe.getHabilidad1().getNombre(),heroe.getHabilidad2().getNombre(),heroe.getHabilidadEspecial().getNombre());
 						respAccion=readConsoleInt(msg, 3);
-						respObjetivo=readConsoleInt("¿A...\n1-Aliados?\n2-Enemigo?",2);
+						respObjetivo=readConsoleInt("¿A...\n1-\u001B[32mAliados?\u001B[0m\n2-\u001B[31mEnemigo\u001B[0m?",2);
 						if (respObjetivo==1) {
 							for (Heroe aliado: listaHeroesVivos) {
 								if (!heroe.getNombre().equals(aliado.getNombre())) {
@@ -271,7 +268,8 @@ public class Game {
     public static int readConsoleInt(String mensaje,int maxOpciones) {
 		int input;
 		do {
-			System.out.println(mensaje);
+			//System.out.println(mensaje);
+			imprimir(mensaje);
 			try {
 				input=Integer.parseInt(scanner.next());
 			} catch (Exception e) {
@@ -285,7 +283,8 @@ public class Game {
     public static String readConsoleString(String mensaje) {
     	String input;
     	boolean leido=false;
-    	System.out.println(mensaje);
+    	//System.out.println(mensaje);
+    	imprimir(mensaje);
     	do {
 			try {
 				input=scanner.next();
@@ -306,21 +305,72 @@ public class Game {
 		Heroe H;
 		switch (tipo) {
 		case 1:
-			H=new Paladin("pala");
+			H=new Paladin();
 			break;
 		case 2:
-			H=new Mago("mago");
+			H=new Mago();
 			break;
 		case 3:
-			H=new Clerigo("clerigo");
+			H=new Clerigo();
 			break;
 		case 4:
-			H=new Rogue("rouge");
+			H=new Rogue();
 			break;
 		default:
-			H=new Paladin("pala1");
+			H=new Paladin();
 			break;
 		}
 		return H;
+	}
+	public static void imprimir(String mensaje) {
+		int maxHorizontal=100;
+		//int maxVertical=10;
+		String format = "|\t%-91s|";
+		String[] mensj=mensaje.split("\n");
+		int iMensj=0;
+		ArrayList<String> pantalla= new ArrayList<String>();
+		ArrayList<String> lineas = new ArrayList<String>();
+		for(String cadenas:mensj) {
+			lineas.add(cadenas);
+		}
+		String linea;
+		String cadTemp;
+		for (int j=0; j<lineas.size()+2;j++) {
+			linea="";
+			if(j==0 || j==lineas.size()+1) {
+				for(int i=0;i<maxHorizontal;i++) {
+					if (i==0 || i==maxHorizontal-1) {
+						linea+="+";
+					}else{
+						linea+="~";
+					}
+				}
+			}else {
+				cadTemp=lineas.get(iMensj);
+				if (cadTemp.length()<80) {
+					linea=String.format(format,cadTemp );
+					iMensj++;
+				}else {
+					//Hacer que divida la linea en multiples
+					String lineaTemp="";
+					for (String palabra:cadTemp.split(" ")) {
+						if (linea.length()+palabra.length()<80) {
+							linea+=palabra+" ";
+						}else {
+							lineaTemp+=palabra+" ";
+						}
+					}
+					linea=String.format(format, linea);
+					lineas.add(iMensj+1,lineaTemp);
+					iMensj++;
+					//System.out.println(lineaTemp.getClass());
+				}
+			}
+			
+			pantalla.add(linea);
+		}
+		for (String line:pantalla) {
+			System.out.println(line);
+		}
 	}
 }
