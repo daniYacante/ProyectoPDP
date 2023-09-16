@@ -66,15 +66,26 @@ public class Game {
     	int respInt;
     	Sala stage;
     	String nombre = readConsoleString("Jugador, ¿cual es tu nombre?");
-        System.out.println("Muy bien,"+nombre+". Elige tus 5 personajes que iran en el equipo:");
+        System.out.println("Muy bien, "+nombre+". Elige tus 5 personajes que iran en el equipo:");
         do {
-	        msg="[1] Paladin\n[2] Mago\n[3] Sacerdote\n[4] Rogue";
+	        msg="Roles:\n"
+	        		+ "[1]  Arquero\n"
+	        		+ "[2]  Barbaro\n"
+	        		+ "[3]  Bardo\n"
+	        		+ "[4]  Brujo\n"
+	        		+ "[5]  Clerigo\n"
+	        		+ "[6]  Druida\n"
+	        		+ "[7]  Hechicero\n"
+	        		+ "[8]  Mago\n"
+	        		+ "[9]  Monje\n"
+	        		+ "[10] Paladin\n"
+	        		+ "[11] Rouge\n";
 	        int respuestaUsuario=readConsoleInt(msg,4);
 	        Heroe seleccionHeroe=crearHeroe(respuestaUsuario);
 	        
 	        //Imprimir stats
-	        
-	        imprimir("Clase: "+ seleccionHeroe.getClase()+"\n"+"Vida: "+ seleccionHeroe.getVidaMaxima());
+	        imprimir(seleccionHeroe.getDescripcion());
+	        //imprimir("Clase: "+ seleccionHeroe.getClase()+"\n"+"Vida: "+ seleccionHeroe.getVidaMaxima());
 	        //System.out.println("Ataque: "+ seleccionHeroe.get());
 	        
 	        respuestaUsuario=readConsoleInt("¿Seleccionar?\n[1] Si \n[2] No",2);
@@ -180,18 +191,23 @@ public class Game {
 					if (respAccion==1){
 						msg=String.format("¿Como quiere atacar?\n1-%s\n2-%s\n3-%s",heroe.getHabilidad1().getNombre(),heroe.getHabilidad2().getNombre(),heroe.getHabilidadEspecial().getNombre());
 						respAccion=readConsoleInt(msg, 3);
-						respObjetivo=readConsoleInt("¿A...\n1-\u001B[32mAliados?\u001B[0m\n2-\u001B[31mEnemigo\u001B[0m?",2);
+						respObjetivo=readConsoleInt("¿A...\n1-\u001B[32mAliados\u001B[0m?\n2-\u001B[31mEnemigo\u001B[0m?",2);
 						if (respObjetivo==1) {
+							int cont=1;
+							msg="Aliados:\n";
 							for (Heroe aliado: listaHeroesVivos) {
 								if (!heroe.getNombre().equals(aliado.getNombre())) {
-									System.out.println(aliado.getNombre());
+									msg=msg.concat(String.format("[%d]- %s\n",cont ,aliado.getNombre()));
+									cont++;
 								}
 							}
+							respObjetivo=readConsoleInt(msg, listaEnemigos.size());
+							target=listaEnemigos.get(respObjetivo-1);
 						}else {
 							int cont=1;
 							msg="Enemigos:\n";
 							for (Human enemigo: listaEnemigos) {
-								msg=msg.concat(String.format("%d-%s\n",cont ,enemigo.getNombre()));
+								msg=msg.concat(String.format("[%d]- %s\n",cont ,enemigo.getNombre()));
 								cont++;
 							}
 							respObjetivo=readConsoleInt(msg, listaEnemigos.size());
@@ -315,15 +331,36 @@ public class Game {
 		Heroe H;
 		switch (tipo) {
 		case 1:
-			H=new Paladin();
+			H=new Arquero();
 			break;
 		case 2:
-			H=new Mago();
+			H=new Barbaro();
 			break;
 		case 3:
-			H=new Clerigo();
+			H=new Bardo();
 			break;
 		case 4:
+			H=new Brujo();
+			break;
+		case 5:
+			H=new Clerigo();
+			break;
+		case 6:
+			H=new Druida();
+			break;
+		case 7:
+			H=new Hechicero();
+			break;
+		case 8:
+			H=new Mago();
+			break;
+		case 9:
+			H=new Monje();
+			break;
+		case 10:
+			H=new Paladin();
+			break;
+		case 11:
 			H=new Rogue();
 			break;
 		default:
@@ -336,6 +373,7 @@ public class Game {
 		int maxHorizontal=100;
 		//int maxVertical=10;
 		String format = "|\t%-91s|";
+		mensaje=mensaje.replaceAll("\t", "       ");
 		String[] mensj=mensaje.split("\n");
 		int iMensj=0;
 		ArrayList<String> pantalla= new ArrayList<String>();

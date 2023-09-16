@@ -25,6 +25,11 @@ public class Heroe extends Core.Clases.Human implements Restriccion{
     	Random d20=new Random();
     	return d20.nextInt();
     }
+    public String getDescripcion() {
+    	String msg="";
+    	msg=String.format("%s:\n\tArmadura: %s\n\tVida maxima: %s\n\tMana Max: %s\n\tHabilidades:\n\t*%s\n\t*%s\n\t*%s", this.clase,this.armadura,this.getVidaMaxima(),this.getMana(),this.getHabilidad1().getNombre(),this.getHabilidad2().getNombre(),this.getHabilidadEspecial().getNombre());
+    	return msg;
+    }
 	//PROBEMOS, si funciona aca joya.
 	public void setCartaElegida(Carta cartaSeleccionada){
 		this.cartaElegida = cartaSeleccionada;
