@@ -8,6 +8,6 @@ public class Ayudante extends Core.Clases.Human {
         super.vidaActual = 30;
         super.tipo = "Enemigo";
         this.descripcion="Ayudante de catedra";
-        this.habilidad1=new Habilidad("Bastonazo", -10, 0, 0);
+        this.habilidad1=new Habilidad("Bastonazo", -10, 0, 0,true);
     }
 }

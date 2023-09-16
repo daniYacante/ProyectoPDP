@@ -13,9 +13,9 @@ public class Brujo extends Core.Clases.Heroes.Heroe {
         super.manaMaximo = 180;
         this.clase="Brujo";
         this.descripcion="Conjurador que obtiene sus poderes por linea de sangre o por un regalo del universo";
-        this.habilidad1=new Habilidad("Bastonazo", -8, 0, 0);
-        this.habilidad2=new Habilidad("Rayo de Escarcha", 10, 0, -10);
-        this.habilidadEspecial=new Habilidad("Bola de Fuego (Habilidad Especial)", -16, 0, 0);
+        this.habilidad1=new Habilidad("Bastonazo", -8, 0, 0,true);
+        this.habilidad2=new Habilidad("Rayo de Escarcha", 10, 0, -10,true);
+        this.habilidadEspecial=new Habilidad("Bola de Fuego (Habilidad Especial)", -16, 0, 0,false);
         this.descripcionRes = "Puedes utilizar Bola de Fuego cada 3 turnos";
     }
     //Usar habilidad Especial despues de tres turnos

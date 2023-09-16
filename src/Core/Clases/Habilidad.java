@@ -5,12 +5,14 @@ public class Habilidad {
 	private int efectoVidaObjetivo=0;
 	private int efectoDMGObjetivo=0;
 	private int efectoManaLanzador=0;
+	private boolean tiraDado=false;
 	
-    public Habilidad(String nombre, int efectoVidaObjetivo, int efectoDMGObjetivo, int efectoManaLanzador) {
+	public Habilidad(String nombre, int efectoVidaObjetivo, int efectoDMGObjetivo, int efectoManaLanzador,boolean dado) {
         this.nombre = nombre;
         this.efectoDMGObjetivo = efectoDMGObjetivo;
         this.efectoManaLanzador = efectoManaLanzador;
         this.efectoVidaObjetivo = efectoVidaObjetivo;
+        this.tiraDado=dado;
     }
     public void usar(Human target, int modificador) {
 		if (this.efectoVidaObjetivo<0) {
@@ -40,4 +42,8 @@ public class Habilidad {
 	public int getEfectoVidaObjetivo(){
 		return this.efectoVidaObjetivo;
 	}
+	public boolean isTiraDado() {
+		return tiraDado;
+	}
+	
 }

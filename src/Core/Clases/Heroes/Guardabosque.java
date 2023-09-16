@@ -15,8 +15,8 @@ public class Guardabosque extends Core.Clases.Human {
         this.clase="Explorador";
         this.descripcion="Hábil casador de los bosques";
         //HABILIDADES ESTOY BUSCANDO
-        this.habilidad1=new Habilidad("Acuchillada", -8, 0,0);
-        this.habilidad2=new Habilidad("Martillazo", -10, 0,0);
-        this.habilidadEspecial=new Habilidad("Flecha Relampago", -20, 0, 0);
+        this.habilidad1=new Habilidad("Acuchillada", -8, 0,0,true);
+        this.habilidad2=new Habilidad("Martillazo", -10, 0,0,true);
+        this.habilidadEspecial=new Habilidad("Flecha Relampago", -20, 0, 0,true);
     }    
 }

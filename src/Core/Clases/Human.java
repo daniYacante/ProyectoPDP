@@ -88,18 +88,13 @@ public abstract class Human {
 		this.nombre = nombre;
 	}
     protected void recibirDmg(int dmg) {
-    	int d20=tirarDado();
-    	if (d20<this.armadura) {
-    		Game.imprimir(String.format("%s sabe como defenderse...\no el oponente es muy malo...\nno se ha as	estado el golpe",this.nombre));
+    	System.out.println(String.format("%s ha recibido %s puntos de daño", this.getNombre(),dmg));
+    	if ((this.vidaActual-dmg)<=0) {
+    		this.vidaActual=0;
+    		this.isDead=true;
+    		System.out.println(String.format("%s ha muerto!!", this.nombre));
     	}else {
-	    	System.out.println(String.format("%s ha recibido %s puntos de daño", this.getNombre(),dmg));
-	    	if ((this.vidaActual-dmg)<=0) {
-	    		this.vidaActual=0;
-	    		this.isDead=true;
-	    		System.out.println(String.format("%s ha muerto!!", this.nombre));
-	    	}else {
-	    		this.vidaActual-=dmg;
-	    	}
+    		this.vidaActual-=dmg;
     	}
     };
     protected void curarse(int vida) {
@@ -129,42 +124,75 @@ public abstract class Human {
     
     public void usarH1(Human objetivo) {
         String usuario = this.getTipo();
-        //Si es enemigo hace el ataque
-        if (usuario.equals("Enemigo")){
-            this.getHabilidad1().usar(objetivo, 0);
-        //Si es heroe verifica el mana
-        }else if (this.getHabilidad1().getEfectoManaLanzador()<this.manaActual) {
-			this.getHabilidad1().usar(objetivo, 0);
-			this.manaActual-=this.getHabilidad1().getEfectoManaLanzador();
-		}
+        boolean usar=false;
+        if (this.getHabilidad1().isTiraDado()) {
+        	int d20=this.tirarDado();
+        	if (d20<this.armadura) {
+        		Game.imprimir(String.format("%s sabe como defenderse...\no el oponente es muy malo...\nno se ha asestado el golpe",objetivo.nombre));
+        	}else {
+        		usar=true;
+        	}
+        }
+        if (usar) {
+        	//Si es enemigo hace el ataque
+	        if (usuario.equals("Enemigo")){
+	            this.getHabilidad1().usar(objetivo, 0);
+	        //Si es heroe verifica el mana
+	        }else if (this.getHabilidad1().getEfectoManaLanzador()<this.manaActual) {
+				this.getHabilidad1().usar(objetivo, 0);
+				this.manaActual-=this.getHabilidad1().getEfectoManaLanzador();
+			}
+        }
 	}
     public void usarH2(Human objetivo) {
         String usuario = this.getTipo();
-        if (usuario.equals("Enemigo")){
-            this.getHabilidad2().usar(objetivo, 0);
+        boolean usar=false;
+        if (this.getHabilidad1().isTiraDado()) {
+        	int d20=this.tirarDado();
+        	if (d20<this.armadura) {
+        		Game.imprimir(String.format("%s sabe como defenderse...\no el oponente es muy malo...\nno se ha asestado el golpe",objetivo.nombre));
+        	}else {
+        		usar=true;
+        	}
         }
-		else if (this.getHabilidad2().getEfectoManaLanzador()<this.manaActual) {
-            this.getHabilidad2().usar(objetivo, 0);
-            this.manaActual-=this.getHabilidad2().getEfectoManaLanzador();
-		}
+        if (usar) {
+	        if (usuario.equals("Enemigo")){
+	            this.getHabilidad2().usar(objetivo, 0);
+	        }
+			else if (this.getHabilidad2().getEfectoManaLanzador()<this.manaActual) {
+	            this.getHabilidad2().usar(objetivo, 0);
+	            this.manaActual-=this.getHabilidad2().getEfectoManaLanzador();
+			}
+        }
 	}
 	public void usarEsp(Human objetivo) {
         String usuario = this.getTipo();
-        if (usuario.equals("Enemigo")){
-            this.getHabilidad2().usar(objetivo, 0);
+        boolean usar=false;
+        if (this.getHabilidad1().isTiraDado()) {
+        	int d20=this.tirarDado();
+        	if (d20<this.armadura) {
+        		Game.imprimir(String.format("%s sabe como defenderse...\no el oponente es muy malo...\nno se ha asestado el golpe",objetivo.nombre));
+        	}else {
+        		usar=true;
+        	}
         }
-		else if (this.getHabilidadEspecial().getEfectoManaLanzador()<this.manaActual) {
-			this.getHabilidadEspecial().usar(objetivo,0);
-			this.manaActual-=this.getHabilidadEspecial().getEfectoManaLanzador();
-            this.useEsp = true;
-		}
+        if (usar) {
+	        if (usuario.equals("Enemigo")){
+	            this.getHabilidad2().usar(objetivo, 0);
+	        }
+			else if (this.getHabilidadEspecial().getEfectoManaLanzador()<this.manaActual) {
+				this.getHabilidadEspecial().usar(objetivo,0);
+				this.manaActual-=this.getHabilidadEspecial().getEfectoManaLanzador();
+	            this.useEsp = true;
+			}
+        }
 	}
 	public int tirarDado() {
 		//nextInt va de 0 a 19, como los dados d20 van del 1-20, se le suma 1
-		Game.imprimir("Necesitas tirar un d20\nPresione enter para lanzar");
+		Game.imprimir("Necesitas tirar un d20");
 		Game.pressToContinue();
 		int valorDado=dado.nextInt(20)+1;
-		Game.imprimir(String.format("Haz sacado un %d", valorDado));
+		Game.imprimir(String.format("Has sacado un %d", valorDado));
 		return valorDado;
 	}
     //Durante o antes de un combate, el jugador deberia tener la opcion de usar algun consumible de los objetos que lleva.

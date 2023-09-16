@@ -16,9 +16,9 @@ public class Paladin extends Core.Clases.Heroes.Heroe {
         super.manaMaximo = 180;
         this.clase="Paladin";
         this.descripcion="Guerrero santo atado a un juramento sagrado";
-        this.habilidad1=new Habilidad("Espadazo", -8, 0, 0);
-        this.habilidad2=new Habilidad("Imposicion de Manos", 10, 0, -10);
-        this.habilidadEspecial=new Habilidad("Golpe Divino (Habilidad Especial)", -16, 0, 0);
+        this.habilidad1=new Habilidad("Espadazo", -8, 0, 0,true);
+        this.habilidad2=new Habilidad("Imposicion de Manos", 10, 0, -10,false);
+        this.habilidadEspecial=new Habilidad("Golpe Divino (Habilidad Especial)", -16, 0, 0,false);
         this.descripcionRes = "Puedes utilizar Golpe Divino cada 3 turnos";
     }
     //Usar habilidad Especial despues de tres turnos

@@ -13,9 +13,9 @@ public class Bardo extends Core.Clases.Heroes.Heroe {
         super.manaMaximo = 50;
         this.clase="Bardo";
         this.descripcion="Un inspirador magico cuyo poder resuena en la musica de creacion";
-        this.habilidad1=new Habilidad("Espadazo", -8, 0, 0);
-        this.habilidad2=new Habilidad("Curar Heridas", 10, 0, -10);
-        this.habilidadEspecial=new Habilidad("Inspiracion (Habilidad Especial)", -16, 0, 0);
+        this.habilidad1=new Habilidad("Espadazo", -8, 0, 0,true);
+        this.habilidad2=new Habilidad("Curar Heridas", 10, 0, -10,false);
+        this.habilidadEspecial=new Habilidad("Inspiracion (Habilidad Especial)", -16, 0, 0,false);
         this.descripcionRes = "Puedes utilizar Inspiracion cada 3 turnos";
     }
     //Usar habilidad Especial despues de tres turnos

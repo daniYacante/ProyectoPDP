@@ -12,9 +12,9 @@ public class Clerigo extends Core.Clases.Heroes.Heroe{
         super.manaMaximo = 160;
         this.clase="Clerigo";
         this.descripcion="Guerrero sacerdotal que ejerce magia divina en servicio de un poder superior";
-        this.habilidad1=new Habilidad("Bendicion", 0, 4, 0);
-        this.habilidad2=new Habilidad("Curar Heridas", 10, 0, 0);
-        this.habilidadEspecial=new Habilidad("Curar Heridas en Area", 20, 0, 0);
+        this.habilidad1=new Habilidad("Bendicion", 0, 4, 0,false);
+        this.habilidad2=new Habilidad("Curar Heridas", 10, 0, 0,false);
+        this.habilidadEspecial=new Habilidad("Curar Heridas en Area", 20, 0, 0,false);
     }
     
 }

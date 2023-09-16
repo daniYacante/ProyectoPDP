@@ -13,9 +13,9 @@ public class Hechicero extends Core.Clases.Heroes.Heroe {
         super.manaMaximo = 180;
         this.clase="Hechicero";
         this.descripcion="Ser con magia obtenida por un contrato con una entidad extraplanar";
-        this.habilidad1=new Habilidad("Acuchillada", -8, 0, 0);
-        this.habilidad2=new Habilidad("Estallido Arcano", 10, 0, -10);
-        this.habilidadEspecial=new Habilidad("Golpe Divino (Habilidad Especial)", -16, 0, 0);
+        this.habilidad1=new Habilidad("Acuchillada", -8, 0, 0,true);
+        this.habilidad2=new Habilidad("Estallido Arcano", 10, 0, -10,true);
+        this.habilidadEspecial=new Habilidad("Golpe Divino (Habilidad Especial)", -16, 0, 0,false);
         this.descripcionRes = "Puedes utilizar Golpe Divino cada 3 turnos";
     }
     //Usar habilidad Especial despues de tres turnos

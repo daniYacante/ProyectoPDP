@@ -66,7 +66,7 @@ public class Game {
     	int respInt;
     	Sala stage;
     	String nombre = readConsoleString("Jugador, ¿cual es tu nombre?");
-        System.out.println("Muy bien, "+nombre+". Elige tus 5 personajes que iran en el equipo:");
+        imprimir("Muy bien, "+nombre+". Elige tus 5 personajes que iran en el equipo:");
         do {
 	        msg="Roles:\n"
 	        		+ "[1]  Arquero\n"
@@ -80,7 +80,7 @@ public class Game {
 	        		+ "[9]  Monje\n"
 	        		+ "[10] Paladin\n"
 	        		+ "[11] Rouge\n";
-	        int respuestaUsuario=readConsoleInt(msg,4);
+	        int respuestaUsuario=readConsoleInt(msg,11);
 	        Heroe seleccionHeroe=crearHeroe(respuestaUsuario);
 	        
 	        //Imprimir stats
@@ -94,31 +94,42 @@ public class Game {
 	        	listaHeroesVivos.add(seleccionHeroe);
 	        }
         } while (listaHeroesVivos.size()<5);
-        System.out.println("¡Los jugadores estan listos! comenzamos...");
+        imprimir("¡Los jugadores estan listos! comenzamos...");
+        //Crea la lista de aliados
+        for (Heroe heroe: listaHeroesVivos) {
+	        for (Heroe aliado: listaHeroesVivos) {
+				if (!heroe.getNombre().equals(aliado.getNombre())) {
+					if(heroe.addAliado(aliado)==0) {
+						System.out.println("Problema al añadir aliado");
+					}
+				}
+			}
+        }
+        //Fin
         Carta item;
         //Lucha
         do {
         	stage=crearSala(nSala);
         	imprimir("Entras a una sala donde la luz escasea, sientes el olor a humedad en el aire, sobre una mesa ves"
-        			+" algo que brilla y hacia tu derecha ves lo que parece ser una puerta.");
+        			+" algo que \u001B[33mbrilla\u001B[0m y hacia tu derecha ves lo que parece ser una puerta.");
         	respInt=readConsoleInt("¿Que decides hacer?\n[1] Investigar que es lo que brilla \n[2] Ir hacia la \"puerta\"",2);
         	if (respInt==1) {
         		item=stage.investigar();
         		respInt=readConsoleInt("Deseas guardartelo?\n[1] Si \n[2] No", 2);
         		if (respInt==1) {
-        			System.out.println("Quien deberia llevarlo?");
+        			msg="Quien deberia llevarlo?\n";
         			for (int i=0;i<listaHeroesVivos.size();i++) {
-        				System.out.println(String.format("[%d] - %s",i+1,listaHeroesVivos.get(i).getNombre()));
+        				msg+=String.format("[%d] - %s\n",i+1,listaHeroesVivos.get(i).getNombre());
         			}
-        			respInt=readConsoleInt("",listaHeroesVivos.size());
+        			respInt=readConsoleInt(msg,listaHeroesVivos.size());
 					item.setPortador(listaHeroesVivos.get(respInt-1));
 					listaHeroesVivos.get(respInt-1).setCartaElegida(item);
-					System.out.println(String.format("%s ahora lleva %s", listaHeroesVivos.get(respInt-1).getNombre(),listaHeroesVivos.get(respInt-1).getCartaElegida().getNombreCarta()));
+					imprimir(String.format("%s ahora lleva %s", listaHeroesVivos.get(respInt-1).getNombre(),listaHeroesVivos.get(respInt-1).getCartaElegida().getNombreCarta()));
         		}else {
-        			System.out.println("Lo dejas donde estaba...");
+        			imprimir("Lo dejas donde estaba...");
         		}
         		
-        		System.out.println("Luego de ver que es lo que brillaba, te diriges hacia la puerta y...");
+        		imprimir("Luego de ver que es lo que brillaba, te diriges hacia la puerta y...");
         	}
     		System.out.println("A luchaaaaar!!!!");
     		status=lucha(stage);
@@ -195,14 +206,12 @@ public class Game {
 						if (respObjetivo==1) {
 							int cont=1;
 							msg="Aliados:\n";
-							for (Heroe aliado: listaHeroesVivos) {
-								if (!heroe.getNombre().equals(aliado.getNombre())) {
-									msg=msg.concat(String.format("[%d]- %s\n",cont ,aliado.getNombre()));
-									cont++;
-								}
+							for (Human aliado: heroe.getAliados()) {
+								msg=msg.concat(String.format("[%d]- %s\n",cont ,aliado.getNombre()));
+								cont++;
 							}
-							respObjetivo=readConsoleInt(msg, listaEnemigos.size());
-							target=listaEnemigos.get(respObjetivo-1);
+							respObjetivo=readConsoleInt(msg, heroe.getAliados().size());
+							target=heroe.getAliados().get(respObjetivo-1);
 						}else {
 							int cont=1;
 							msg="Enemigos:\n";
@@ -374,6 +383,7 @@ public class Game {
 		//int maxVertical=10;
 		String format = "|\t%-91s|";
 		mensaje=mensaje.replaceAll("\t", "       ");
+		
 		String[] mensj=mensaje.split("\n");
 		int iMensj=0;
 		ArrayList<String> pantalla= new ArrayList<String>();

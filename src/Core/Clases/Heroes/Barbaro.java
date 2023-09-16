@@ -14,9 +14,9 @@ public class Barbaro extends Heroe {
         super.manaMaximo = 0;
         this.clase="Barbaro";
         this.descripcion="Guerrero feroz de origen primitivo que puede entrar en furor al luchar";
-        this.habilidad1=new Habilidad("Hachazo", -8, 0, 0);
-        this.habilidad2=new Habilidad("Lanzar Jabalina", 10, 0, -10);
-        this.habilidadEspecial=new Habilidad("Furor (Habilidad Especial)", -16, 0, 0);
+        this.habilidad1=new Habilidad("Hachazo", -8, 0, 0,true);
+        this.habilidad2=new Habilidad("Lanzar Jabalina", 10, 0, -10,true);
+        this.habilidadEspecial=new Habilidad("Furor (Habilidad Especial)", -16, 0, 0,false);
         this.descripcionRes = "Puedes utilizar Furor cada 3 turnos";
     }
     //Usar habilidad Especial despues de tres turnos
