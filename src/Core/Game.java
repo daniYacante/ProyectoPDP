@@ -18,6 +18,7 @@ public class Game {
 	private static ArrayList<Heroe> listaHeroesVivos= new ArrayList<Heroe>(nHeroes);
 	public static Random intRandom=new Random();
 	public static void main(String[] args) {
+		
 		System.out.println("\u001B[32m"+" _____       _       _                                ______           __                              \r\n"
 				+ "/  __ \\     | |     | |                               | ___ \\         / _|                             \r\n"
 				+ "| /  \\/ __ _| | __ _| |__   ___ _______  ___   _   _  | |_/ / __ ___ | |_ ___  ___  ___  _ __ ___  ___ \r\n"
@@ -266,14 +267,17 @@ public class Game {
     }
     
     public static int readConsoleInt(String mensaje,int maxOpciones) {
-		int input;
+		int input=-1;
 		do {
 			//System.out.println(mensaje);
 			imprimir(mensaje);
+			System.out.print("\t");
 			try {
 				input=Integer.parseInt(scanner.next());
+				scanner.nextLine();
 			} catch (Exception e) {
 				input=-1;
+//				e.printStackTrace();
 				System.out.println("Opcion no valida");
 			}
 		} while (input<1 || input>maxOpciones);
@@ -287,19 +291,25 @@ public class Game {
     	imprimir(mensaje);
     	do {
 			try {
-				input=scanner.next();
+				input=scanner.nextLine();
 				leido=true;
 			} catch (Exception e) {
 				input="";
 				System.out.println("Entrada no tomada");
+				//pressToContinue();
 			}
     	}while (!leido);
     	return input;
     }
 	public static void pressToContinue() {
-		System.out.println("Presione cualquier tecla para continuar");
+		System.out.println("Presione enter para continuar");
 		scanner.nextLine();
-		return;
+//		try {
+//			System.in.read();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 	public static Heroe crearHeroe(int tipo){
 		Heroe H;

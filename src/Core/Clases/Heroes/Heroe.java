@@ -1,4 +1,6 @@
 package Core.Clases.Heroes;
+import java.util.Random;
+
 import Core.Clases.Restriccion;
 import Core.Clases.Cartas.Carta;
 
@@ -18,6 +20,11 @@ public class Heroe extends Core.Clases.Human implements Restriccion{
 	public boolean getCanUse(){
 		return canUse;
 	}
+    @Override
+    public int tirarDado() {
+    	Random d20=new Random();
+    	return d20.nextInt();
+    }
 	//PROBEMOS, si funciona aca joya.
 	public void setCartaElegida(Carta cartaSeleccionada){
 		this.cartaElegida = cartaSeleccionada;

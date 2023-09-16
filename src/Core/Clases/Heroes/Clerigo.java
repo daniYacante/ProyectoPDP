@@ -3,13 +3,11 @@ package Core.Clases.Heroes;
 import Core.Clases.Habilidad;
 
 public class Clerigo extends Core.Clases.Heroes.Heroe{
-    //Coloque mana = vidaActual por simplicidad
-    //vidaActual es d8 * 12
     public Clerigo(){
-        //Clerigo d8
         super.tipo = "Heroe";
-        super.vidaActual = 96;
-        super.vidaMaxima = 160;
+        super.armadura=15;
+        super.vidaActual = 10;
+        super.vidaMaxima = 10;
         super.manaActual = 96;
         super.manaMaximo = 160;
         this.clase="Clerigo";

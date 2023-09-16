@@ -8,8 +8,9 @@ public class Mago extends Core.Clases.Heroes.Heroe {
     public Mago(){
         //Mago d6
         super.tipo = "Heroe";
-        super.vidaActual = 72;
-        super.vidaMaxima = 140;
+        super.armadura=12;
+        super.vidaActual = 8;
+        super.vidaMaxima = 8;
         super.manaActual = 72;
         super.manaMaximo = 140;
         this.clase="Mago";

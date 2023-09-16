@@ -2,24 +2,21 @@ package Core.Clases.Heroes;
 import Core.Game;
 import Core.Clases.Habilidad;
 
-public class Paladin extends Core.Clases.Heroes.Heroe {
-    //Paladin d10
-    //Coloque mana = vidaActual por simplicidad
-    //vidaActual es d10 * 12
-    public Paladin(){
+public class Druida extends Core.Clases.Heroes.Heroe {
+    public Druida(){
         super.turnoAnt = 0;
         super.tipo = "Heroe";
-        super.armadura=18;
-        super.vidaActual = 12;
-        super.vidaMaxima = 12;
+        super.armadura=15;
+        super.vidaActual = 10;
+        super.vidaMaxima = 10;
         super.manaActual = 100;
         super.manaMaximo = 180;
-        this.clase="Paladin";
-        this.descripcion="Guerrero santo atado a un juramento sagrado";
+        this.clase="Druida";
+        this.descripcion="Sacerdote de la Fe de antaño, empuñando la fuerza de la naturaleza y capaz de tomar formas animales";
         this.habilidad1=new Habilidad("Espadazo", -8, 0, 0);
-        this.habilidad2=new Habilidad("Imposicion de Manos", 10, 0, -10);
-        this.habilidadEspecial=new Habilidad("Golpe Divino (Habilidad Especial)", -16, 0, 0);
-        this.descripcionRes = "Puedes utilizar Golpe Divino cada 3 turnos";
+        this.habilidad2=new Habilidad("Fuego feérico", 10, 0, -10);
+        this.habilidadEspecial=new Habilidad("Curar Heridas en Area (Habilidad Especial)", -16, 0, 0);
+        this.descripcionRes = "Puedes utilizar Curar Heridas en Area cada 3 turnos";
     }
     //Usar habilidad Especial despues de tres turnos
 
