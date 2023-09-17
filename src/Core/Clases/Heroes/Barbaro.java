@@ -1,6 +1,7 @@
 package Core.Clases.Heroes;
 import Core.Game;
 import Core.Clases.Habilidad;
+import Core.Clases.Restricciones.RestricTurnosSinHabilidadEsp;
 
 /**
  * La clase Barbaro, que hereda de Heroe
@@ -23,23 +24,10 @@ public class Barbaro extends Heroe {
         this.descripcion="Guerrero feroz de origen primitivo que puede entrar en furor al luchar";
         this.habilidad1=new Habilidad("Hachazo", -8, 0, 0,true);
         this.habilidad2=new Habilidad("Lanzar Jabalina", 10, 0, -10,true);
-        this.habilidadEspecial=new Habilidad("Furor (Habilidad Especial)", -16, 0, 0,false);
-        this.descripcionRes = "Puedes utilizar Furor cada 3 turnos";
+        this.habilidadEspecial=new Habilidad("Furor", -16, 0, 0,false);
+        this.restriccion = new RestricTurnosSinHabilidadEsp();
+        this.restriccion.setDescriRes(this.habilidadEspecial);
     }
-    //Usar habilidad Especial despues de tres turnos
-
-    /**
-     * restriccion que este lleva para usar la habilidad especial
-     */
-    public void setRestriccion(){
-        if ((turnos - turnoAnt) >= 2) {
-            turnoAnt = turnos;
-            super.restriccion = true;
-        } else {
-            super.restriccion = false;
-        }
-    }
-    
     public static void getStats() {
     	Game.imprimir("");
     }

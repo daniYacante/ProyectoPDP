@@ -13,9 +13,9 @@ public abstract class Human {
     //Atributos
     protected String nombre="";
 	/**
-	 * un booleano que nos indica si se puede utilizar la habilidad especial
+	 * un int que nos indica si utilizo la habilidad especial
 	 */
-    protected boolean useEsp = false;
+    protected int useEsp = 0;
 	/**
 	 * el dado que lleva cada uno de las instancias creadas, que sirve para la lucha.
 	 */
@@ -113,7 +113,6 @@ public abstract class Human {
 	 * la habilidad especial del Heroe o Jefe (los heroes tienen restricciones, mientras que los jefes para usarla no)
 	 */
 	protected Habilidad habilidadEspecial;
-    protected int turnoAnt = 0;
 
     //Metodos
 
@@ -180,7 +179,7 @@ public abstract class Human {
 	 * metodo en el que muestra por pantalla cuantos puntos de vida pierde el objetivo al ser alcanzado por una habilidad, tambien nos puede mostrar si llega a morir
 	 * @param dmg el daño que recibio
 	 */
-    protected void recibirDmg(int dmg) {
+    public void recibirDmg(int dmg) {
     	System.out.println(String.format("%s ha recibido %s puntos de daño", this.getNombre(),dmg));
     	if ((this.vidaActual-dmg)<=0) {
     		this.vidaActual=0;
@@ -332,9 +331,18 @@ public abstract class Human {
 			else if (this.getHabilidadEspecial().getEfectoManaLanzador()<this.manaActual) {
 				this.getHabilidadEspecial().usar(objetivo,0);
 				this.manaActual-=this.getHabilidadEspecial().getEfectoManaLanzador();
-	            this.useEsp = true;
+	            this.useEsp = 1;
 			}
         }
+	}
+
+	public void changeUesEsp(){
+		if (useEsp == 0) useEsp = 1;
+		else useEsp = 0;
+	}
+
+	public int getuseEsp(){
+		return useEsp;
 	}
 
 	/**

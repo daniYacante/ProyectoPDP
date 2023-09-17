@@ -21,6 +21,7 @@ public class Game {
 	private static int nHeroes=5;
 	private static int respAccion;
 	private static int respObjetivo;
+	private static int indice;
 	private static String msg;
 	private static ArrayList<Heroe> listaHeroesVivos= new ArrayList<Heroe>(nHeroes);
 	public static Random intRandom=new Random();
@@ -102,7 +103,7 @@ public class Game {
 	        	seleccionHeroe.setNombre(readConsoleString(String.format("Ingrese nombre para el %s",seleccionHeroe.getClase())));
 	        	listaHeroesVivos.add(seleccionHeroe);
 	        }
-        } while (listaHeroesVivos.size()<5);
+        } while (listaHeroesVivos.size()<1); //CAMBIO 5 POR 1 PARA PROBAR
         imprimir("¡Los jugadores estan listos! comenzamos...");
         //Crea la lista de aliados
         for (Heroe heroe: listaHeroesVivos) {
@@ -205,7 +206,7 @@ public class Game {
 			do {
 				heroe=listaHeroesVivos.get(contHeroes);
 				if (heroe.getCanUse() == false) {
-					heroe.setRestriccion();
+					heroe.getRestriccion().setRestriccion(heroe);
 					if (heroe.getCanUse() == false){
 						heroe.aumentarTurno();
 						contHeroes++;
@@ -244,14 +245,15 @@ public class Game {
 							target=listaEnemigos.get(respObjetivo-1);
 						}
 						if (respAccion == 3) {
-							heroe.setRestriccion();
-							if (heroe.getRestriccion() == true) {
-								System.out.println(String.format("El heroes usara %s, recordamos que %s", heroe.getHabilidadEspecial().getNombre(), heroe.getDescripcionRes()));
+							System.out.println(heroe.getuseEsp());
+							heroe.getRestriccion().setRestriccion(heroe);
+							if (heroe.getRestriccion().getValorRestriccion() == true) {
+								System.out.println(String.format("El heroes usara %s, recordamos que %s", heroe.getHabilidadEspecial().getNombre(), heroe.getRestriccion().getDescripcionRes()));
 								System.out.println(String.format("El heroe %s uso %s contra %s", heroe.getNombre(),heroe.getHabilidadEspecial().getNombre(),target.getNombre()));
 								heroe.usarEsp(target);
 								break;
 							}else
-								System.out.println(String.format("El heroe %s no cumple con la condicion: %s", heroe.getNombre(),heroe.getDescripcionRes()));
+								System.out.println(String.format("El heroe %s no cumple con la condicion: %s", heroe.getNombre(),heroe.getRestriccion().getDescripcionRes()));
 								msg=String.format("¿Como quiere atacar?\n1-%s\n2-%s",heroe.getHabilidad1().getNombre(),heroe.getHabilidad2().getNombre());
 								respAccion=readConsoleInt(msg, 2);
 						} 
@@ -291,12 +293,20 @@ public class Game {
 					Human enemigo=listaEnemigos.get(contEnemigos);
 					System.out.println(String.format("%s ataca!!", enemigo.getNombre()));
 					// cAMBIE PARA PROBAR
-					target=listaHeroesVivos.get(intRandom.nextInt(listaHeroesVivos.size()-1));
+					indice = 0;
+					//target=listaHeroesVivos.get(intRandom.nextInt(listaHeroesVivos.size()-1));
+					target=listaHeroesVivos.get(0);
 					enemigo.usarH1(target);
-					System.out.println(String.format("La vida de %s es: %d", target.getNombre(),target.getVida()));
+					if (target.checkDead()) {
+							System.out.println(String.format("%s ha caido", target.getNombre()));
+							listaHeroesVivos.remove(indice);
+							if (listaHeroesVivos.size() == 0) break;
+						}else {
+							System.out.println(String.format("La vida de %s es: %d", target.getNombre(),target.getVida()));
+						}
 					contEnemigos++;
 				}while(contEnemigos<listaEnemigos.size());
-		} while (listaHeroesVivos.size()!=0 || listaEnemigos.size()!=0);
+		} while ((listaHeroesVivos.size()!=0) && (listaEnemigos.size()!=0));
 		if (listaHeroesVivos.size()==0) {
 			return -1;
 		} else {

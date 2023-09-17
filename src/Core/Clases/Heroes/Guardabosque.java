@@ -1,9 +1,9 @@
 package Core.Clases.Heroes;
-
 import Core.Clases.Habilidad;
+import Core.Clases.Restricciones.RestriccionBajaVida;
 
 
-public class Guardabosque extends Core.Clases.Human {
+public class Guardabosque extends Core.Clases.Heroes.Heroe {
     //Coloque mana = vidaActual por simplicidad
     //vidaActual es d6 * 12
     public Guardabosque(String nombre){
@@ -19,5 +19,7 @@ public class Guardabosque extends Core.Clases.Human {
         this.habilidad1=new Habilidad("Acuchillada", -8, 0,0,true);
         this.habilidad2=new Habilidad("Martillazo", -10, 0,0,true);
         this.habilidadEspecial=new Habilidad("Flecha Relampago", -20, 0, 0,true);
+        this.restriccion = new RestriccionBajaVida();
+        this.restriccion.setDescriRes(this.habilidadEspecial);
     }    
 }
