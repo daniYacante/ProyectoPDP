@@ -2,7 +2,14 @@ package Core.Clases.Heroes;
 import Core.Game;
 import Core.Clases.Habilidad;
 
+/**
+ * La clase Brujo, que hereda de heroe
+ * @see Heroe
+ */
 public class Brujo extends Core.Clases.Heroes.Heroe {
+    /**
+     * Constructor del Brujo, sus stats y habilidades
+     */
     public Brujo(){
         super.turnoAnt = 0;
         super.tipo = "Heroe";

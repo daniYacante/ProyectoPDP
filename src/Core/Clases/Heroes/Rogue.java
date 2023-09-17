@@ -2,9 +2,17 @@ package Core.Clases.Heroes;
 
 import Core.Clases.Habilidad;
 
+/**
+ * La clase Rogue, que hereda de Heroe
+ * @see Heroe
+ */
 public class Rogue extends Core.Clases.Heroes.Heroe {
     //Coloque mana = vidaActual por simplicidad
     //vidaActual es d8.1 * 12
+
+    /**
+     * Constructor del Rogue, sus stats y habilidades
+     */
     public Rogue(){
        //Rogue d8.1
         super.turnoAnt = 0;

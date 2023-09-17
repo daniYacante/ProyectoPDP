@@ -4,6 +4,10 @@ import java.util.Random;
 
 import Core.Clases.Human;
 
+/**
+ * La clase Jefe, que hereda de Human
+ * @see Human
+ */
 public class Jefe extends Human {
     protected String[] esbirros = new String[10];
     public Jefe() {

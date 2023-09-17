@@ -2,10 +2,18 @@ package Core.Clases.Heroes;
 import Core.Game;
 import Core.Clases.Habilidad;
 
+/**
+ * La clase Paladin, que hereda de Heroe
+ * @see Heroe
+ */
 public class Paladin extends Core.Clases.Heroes.Heroe {
     //Paladin d10
     //Coloque mana = vidaActual por simplicidad
     //vidaActual es d10 * 12
+
+    /**
+     * Constructor del Paladin, sus stats y habilidades
+     */
     public Paladin(){
         super.turnoAnt = 0;
         super.tipo = "Heroe";

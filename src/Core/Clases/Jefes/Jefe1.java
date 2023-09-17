@@ -2,7 +2,15 @@ package Core.Clases.Jefes;
 
 import Core.Clases.Habilidad;
 
+/**
+ * La clase Jefe1, que hereda de Jefe
+ * @see Jefe
+ */
 public class Jefe1 extends Jefe{
+    /**
+     * Constructor del Jefe1, sus stats y habilidades
+     * @param nombre recibe como parametro el nombre que quiere que le demos
+     */
     public Jefe1(String nombre){
         super.nombre = nombre;
         super.vidaActual = 120;

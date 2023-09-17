@@ -2,6 +2,10 @@ package Core.Clases.Heroes;
 import Core.Game;
 import Core.Clases.Habilidad;
 
+/**
+ * La clase Monje, que hereda de Heroe
+ * @see Heroe
+ */
 public class Monje extends Core.Clases.Heroes.Heroe {
     public Monje(){
         super.turnoAnt = 0;

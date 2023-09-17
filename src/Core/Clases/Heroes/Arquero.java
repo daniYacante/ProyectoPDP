@@ -2,7 +2,14 @@ package Core.Clases.Heroes;
 import Core.Game;
 import Core.Clases.Habilidad;
 
+/**
+ * La clase Arquero, que hereda de Heroe
+ * @see Heroe
+ */
 public class Arquero extends Core.Clases.Heroes.Heroe {
+    /**
+     * constructor del Arquero, sus stats y habilidades
+     */
     public Arquero(){
         super.turnoAnt = 0;
         super.tipo = "Heroe";
@@ -20,6 +27,9 @@ public class Arquero extends Core.Clases.Heroes.Heroe {
     }
     //Usar habilidad Especial despues de tres turnos
 
+    /**
+     * Restriccion que este lleva para usar la habilidad especial
+     */
     public void setRestriccion(){
         if ((turnos - turnoAnt) >= 2) {
             turnoAnt = turnos;

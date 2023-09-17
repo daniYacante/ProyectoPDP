@@ -1,20 +1,53 @@
 package Core.Clases.Cartas;
 import Core.Clases.Heroes.Heroe;
 
+/**
+ * Carta del Encantamiento Ineficiente, el costo de mana de tus habilidades se reducira un 50%, PERO el daño de tus habilidades tambien se reduciran el mismo porcentaje
+ */
 public class CartaEncantamientoIneficiente extends Carta{
     //Que esta sea respecto al mana
     //Y esto me servira para aclararle que es una pasiva, por eso no se debe de repetir
+    /**
+     * un booleano, muestra true si ya fue usada o false en caso de que no
+     */
     protected  boolean fueUsada;
+    /**
+     * el daño de la habilidad 1 del portador
+     */
     protected int danioPortador1;
+    /**
+     * el daño de la habilidad 2 del portador
+     */
     protected int danioPortador2;
+    /**
+     * el daño de la habilidad especial del portador
+     */
     protected int danioPortador3;
+    /**
+     * el mana que toma usar en la habilidad 1 del portador
+     */
     protected int manaPortador1;
+    /**
+     * el mana que toma usar en la habilidad 2 del portador
+     */
     protected int manaPortador2;
+    /**
+     * el mana que toma usar en la habilidad especial del portador
+     */
     protected int manaPortador3;
+
+    /**
+     * constructor para la creacion de la carta
+     */
     public CartaEncantamientoIneficiente() {
     	super.nombreCarta = "Carta del Encantamiento Ineficiente";
         super.descripcion = "el costo de mana de tus habilidades se reducira un 50%, PERO el daño de tus habilidades tambien se reduciran el mismo porcentaje";
     }
+
+    /**
+     * Se asigna el portador de la carta, pero ademas los atributos necesarios para el uso de la carta
+     * @param portadorCarta quien es el que la lleva
+     */
     @Override
     public void setPortador(Heroe portadorCarta){
         super.portador = portadorCarta;
@@ -29,6 +62,10 @@ public class CartaEncantamientoIneficiente extends Carta{
         this.manaPortador3 = portador.getHabilidadEspecial().getEfectoManaLanzador();
     }
 
+    /**
+     * realiza el efecto que debe hacer dicho en la descripcion de la carta
+     * @see CartaEncantamientoIneficiente
+     */
     @Override
     public void realizarEfecto(){
         if (this.fueUsada == false){

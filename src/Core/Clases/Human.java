@@ -2,10 +2,23 @@ package Core.Clases;
 import java.util.ArrayList;
 import java.util.Random;
 import Core.Game;
+
+/**
+ * La clase Human, una de las mas importantes, de aca heredan tanto heroes como jefes. Se crea aca atributos y metodos que tengan en comun
+ */
 public abstract class Human {
+	/**
+	 * el nombre del humano
+	 */
     //Atributos
     protected String nombre="";
+	/**
+	 * un booleano que nos indica si se puede utilizar la habilidad especial
+	 */
     protected boolean useEsp = false;
+	/**
+	 * el dado que lleva cada uno de las instancias creadas, que sirve para la lucha.
+	 */
     Random dado = new Random();
     
     //ACLARACION: Hay valores que les di por tirar una idea, luego los modificamos si queremos.
@@ -13,14 +26,32 @@ public abstract class Human {
     //1. vidaBase que represente la vida que toma desde un inicio
     //2. vidaMaxima la vida que el personaje tenga como maxima por subir de nivel, usar items (cartas), etc.
     //3. vidaActual la que va a representar el estado del personaje (si malherido, si esta muerto, si esta sano, etc.).
+	/**
+	 * la vida que el personaje tenga como maxima.
+	 */
     protected int vidaMaxima;
+	/**
+	 * la que va a representar el estado del personaje (como esta en su estado actual, sano al 100%, malherido, etc.)
+	 */
     protected int vidaActual;
+	/**
+	 * la armadura del humano, con la cual puede evitar daños de habilidades
+	 */
     protected int armadura;
     //Supongo que pasaria lo mismo con el mana
+	/**
+	 * la cantidad de mana maxima que tiene el humano
+	 */
     protected int manaMaximo;
+	/**
+	 * la cantidad de mana actual que lleva el humano (sirve para ver si puede usar tal habilidad o no)
+	 */
     protected int manaActual;
     
     //Daño de Ataque
+	/**
+	 * buff al daño de las habilidades
+	 */
     protected int modAtaquete = 0;
     
     //el nivel y la experiencia
@@ -37,6 +68,9 @@ public abstract class Human {
     //�Esta muerto?
     //realizar una funcion que se deberia usar frecuentemente durante el combate (antes de cederle el turno al siguiente personaje) que revise la vidaActual de cada uno.
     // si vidaActual <= 0, de alguna forma "hacerlo invisible" para que no pueda realizar acciones. isDead darlo por true.
+	/**
+	 * booleano donde nos muestra si el humano esta muerto o no, true si lo esta, false si no.
+	 */
     protected boolean isDead = false;
     
     //Aliados
@@ -44,49 +78,108 @@ public abstract class Human {
     //No se bien si se inicializa asi, pero por el momento para que darnos la idea.
     //Asi en los combates, supongamos el caso de que algun heroe tiene la habilidad especial de potenciar/curar a algun aliado suyo.
     //Y asi si hubiera uno de aliados, �habria que hacer uno de enemigos?
+	/**
+	 *  ArrayList de los aliados que lo acompañan
+	 */
     protected ArrayList<Human> aliados;
     
     //Objetos
     //Un almacenamiento de objetos (peque�o) para asi llevar la Carta, consumibles, etc.
     //protected ArrayList<> objetos = new String[3];
     //Tipo (Heroe, Enemigo(Jefe y esbirro))
+	/**
+	 * el tipo, si es un heroe, o un villano, o esbirro
+	 */
     protected String tipo;
     //Clase
+	/**
+	 * la clase de heroe o del jefe, si es por ejemplo un paladin, o druida en caso de heroes, o si es Jefe1 o Jefe2 en caso de jefe
+	 */
     protected String clase="";
+	/**
+	 * breve descripcion de la clase
+	 */
     protected String descripcion="";
     //Habilidades
+	/**
+	 * la habilidad 1 del humano
+	 */
     protected Habilidad habilidad1;
+	/**
+	 * la habilidad 2 del humano (Jefes y esbirros no la llevan)
+	 */
 	protected Habilidad habilidad2;
+	/**
+	 * la habilidad especial del Heroe o Jefe (los heroes tienen restricciones, mientras que los jefes para usarla no)
+	 */
 	protected Habilidad habilidadEspecial;
     protected int turnoAnt = 0;
 
     //Metodos
 
-
+	/**
+	 * retornamos el tipo
+	 * @return String de ya sea heroe, jefe, esbirro, etc
+	 */
 	public String getTipo(){
 		return tipo;
 	}
+
+	/**
+	 * da la breve descripcion de la clase elegida
+	 * @return String breve descripcion
+	 */
     public String getDescripcion(){
         return descripcion;
     }
+
+	/**
+	 * entrega el nombre del Human
+	 * @return String el nombre
+	 */
     public String getNombre() {
 		return nombre;
 	}
+
+	/**
+	 * Nos devuelve la vida actual del Human
+	 * @return int numero de su vida actual
+	 */
     public int getVida(){
         return this.vidaActual;
     }
+
+	/**
+	 * Nos devuelve el mana actual del human
+	 * @return int numero de su mana actual
+	 */
     protected int getMana(){
         return this.manaActual;
     }
 //    protected int getNivel(){
 //        return this.nivel;
 //    }
+
+	/**
+	 * Se revisa si esta muerto o no
+	 * @return boolean true si esta muerto, false si no
+	 */
     public boolean checkDead(){
         return this.isDead;
     }
+
+	/**
+	 * Se le da el nombre al Human
+	 * @param nombre nombre del Human
+	 */
     public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
+	/**
+	 * metodo en el que muestra por pantalla cuantos puntos de vida pierde el objetivo al ser alcanzado por una habilidad, tambien nos puede mostrar si llega a morir
+	 * @param dmg el daño que recibio
+	 */
     protected void recibirDmg(int dmg) {
     	System.out.println(String.format("%s ha recibido %s puntos de daño", this.getNombre(),dmg));
     	if ((this.vidaActual-dmg)<=0) {
@@ -97,6 +190,11 @@ public abstract class Human {
     		this.vidaActual-=dmg;
     	}
     };
+
+	/**
+	 * metodo en el que muestra por pantalla cuantos puntos de vida recibe el objetivo al ser curado por alguna habilidad, no se cura si ya esta al maximo.
+	 * @param vida vida que recibe como cura
+	 */
     protected void curarse(int vida) {
     	if ((this.vidaActual+vida)>this.vidaMaxima) {
     		this.vidaActual=this.vidaMaxima;
@@ -106,23 +204,52 @@ public abstract class Human {
     		System.out.println(String.format("%s ha recuperado %s puntos de vida", this.nombre,vida));
     	}
     }
+
+	/**
+	 * El metodo de la modificacion del daño de ataque
+	 * @param mod que es el numero con el que se modifica
+	 */
     protected void modificarAtaque(int mod) {
     	this.modAtaquete=mod;
     }
+
+	/**
+	 * Retorna la clase de la que es
+	 * @return String de la clase a la que pertenece
+	 */
     public String getClase() {
 		return clase;
 	}
+
+	/**
+	 * Nos da la habilidad 1 del Human
+	 * @return Habilidad la habilidad 1
+	 */
 	public Habilidad getHabilidad1() {
 		return habilidad1;
 	}
+
+	/**
+	 * Nos da la habilidad 2 del Human
+	 * @return Habilidad de la habilidad 2
+	 */
 	public Habilidad getHabilidad2() {
 		return habilidad2;
 	}
+
+	/**
+	 * Nos da la habilidad especial del Human
+	 * @return Habilidad de la habilidad especial
+	 */
 	public Habilidad getHabilidadEspecial() {
 		return habilidadEspecial;
 	}
-    
-    public void usarH1(Human objetivo) {
+
+	/**
+	 * el uso de la habilidad 1, aca es donde se muestra el uso del dado
+	 * @param objetivo es el objetivo a quien vamos a accionar la habilidad
+	 */
+	public void usarH1(Human objetivo) {
         String usuario = this.getTipo();
         boolean usar=false;
         if (this.getHabilidad1().isTiraDado()) {
@@ -144,6 +271,12 @@ public abstract class Human {
 			}
         }
 	}
+
+	/**
+	 * el uso de la habilidad 2, aca es donde se muestra el uso del dado
+	 * @see Human#tirarDado()
+	 * @param objetivo es el objetivo a quien vamos a accionar la habilidad
+	 */
     public void usarH2(Human objetivo) {
         String usuario = this.getTipo();
         boolean usar=false;
@@ -165,6 +298,11 @@ public abstract class Human {
 			}
         }
 	}
+
+	/**
+	 * el uso de la habilidad especial, aca es donde se muestra el uso del dado
+	 * @param objetivo es el objetivo a quien vamos a accionar la habilidad
+	 */
 	public void usarEsp(Human objetivo) {
         String usuario = this.getTipo();
         boolean usar=false;
@@ -187,6 +325,11 @@ public abstract class Human {
 			}
         }
 	}
+
+	/**
+	 * El uso del dado, con el que veremos si evitamos el daño de la habilidad o tendremos que recibirlo
+	 * @return int el valor que salio al tirar el dado
+	 */
 	public int tirarDado() {
 		//nextInt va de 0 a 19, como los dados d20 van del 1-20, se le suma 1
 		Game.imprimir("Necesitas tirar un d20");
@@ -209,7 +352,12 @@ public abstract class Human {
     
     }
 
-    public void setMana(int cantMana){
+	/**
+	 * para el uso de la Carta del Masoquista, se da una gran cantidad de mana al human
+	 * @see Core.Clases.Cartas.CartaMasoquista
+	 * @param cantMana la cantidad de mana que se setea luego de usar la carta
+	 */
+	public void setMana(int cantMana){
         this.manaActual += cantMana;
     }
     //Para una carta:
@@ -217,6 +365,11 @@ public abstract class Human {
         return this.vidaMaxima;
     }
     //Para una carta:
+
+	/**
+	 * Para el uso de la Carta de la Ultima Esperanza, se cura el portador
+	 * @param cantVida la cantidad de vida con la que se cura
+	 */
     public void keyCurarse(int cantVida){
         curarse(cantVida);
     }

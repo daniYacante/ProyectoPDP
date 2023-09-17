@@ -6,6 +6,13 @@ import Core.Clases.*;
 import Core.Clases.Cartas.Carta;
 import Core.Clases.Heroes.*;
 //import java.util.concurrent.TimeUnit;
+
+/**
+ * @author Mauro Sorbello
+ * @author Daniel Yacante
+ * @author Joaquin Villegas
+ * la clase Game es por asi decirlo la clase main, donde se va a ejecutar el juego.
+ */
 public class Game {
 	public static Scanner scanner =new Scanner(System.in);
 	private static boolean Fin=false;
@@ -60,7 +67,9 @@ public class Game {
         
 	}
 
-	
+    /**
+     * La opcion 1, que es la de jugar. Se da la seleccion de personajes, y empieza el juego
+     */
     public static void opcion1(){
     	//String respString;
     	int respInt;
@@ -142,7 +151,10 @@ public class Game {
         } while (!Fin);
         //End Lucha
     }
-    
+
+    /**
+     * La opcion 2 del juego, una explicacion sobre como jugar
+     */
     public static void opcion2(){
         //Mejorar el texto de explicacion, esto nada mas se hizo para ver como luce.
         System.out.println("----------------------------------------------------------------------------------------------------------");
@@ -155,7 +167,10 @@ public class Game {
         System.out.println("Presione alguna tecla para volver al menu.");
         pressToContinue();
     }
-    
+
+    /**
+     * La opcion 3, los creditos
+     */
     public static void opcion3(){
         System.out.println("----------------------------------------------------------------------------------------------------------");
         System.out.println("Hecho por: ");
@@ -171,6 +186,12 @@ public class Game {
         System.out.println("Presione alguna tecla para volver al menu.");
         pressToContinue();
     }
+
+    /**
+     * La logica de la lucha por turnos
+     * @param sala recibe la sala en donde se encuentran
+     * @return int -1 en el caso de que los Heroes hayan perdido, 1 si es que han ganado
+     */
 	public static int lucha(Sala sala) {
 		String msg="";
 		ArrayList<? extends Human> listaEnemigos= sala.getListaEnemigo();
@@ -282,6 +303,12 @@ public class Game {
 			return 1;
 		}
 	}
+
+    /**
+     * la creacion de la sala
+     * @param nSala el numero de la sala
+     * @return Sala una nueva sala
+     */
 	public static Sala crearSala(int nSala) {
 		Sala sala=new Sala(nSala);
 		return sala;
@@ -290,7 +317,13 @@ public class Game {
     public static void cleanConsole(){
         System.out.println("\n\n\n\n\n");
     }
-    
+
+    /**
+     * La logica de la interaccion del usuario a traves del teclado
+     * @param mensaje el mensaje que se muestra en juego, el contexto de lo que esta pasando
+     * @param maxOpciones el numero maximo de opciones que tiene el usuario para elegir
+     * @return int la opcion que el usuario elige
+     */
     public static int readConsoleInt(String mensaje,int maxOpciones) {
 		int input=-1;
 		do {
@@ -309,6 +342,12 @@ public class Game {
 		return input;
 		
 	}
+
+    /**
+     * La logica de la interaccion del usuario a traves del teclado
+     * @param mensaje el mensaje que se muestra en juego, el contexto de lo que esta pasando
+     * @return String la cadena de caracteres que da el usuario a traves del teclado (nombres por ejemplo)
+     */
     public static String readConsoleString(String mensaje) {
     	String input;
     	boolean leido=false;
@@ -326,6 +365,10 @@ public class Game {
     	}while (!leido);
     	return input;
     }
+
+    /**
+     * La logica para que el usuario siga avanzando a traves del teclado
+     */
 	public static void pressToContinue() {
 		System.out.println("Presione enter para continuar");
 		scanner.nextLine();
@@ -336,6 +379,12 @@ public class Game {
 //			e.printStackTrace();
 //		}
 	}
+
+    /**
+     * La logica para la creacion de heroes, de esta forma se pueden mostrar las stats y habilidades del heroe que haya elegido el usuario a traves del teclado
+     * @param tipo la opcion que el usuario escogio
+     * @return Heroe retorna al heroe para mostrarlo
+     */
 	public static Heroe crearHeroe(int tipo){
 		Heroe H;
 		switch (tipo) {
@@ -378,6 +427,11 @@ public class Game {
 		}
 		return H;
 	}
+
+    /**
+     * Logica para la impresion de texto en cuadrados
+     * @param mensaje el mensaje que se quiere mostrar
+     */
 	public static void imprimir(String mensaje) {
 		int maxHorizontal=100;
 		//int maxVertical=10;

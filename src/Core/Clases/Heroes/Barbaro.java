@@ -2,7 +2,14 @@ package Core.Clases.Heroes;
 import Core.Game;
 import Core.Clases.Habilidad;
 
+/**
+ * La clase Barbaro, que hereda de Heroe
+ * @see Heroe
+ */
 public class Barbaro extends Heroe {
+    /**
+     * constructor del Barbaro, sus stats y habilidades
+     */
     public Barbaro(){
         super.turnoAnt = 0;
         super.tipo = "Heroe";
@@ -21,6 +28,9 @@ public class Barbaro extends Heroe {
     }
     //Usar habilidad Especial despues de tres turnos
 
+    /**
+     * restriccion que este lleva para usar la habilidad especial
+     */
     public void setRestriccion(){
         if ((turnos - turnoAnt) >= 2) {
             turnoAnt = turnos;

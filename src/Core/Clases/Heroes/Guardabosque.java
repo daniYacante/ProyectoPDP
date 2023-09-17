@@ -2,6 +2,7 @@ package Core.Clases.Heroes;
 
 import Core.Clases.Habilidad;
 
+
 public class Guardabosque extends Core.Clases.Human {
     //Coloque mana = vidaActual por simplicidad
     //vidaActual es d6 * 12

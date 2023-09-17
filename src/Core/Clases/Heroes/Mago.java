@@ -2,9 +2,16 @@ package Core.Clases.Heroes;
 
 import Core.Clases.Habilidad;
 
+/**
+ * La clase Mago, que hereda de Heroe
+ */
 public class Mago extends Core.Clases.Heroes.Heroe {
     //Coloque mana = vidaActual por simplicidad
     //vidaActual es d6 * 12
+
+    /**
+     * Constructor de la clase Mago, sus stats y habilidades
+     */
     public Mago(){
         //Mago d6
         super.tipo = "Heroe";

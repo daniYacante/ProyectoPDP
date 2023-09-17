@@ -2,7 +2,14 @@ package Core.Clases.Heroes;
 import Core.Game;
 import Core.Clases.Habilidad;
 
+/**
+ * La clase Bardo, que hereda de Heroe
+ * @see Heroe
+ */
 public class Bardo extends Core.Clases.Heroes.Heroe {
+    /**
+     * Constructor del Bardo, sus stats y habilidades
+     */
     public Bardo(){
         super.turnoAnt = 0;
         super.tipo = "Heroe";

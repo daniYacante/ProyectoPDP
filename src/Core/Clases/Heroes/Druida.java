@@ -2,7 +2,14 @@ package Core.Clases.Heroes;
 import Core.Game;
 import Core.Clases.Habilidad;
 
+/**
+ * La clase Druida, que hereda de heroe
+ * @see Heroe
+ */
 public class Druida extends Core.Clases.Heroes.Heroe {
+    /**
+     * Constructor del Druida, sus stats y habilidades
+     */
     public Druida(){
         super.turnoAnt = 0;
         super.tipo = "Heroe";

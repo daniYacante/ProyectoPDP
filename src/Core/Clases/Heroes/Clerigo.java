@@ -2,7 +2,14 @@ package Core.Clases.Heroes;
 
 import Core.Clases.Habilidad;
 
+/**
+ * La clase Clerigo, que hereda de Heroe
+ * @see Heroe
+ */
 public class Clerigo extends Core.Clases.Heroes.Heroe{
+    /**
+     * Constructor del clerigo, sus stats y habilidades
+     */
     public Clerigo(){
         super.tipo = "Heroe";
         super.armadura=15;

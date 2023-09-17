@@ -1,16 +1,44 @@
 package Core.Clases.Cartas;
 import Core.Clases.Heroes.Heroe;
+
+/**
+ * Carta de la Euforia Temporal, cuando tu vida sea mas del 65% de su vida maxima, el daño de tus habilidades aumenta. PERO si baja a menos del 65%, tus habilidades empezaran a ser mas debiles
+ */
 public class CartaEuforiaTemporal extends Carta{
     //Que atributos de la persona tocare?
+    /**
+     * la vida maxima a la que puede llegar el portador
+     */
     protected int vidaMaximaPortador;
+    /**
+     * la vida actual del portador
+     */
     protected int vidaActualPortador;
+    /**
+     * el daño de la habilidad 1 del portador
+     */
     protected int danioPortador1;
+    /**
+     * el daño de la habilidad 2 del portador
+     */
     protected int danioPortador2;
+    /**
+     * el daño de la habilidad especial del portador
+     */
     protected int danioPortador3;
+
+    /**
+     * constructor para la creacion de la carta
+     */
     public CartaEuforiaTemporal() {
     	super.nombreCarta = "carta de la Euforia Temporal";
         super.descripcion = "cuando tu vida sea mas del 65% de su vida maxima, el daño de tus habilidades aumenta. PERO si baja a menos del 65%, tus habilidades empezaran a ser mas debiles";
     }
+
+    /**
+     * Se asigna el portador de la carta, pero ademas los atributos necesarios para el uso de la carta
+     * @param portadorCarta quien es el que la lleva
+     */
     @Override
     public void setPortador(Heroe portadorCarta) {
         super.portador = portadorCarta;
@@ -23,6 +51,10 @@ public class CartaEuforiaTemporal extends Carta{
         this.danioPortador3 = portador.getHabilidadEspecial().getEfectoVidaObjetivo();
     }
 
+    /**
+     * realiza el efecto que debe hacer dicho en la descripcion de la carta
+     * @see CartaEuforiaTemporal
+     */
     @Override
     public void realizarEfecto(){
         if (vidaActualPortador >= ((65 * vidaMaximaPortador) / 100)){
