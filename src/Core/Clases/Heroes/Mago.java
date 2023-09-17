@@ -1,6 +1,7 @@
 package Core.Clases.Heroes;
 
 import Core.Clases.Habilidad;
+import Core.Clases.Restricciones.RestricTurnosSinHabilidadEsp;
 
 /**
  * La clase Mago, que hereda de Heroe
@@ -25,5 +26,7 @@ public class Mago extends Core.Clases.Heroes.Heroe {
         this.habilidad1=new Habilidad("Bastonazo", -10,0,0,true);
         this.habilidad2=new Habilidad("Manos Quemantes", -8,0,0,true);
         this.habilidadEspecial=new Habilidad("Bola de Fuego", -15,0,0,false);
+        this.restriccion = new RestricTurnosSinHabilidadEsp();
+        this.restriccion.setDescriRes(this.habilidadEspecial);
     }    
 }

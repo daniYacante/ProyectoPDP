@@ -1,6 +1,7 @@
 package Core.Clases.Heroes;
 
 import Core.Clases.Habilidad;
+import Core.Clases.Restricciones.RestriccionDosTurnos;
 
 /**
  * La clase Rogue, que hereda de Heroe
@@ -27,18 +28,8 @@ public class Rogue extends Core.Clases.Heroes.Heroe {
         this.habilidad1=new Habilidad("Acuchillada", -8, 0,0,true);
         this.habilidad2=new Habilidad("",0,0,0,true);//Tengo que buscar mas sobre los rogue
         this.habilidadEspecial=new Habilidad("Golpe Mortal", -15, 0,0,true);
-        this.descripcionRes = "Despues de utilizar Golpe Mortal (Habilidad Especial), no podras utilizar a Rogue por 2 turnos";
+        this.restriccion = new RestriccionDosTurnos();
+        this.restriccion.setDescriRes(this.habilidadEspecial);
     }
     //Si usas la habilidad Especial despues no podes utilizar el personaje por 2 turnos
-    public void setRestriccion(){
-        restriccion = true;
-        if (useEsp == false){
-            turnoAnt = turnos;
-        }
-        if ((turnos - turnoAnt) == 2) {
-            super.canUse = true;
-            turnoAnt = turnos;
-            super.useEsp = false;
-        }else super.canUse = false;
-    }
 }

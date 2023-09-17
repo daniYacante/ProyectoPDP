@@ -1,8 +1,8 @@
 package Core.Clases.Heroes;
 import java.util.ArrayList;
 import Core.Clases.Human;
-import Core.Clases.Restriccion;
 import Core.Clases.Cartas.Carta;
+import Core.Clases.Restricciones.Restriccion;
 
 //Solo la utilizo para definir que paladin, mago, clerigo y rogue son de tipo heroe
 
@@ -19,7 +19,7 @@ import Core.Clases.Cartas.Carta;
  * @see Paladin
  * @see Rogue
  */
-public class Heroe extends Human implements Restriccion{
+public class Heroe extends Human /*implements Restriccion*/{
 	/**
 	 * la carta que lleva el heroe
 	 */
@@ -28,17 +28,13 @@ public class Heroe extends Human implements Restriccion{
 	/**
 	 * la restriccion que tiene el heroe para el uso de su habilidad especial
 	 */
-	protected boolean restriccion = false;
 	/**
 	 * la cantidad de turnos que lleva en juego
 	 */
 	protected int turnos;
-	/**
-	 * la restriccion que lleva el heroe en palabras
-	 */
-	public String descripcionRes = "";
-	public boolean canUse = true;
-
+	protected boolean canUse = true;
+	protected int turnoAnt = 0;
+	protected Restriccion restriccion;
 	/**
 	 * constructor que genera al heroe
 	 */
@@ -52,13 +48,18 @@ public class Heroe extends Human implements Restriccion{
 		return canUse;
 	}
 
+	public void changeCanUse(){
+		if (this.canUse == false) {
+			this.canUse = true;
+		}else this.canUse = false;
+	}
 	/**
 	 * nos muestra las estadisticas del heroe y sus habilidades
 	 * @return un mensaje de sus stats y habs
 	 */
     public String getDescripcion() {
     	String msg="";
-    	msg=String.format("%s:\n\tArmadura: %s\n\tVida maxima: %s\n\tMana Max: %s\n\tHabilidades:\n\t*%s\n\t*%s\n\t*%s", this.clase,this.armadura,this.getVidaMaxima(),this.getMana(),this.getHabilidad1().getNombre(),this.getHabilidad2().getNombre(),this.getHabilidadEspecial().getNombre());
+    	msg=String.format("%s:\n\tArmadura: %s\n\tVida maxima: %s\n\tMana Max: %s\n\tHabilidades:\n\t*%s\n\t*%s\n\t*%s\n\tRestriccion habilidad especial:\n\t*%s", this.clase,this.armadura,this.getVidaMaxima(),this.getMana(),this.getHabilidad1().getNombre(),this.getHabilidad2().getNombre(),this.getHabilidadEspecial().getNombre(), this.restriccion.getDescripcionRes());
     	return msg;
     }
     public ArrayList<? extends Human> getAliados() {
@@ -101,20 +102,21 @@ public class Heroe extends Human implements Restriccion{
 	public void recibirDamage(int danio){
 		this.recibirDmg(danio);
 	}
-	
+	/* 
 	public void setRestriccion(){
     }
 	
 	public void progresoCond(){//No se si lo vamos a implementar
 	}
-	public boolean getRestriccion(){
-		return restriccion;
-	}
 
 	public String getDescripcionRes(){
 		return descripcionRes;
 	}
+	*/
 
+	public Restriccion getRestriccion(){
+		return restriccion;
+	}
 	public void aumentarTurno(){
 		this.turnos++;
 	}
