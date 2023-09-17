@@ -259,14 +259,20 @@ public abstract class Human {
         	}else {
         		usar=true;
         	}
-        }
+        }else{
+			//Hago este else debido a que para habilidades como modificacion de daño no se estan tomando en cuenta
+			if (this.getHabilidad1().getEfectoManaLanzador() < this.manaActual){
+				this.getHabilidad1().usar(objetivo, 0);
+				this.manaActual -= this.getHabilidad1().getEfectoManaLanzador();
+			}
+		}
         if (usar) {
         	//Si es enemigo hace el ataque
 	        if (usuario.equals("Enemigo")){
-	            this.getHabilidad1().usar(objetivo, 0);
+	            this.getHabilidad1().usar(objetivo, this.modAtaquete);
 	        //Si es heroe verifica el mana
 	        }else if (this.getHabilidad1().getEfectoManaLanzador()<this.manaActual) {
-				this.getHabilidad1().usar(objetivo, 0);
+				this.getHabilidad1().usar(objetivo, this.modAtaquete);
 				this.manaActual-=this.getHabilidad1().getEfectoManaLanzador();
 			}
         }
@@ -280,20 +286,25 @@ public abstract class Human {
     public void usarH2(Human objetivo) {
         String usuario = this.getTipo();
         boolean usar=false;
-        if (this.getHabilidad1().isTiraDado()) {
+        if (this.getHabilidad2().isTiraDado()) {
         	int d20=this.tirarDado();
         	if (d20<this.armadura) {
         		Game.imprimir(String.format("%s sabe como defenderse...\no el oponente es muy malo...\nno se ha asestado el golpe",objetivo.nombre));
         	}else {
         		usar=true;
         	}
-        }
+        } else {
+			if (this.getHabilidad2().getEfectoManaLanzador() < this.manaActual){
+				this.getHabilidad2().usar(objetivo, this.modAtaquete);
+				this.manaActual -= this.getHabilidad2().getEfectoManaLanzador();
+			}
+		}
         if (usar) {
 	        if (usuario.equals("Enemigo")){
-	            this.getHabilidad2().usar(objetivo, 0);
+	            this.getHabilidad2().usar(objetivo, this.modAtaquete);
 	        }
 			else if (this.getHabilidad2().getEfectoManaLanzador()<this.manaActual) {
-	            this.getHabilidad2().usar(objetivo, 0);
+	            this.getHabilidad2().usar(objetivo, this.modAtaquete);
 	            this.manaActual-=this.getHabilidad2().getEfectoManaLanzador();
 			}
         }

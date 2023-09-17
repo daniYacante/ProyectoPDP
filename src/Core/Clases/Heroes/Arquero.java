@@ -14,8 +14,8 @@ public class Arquero extends Core.Clases.Heroes.Heroe {
         super.turnoAnt = 0;
         super.tipo = "Heroe";
         super.armadura=13;
-        super.vidaActual = 12;
-        super.vidaMaxima = 12;
+        super.vidaActual = 70;
+        super.vidaMaxima = 100;
         super.manaActual = 100;
         super.manaMaximo = 180;
         this.clase="Arquero";

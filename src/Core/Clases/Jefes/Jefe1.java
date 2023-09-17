@@ -13,6 +13,7 @@ public class Jefe1 extends Jefe{
      */
     public Jefe1(String nombre){
         super.nombre = nombre;
+        super.vidaMaxima = 120;
         super.vidaActual = 120;
         this.clase="Profe1";
         this.descripcion="Profe1";

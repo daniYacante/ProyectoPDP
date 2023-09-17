@@ -14,8 +14,8 @@ public class Druida extends Core.Clases.Heroes.Heroe {
         super.turnoAnt = 0;
         super.tipo = "Heroe";
         super.armadura=15;
-        super.vidaActual = 10;
-        super.vidaMaxima = 10;
+        super.vidaActual = 150;
+        super.vidaMaxima = 180;
         super.manaActual = 100;
         super.manaMaximo = 180;
         this.clase="Druida";
