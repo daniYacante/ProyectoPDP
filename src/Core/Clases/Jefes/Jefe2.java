@@ -12,11 +12,12 @@ public class Jefe2 extends Jefe{
      */
     public Jefe2(String nombre){
         super.nombre = nombre;
-        super.vidaMaxima = 200;
-        super.vidaActual = 200;
+        super.vidaActual = 80;
+        super.vidaMaxima=80;
+        super.armadura=16;
         this.clase="Profe2";
-        this.descripcion="Profe2";
-        this.habilidad1=new Habilidad("Bastonazo", -10, 0, 0, true);
-        this.habilidadEspecial=new Habilidad("Hacer Compilador", -33, 0,0, true);
+        this.descripcion="Profe de Lenguajes Formales y de los temibles Compiladores";
+        this.habilidad1=new Habilidad("Expresion Regular", -10, 0, 0, true);
+        this.habilidadEspecial=new Habilidad("Hacer Compilador", -20, 0,0, true);
     }
 }

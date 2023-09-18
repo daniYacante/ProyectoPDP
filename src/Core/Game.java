@@ -126,8 +126,7 @@ public class Game {
         //Lucha
         do {
         	stage=crearSala(nSala);
-        	imprimir("Entras a una sala donde la luz escasea, sientes el olor a humedad en el aire, sobre una mesa ves"
-        			+" algo que \u001B[33mbrilla\u001B[0m y hacia tu derecha ves lo que parece ser una puerta.");
+        	imprimir(stage.getDescription());
         	respInt=readConsoleInt("¿Que decides hacer?\n[1] Investigar que es lo que brilla \n[2] Ir hacia la \"puerta\"",2);
         	if (respInt==1) {
         		item=stage.investigar();
@@ -145,11 +144,10 @@ public class Game {
         			imprimir("Lo dejas donde estaba...");
         		}
         		
-        		imprimir("Luego de ver que es lo que brillaba, te diriges hacia la puerta y...");
+        		imprimir(stage.getDescriptionEnemigos());
         	}
-    		System.out.println("A luchaaaaar!!!!");
     		status=lucha(stage);
-    		if ((status==-1) || (nSala==0)) {
+    		if ((status==-1) || (nSala==3)) {//maximo 3 salas
         		Fin=true;
         	}else {
         		nSala++;
@@ -218,16 +216,21 @@ public class Game {
      * @return int -1 en el caso de que los Heroes hayan perdido, 1 si es que han ganado
      */
 	public static int lucha(Sala sala) {
-		String msg="";
+		String msg="Unos ";
 		ArrayList<? extends Human> listaEnemigos= sala.getListaEnemigo();
 		Human target = null;
 		int contHeroes;
 		int contEnemigos;
 		Heroe heroe;
-		do {
+		for (Human enemigo:listaEnemigos) {
+			msg=msg.concat(String.format("%s, ", enemigo.getNombre()));
+		}
+		msg=msg.concat("salvajes aparecen");
+		imprimir(msg);
+		while ((listaHeroesVivos.size()!=0) && (listaEnemigos.size()!=0)){
 			contHeroes=0;
 			contEnemigos=0;	
-			do {
+			while(contHeroes<listaHeroesVivos.size()) {
 				heroe=listaHeroesVivos.get(contHeroes);
 				if (heroe.getCanUse() == false) {
 					heroe.getRestriccion().setRestriccion(heroe);
@@ -273,19 +276,7 @@ public class Game {
 							respObjetivo=readConsoleInt(msg, listaEnemigos.size());
 							target=listaEnemigos.get(respObjetivo-1);
 						}
-						if (respAccion == 3) {
-							//System.out.println(heroe.getuseEsp());
-							heroe.getRestriccion().setRestriccion(heroe);
-							if (heroe.getRestriccion().getValorRestriccion() == true) {
-								System.out.println(String.format("El heroes usara %s, recordamos que %s", heroe.getHabilidadEspecial().getNombre(), heroe.getRestriccion().getDescripcionRes()));
-								System.out.println(String.format("El heroe %s uso %s contra %s", heroe.getNombre(),heroe.getHabilidadEspecial().getNombre(),target.getNombre()));
-								heroe.usarEsp(target);
-								break;
-							}else
-								System.out.println(String.format("El heroe %s no cumple con la condicion: %s", heroe.getNombre(),heroe.getRestriccion().getDescripcionRes()));
-								msg=String.format("¿Como quiere atacar?\n1-%s\n2-%s",heroe.getHabilidad1().getNombre(),heroe.getHabilidad2().getNombre());
-								respAccion=readConsoleInt(msg, 2);
-						} 
+						
 						switch (respAccion) {
 						case 1:
 							System.out.println(String.format("El heroe %s uso %s contra %s", heroe.getNombre(),heroe.getHabilidad1().getNombre(),target.getNombre()));
@@ -295,12 +286,27 @@ public class Game {
 							System.out.println(String.format("El heroe %s uso %s contra %s", heroe.getNombre(),heroe.getHabilidad2().getNombre(),target.getNombre()));
 							heroe.usarH2(target);
 							break;
+						case 3:
+							//System.out.println(heroe.getuseEsp());
+							heroe.getRestriccion().setRestriccion(heroe);
+							if (heroe.getRestriccion().getValorRestriccion() == true) {
+								System.out.println(String.format("El heroes usara %s, recordamos que %s", heroe.getHabilidadEspecial().getNombre(), heroe.getRestriccion().getDescripcionRes()));
+								System.out.println(String.format("El heroe %s uso %s contra %s", heroe.getNombre(),heroe.getHabilidadEspecial().getNombre(),target.getNombre()));
+								heroe.usarEsp(target);
+								break;
+							}else
+								System.out.println(String.format("El heroe %s no cumple con la condicion: %s", heroe.getNombre(),heroe.getRestriccion().getDescripcionRes()));
+								continue;
 						default:
 							break;
 						}
 						if (target.checkDead()) {
-							System.out.println(String.format("%s ha caido", target.getNombre()));
-							listaEnemigos.remove(respObjetivo-1);
+							if (target.getTipo()=="Enemigo") {
+								System.out.println(String.format("%s ha caido", target.getNombre()));
+								listaEnemigos.remove(respObjetivo-1);
+							}else {
+								listaHeroesVivos.remove(respObjetivo-1);
+							}
 							if (listaEnemigos.size()==0)break;
 						}else {
 							System.out.println(String.format("La vida de %s es: %d", target.getNombre(),target.getVida()));
@@ -318,8 +324,10 @@ public class Game {
 				}
 				heroe.aumentarTurno();
 				contHeroes++;
-				}while(contHeroes<listaHeroesVivos.size());
-				do {
+				}
+				while(contEnemigos<listaEnemigos.size()) {
+					if (listaEnemigos.size()!=0) {
+						
 					Human enemigo=listaEnemigos.get(contEnemigos);
 					System.out.println(String.format("%s ataca!!", enemigo.getNombre()));
 					// cAMBIE PARA PROBAR
@@ -328,15 +336,18 @@ public class Game {
 					//target=listaHeroesVivos.get(0);
 					enemigo.usarH1(target);
 					if (target.checkDead()) {
-							System.out.println(String.format("%s ha caido", target.getNombre()));
-							listaHeroesVivos.remove(indice);
-							if (listaHeroesVivos.size() == 0) break;
-						}else {
-							System.out.println(String.format("La vida de %s es: %d", target.getNombre(),target.getVida()));
-						}
+						System.out.println(String.format("%s ha caido", target.getNombre()));
+						listaHeroesVivos.remove(indice);
+						if (listaHeroesVivos.size() == 0) break;
+					}else {
+						System.out.println(String.format("La vida de %s es: %d", target.getNombre(),target.getVida()));
+					}
 					contEnemigos++;
-				}while(contEnemigos<listaEnemigos.size());
-		} while ((listaHeroesVivos.size()!=0) && (listaEnemigos.size()!=0));
+					}else {
+						break;
+					}
+				}
+		} 
 		if (listaHeroesVivos.size()==0) {
 			return -1;
 		} else {

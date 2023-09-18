@@ -13,7 +13,8 @@ public class Sala {
 	private ArrayList<Human> listaEnemigos= new ArrayList<Human>(3);
 	private Carta item = null;
 	private papelAluminio itemTroll = null;
-
+	private String description="";
+	private String descriptionEnemigos="";
 	/**
 	 * Constructor de la clase sala, tambien se crea aca lo que es el objeto que hay dentro
 	 * @param nivelDeSala se da el nivel de la sala
@@ -24,6 +25,27 @@ public class Sala {
 			listaEnemigos.add(new Jefe1("Pablo"));
 			listaEnemigos.add(new Ayudante("Bauti"));
 			listaEnemigos.add(new Ayudante("Facu"));
+			this.description="Entras a una sala donde la luz escasea, el silencio reina por sobre todas las cosas, sobre una mesa ves algo que \u001B[33mbrilla\u001B[0m y hacia tu derecha ves lo que parece ser una puerta.";
+			this.descriptionEnemigos="Llegando a la puerta tu equipo es sorprendido por el equipo de Paradigmas";
+			break;
+		case 2:
+			listaEnemigos.add(new Jefe2("Caro"));
+			listaEnemigos.add(new Ayudante("Turing"));
+			listaEnemigos.add(new Ayudante("Sergio"));
+			this.description="Justo cuando pensabas que lo peor habia pasado..."
+					+ "En esta nueva sala te encuentras con lo que intuyes fueron prototipos de las primeras"
+					+ "computadoras. Computadoras que ocupan paredes enteras de la sala."
+					+ "De vuelta ves algo que brilla sobresaliendo de una de las maquinas.";
+			this.descriptionEnemigos="Llegando a la puerta tu equipo es sorprendido por el equipo de Compiladores";
+			break;
+		case 3:
+			listaEnemigos.add(new Jefe3("Larriqueta"));
+			listaEnemigos.add(new Ayudante("Julio"));
+			listaEnemigos.add(new Ayudante("Geogebra"));//aunque deberia ser un aliado
+			this.description="Continuando con tu camino hacia el titulo te encuentras en una sala donde el polvo"
+					+ "de tiza flota en el aire, ves a una entidad llorando en la esquina que no se ha dado cuenta de tu precensia."
+					+ "Como es \"normal\"... vuelves a ver algo brillando entre la niebla de tiza";
+			this.descriptionEnemigos="Frente a ti se encuentra el enemigo final...aquello que siempre has temido";
 			break;
 
 		default:
@@ -64,5 +86,10 @@ public class Sala {
 		}
 
 	}
-	
+	public String getDescription() {
+		return description;
+	}
+	public String getDescriptionEnemigos() {
+		return descriptionEnemigos;
+	}
 }
