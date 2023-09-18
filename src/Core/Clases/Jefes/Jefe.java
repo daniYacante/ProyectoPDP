@@ -16,7 +16,7 @@ public class Jefe extends Human {
     @Override
     public int tirarDado() {
     	Random d20=new Random();
-    	return d20.nextInt();
+    	return d20.nextInt(20)+1;
     }
 }
     //METODO

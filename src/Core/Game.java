@@ -274,7 +274,7 @@ public class Game {
 							target=listaEnemigos.get(respObjetivo-1);
 						}
 						if (respAccion == 3) {
-							System.out.println(heroe.getuseEsp());
+							//System.out.println(heroe.getuseEsp());
 							heroe.getRestriccion().setRestriccion(heroe);
 							if (heroe.getRestriccion().getValorRestriccion() == true) {
 								System.out.println(String.format("El heroes usara %s, recordamos que %s", heroe.getHabilidadEspecial().getNombre(), heroe.getRestriccion().getDescripcionRes()));
@@ -301,6 +301,7 @@ public class Game {
 						if (target.checkDead()) {
 							System.out.println(String.format("%s ha caido", target.getNombre()));
 							listaEnemigos.remove(respObjetivo-1);
+							if (listaEnemigos.size()==0)break;
 						}else {
 							System.out.println(String.format("La vida de %s es: %d", target.getNombre(),target.getVida()));
 						}

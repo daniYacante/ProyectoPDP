@@ -259,7 +259,8 @@ public abstract class Human {
         String usuario = this.getTipo();
         boolean usar=false;
         if (this.getHabilidad1().isTiraDado()) {
-        	int d20=this.tirarDado();
+        	int d20=this.tirarDado()+this.modH1;
+        	Game.imprimir(String.format("Valor de tirada: %d", d20));
         	if (d20<objetivo.armadura) {
         		Game.imprimir(String.format("%s sabe como defenderse...\no el oponente es muy malo...\nno se ha asestado el golpe",objetivo.nombre));
         	}else {
@@ -293,7 +294,8 @@ public abstract class Human {
         String usuario = this.getTipo();
         boolean usar=false;
         if (this.getHabilidad2().isTiraDado()) {
-        	int d20=this.tirarDado();
+        	int d20=this.tirarDado()+this.modH2;
+        	Game.imprimir(String.format("Valor de tirada: %d", d20));
         	if (d20<objetivo.armadura) {
         		Game.imprimir(String.format("%s sabe como defenderse...\no el oponente es muy malo...\nno se ha asestado el golpe",objetivo.nombre));
         	}else {
@@ -324,7 +326,8 @@ public abstract class Human {
         String usuario = this.getTipo();
         boolean usar=false;
         if (this.getHabilidadEspecial().isTiraDado()) {
-        	int d20=this.tirarDado();
+        	int d20=this.tirarDado()+this.modEsp;
+        	Game.imprimir(String.format("Valor de tirada: %d", d20));
         	if (d20<objetivo.armadura) {
         		Game.imprimir(String.format("%s sabe como defenderse...\no el oponente es muy malo...\nno se ha asestado el golpe",objetivo.nombre));
         	}else {
@@ -361,7 +364,7 @@ public abstract class Human {
 		Game.imprimir("Necesitas tirar un d20");
 		Game.pressToContinue();
 		int valorDado=dado.nextInt(20)+1;
-		Game.imprimir(String.format("Has sacado un %d", valorDado));
+		//Game.imprimir(String.format("Has sacado un %d", valorDado));
 		return valorDado;
 	}
     //Durante o antes de un combate, el jugador deberia tener la opcion de usar algun consumible de los objetos que lleva.
