@@ -191,7 +191,7 @@ public abstract class Human {
     	if ((this.vidaActual-dmg)<=0) {
     		this.vidaActual=0;
     		this.isDead=true;
-    		System.out.println(String.format("%s ha muerto!!", this.nombre));
+    		//System.out.println(String.format("%s ha muerto!!", this.nombre));
     	}else {
     		this.vidaActual-=dmg;
     	}

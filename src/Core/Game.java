@@ -84,7 +84,7 @@ public class Game {
     	String nombre = readConsoleString("Jugador, ¿cual es tu nombre?");
         imprimir("Muy bien, "+nombre+". Elige tus 5 personajes que iran en el equipo:");
         do {
-	        msg="Roles:\n"
+	        msg=String.format("Heroe %d/5\nRoles:\n"
 	        		+ "[1]  Arquero\n"
 	        		+ "[2]  Barbaro\n"
 	        		+ "[3]  Bardo\n"
@@ -95,7 +95,7 @@ public class Game {
 	        		+ "[8]  Mago\n"
 	        		+ "[9]  Monje\n"
 	        		+ "[10] Paladin\n"
-	        		+ "[11] Rouge\n";
+	        		+ "[11] Rouge\n",listaHeroesVivos.size()+1);
 	        int respuestaUsuario=readConsoleInt(msg,11);
 	        Heroe seleccionHeroe=crearHeroe(respuestaUsuario);
 	        
@@ -335,6 +335,8 @@ public class Game {
 					target=listaHeroesVivos.get(intRandom.nextInt(listaHeroesVivos.size()-1));
 					//target=listaHeroesVivos.get(0);
 					enemigo.usarH1(target);
+					pressToContinue();
+					//Ponemos rondas hasta usar la especial?
 					if (target.checkDead()) {
 						System.out.println(String.format("%s ha caido", target.getNombre()));
 						listaHeroesVivos.remove(indice);
