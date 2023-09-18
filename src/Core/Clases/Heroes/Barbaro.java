@@ -15,8 +15,8 @@ public class Barbaro extends Heroe {
         super.turnoAnt = 0;
         super.tipo = "Heroe";
         super.armadura=14;
-        super.vidaActual = 14;
-        super.vidaMaxima = 14;
+        super.vidaActual = 90;
+        super.vidaMaxima = 90;
         //No tiene magia
         super.manaActual = 0;
         super.manaMaximo = 0;

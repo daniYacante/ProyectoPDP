@@ -2,7 +2,7 @@ package Core.Clases.Cartas;
 
 import Core.Clases.Heroes.Heroe;
 
-public interface CartaFunciones {
+public interface Item {
     String getNombreCarta();
     void realizarEfecto();
 

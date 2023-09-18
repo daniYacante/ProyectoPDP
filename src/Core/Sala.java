@@ -9,7 +9,8 @@ import java.util.Random;
  */
 public class Sala {
 	private ArrayList<Jefe> listaEnemigos= new ArrayList<Jefe>(3);
-	private Carta item;
+	private Carta item = null;
+	private papelAluminio itemTroll = null;
 
 	/**
 	 * Constructor de la clase sala, tambien se crea aca lo que es el objeto que hay dentro
@@ -26,7 +27,7 @@ public class Sala {
 		if (prob==1) {
 			this.item=pC.pick();
 		}else {
-			this.item=new papelAluminio();
+			this.itemTroll=new papelAluminio();
 		}
 	}
 
@@ -42,10 +43,17 @@ public class Sala {
 	 * Funcion la cual se da cuando los heroes quieren investigar la sala
 	 * @return Carta la carta que fue encontrada en la sala
 	 */
-	public Carta investigar() {
-		System.out.println(String.format("Buscando en la sala has encontrado %s",this.item.getNombreCarta()));
-		this.item.imprimirDescripcion();
-		return item;
+	public Item investigar() {
+		if (item != null){
+			System.out.println(String.format("Buscando en la sala has encontrado %s",this.item.getNombreCarta()));
+			this.item.imprimirDescripcion();
+			return item;
+		} else {
+			System.out.println(String.format("Buscando en la sala has encontrado %s",this.itemTroll.getNombreCarta()));
+			this.itemTroll.imprimirDescripcion();
+			return itemTroll;
+		}
+
 	}
 	
 }

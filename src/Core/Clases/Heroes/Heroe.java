@@ -1,5 +1,7 @@
 package Core.Clases.Heroes;
 import java.util.ArrayList;
+
+import Core.Clases.Cartas.Item;
 import Core.Clases.Human;
 import Core.Clases.Cartas.Carta;
 import Core.Clases.Restricciones.Restriccion;
@@ -24,7 +26,7 @@ public class Heroe extends Human /*implements Restriccion*/{
 	 * la carta que lleva el heroe
 	 */
 	//y esta bien si agrego aca la carta?
-	protected Carta cartaElegida;
+	protected Item cartaElegida;
 	/**
 	 * la restriccion que tiene el heroe para el uso de su habilidad especial
 	 */
@@ -87,11 +89,11 @@ public class Heroe extends Human /*implements Restriccion*/{
 	 * se le da a alguno de los heroes la carta encontrada
 	 * @param cartaSeleccionada la carta encontrada
 	 */
-	public void setCartaElegida(Carta cartaSeleccionada){
+	public void setCartaElegida(Item cartaSeleccionada){
 		this.cartaElegida = cartaSeleccionada;
 	}
 	
-	public Carta getCartaElegida(){
+	public Item getCartaElegida(){
 		return this.cartaElegida;
 	}
 

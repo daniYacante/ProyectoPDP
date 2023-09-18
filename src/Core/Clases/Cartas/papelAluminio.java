@@ -1,16 +1,21 @@
 package Core.Clases.Cartas;
 
+import Core.Clases.Heroes.Heroe;
+
 /**
  * objeto engañoso
  */
-public class papelAluminio extends Carta {
+public class papelAluminio implements Item {
 
+	protected String nombreItem;
+	protected String descripcionItem;
+	protected Heroe heroePortador;
 	/**
 	 * constructor para la creacion del papel aluminio
 	 */
 	public papelAluminio() {
-		super.nombreCarta="Papel aluminio";
-		super.descripcion="Alguien dejo aqui papel aluminio";
+		this.nombreItem="Papel aluminio";
+		this.descripcionItem="Alguien dejo aqui papel aluminio";
 	}
 
 	/**
@@ -18,7 +23,20 @@ public class papelAluminio extends Carta {
 	 */
 	@Override
 	public void imprimirDescripcion() {
-		System.out.println(this.descripcion);
+		System.out.println(this.descripcionItem);
 	}
 
+	@Override
+	public String getNombreCarta(){
+		return this.nombreItem;
+	}
+
+	public void realizarEfecto(){
+		System.out.println("No hay ningun efecto");
+	}
+
+	@Override
+	public void setPortador(Heroe portador) {
+		this.heroePortador = portador;
+	}
 }

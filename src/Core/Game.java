@@ -4,6 +4,7 @@ import java.util.Random;
 import java.util.Scanner;
 import Core.Clases.*;
 import Core.Clases.Cartas.Carta;
+import Core.Clases.Cartas.Item;
 import Core.Clases.Heroes.*;
 //import java.util.concurrent.TimeUnit;
 
@@ -103,7 +104,7 @@ public class Game {
 	        	seleccionHeroe.setNombre(readConsoleString(String.format("Ingrese nombre para el %s",seleccionHeroe.getClase())));
 	        	listaHeroesVivos.add(seleccionHeroe);
 	        }
-        } while (listaHeroesVivos.size()<1); //CAMBIO 5 POR 1 PARA PROBAR
+        } while (listaHeroesVivos.size()<2); //CAMBIO 5 POR 1 PARA PROBAR
         imprimir("¡Los jugadores estan listos! comenzamos...");
         //Crea la lista de aliados
         for (Heroe heroe: listaHeroesVivos) {
@@ -116,7 +117,7 @@ public class Game {
 			}
         }
         //Fin
-        Carta item;
+        Item item;
         //Lucha
         do {
         	stage=crearSala(nSala);

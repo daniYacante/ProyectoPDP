@@ -4,7 +4,7 @@ import Core.Clases.Heroes.Heroe;
 /**
  * Carta es una clase abstracta la cual es la "forma" que deben de tener las demas cartas
  */
-public abstract class Carta{
+public abstract class Carta implements Item{
     /**
      * el nombre que la carta tiene
      */

@@ -326,10 +326,10 @@ public abstract class Human {
         }
         if (usar) {
 	        if (usuario.equals("Enemigo")){
-	            this.getHabilidad2().usar(objetivo, 0);
+	            this.getHabilidadEspecial().usar(objetivo, 0);
 	        }
 			else if (this.getHabilidadEspecial().getEfectoManaLanzador()<this.manaActual) {
-				this.getHabilidadEspecial().usar(objetivo,0);
+				this.getHabilidadEspecial().usar(objetivo,this.modAtaquete);
 				this.manaActual-=this.getHabilidadEspecial().getEfectoManaLanzador();
 	            this.useEsp = 1;
 			}
