@@ -7,7 +7,7 @@ public class Hechicero extends Core.Clases.Heroes.Heroe {
     public Hechicero(){
         super.turnoAnt = 0;
         super.tipo = "Heroe";
-        super.armadura=
+        super.armadura=13;
         super.vidaActual = 10;
         super.vidaMaxima = 10;
         super.manaActual = 100;

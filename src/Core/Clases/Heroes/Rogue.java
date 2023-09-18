@@ -19,14 +19,15 @@ public class Rogue extends Core.Clases.Heroes.Heroe {
         super.turnoAnt = 0;
         super.nombre = nombre;
         super.tipo = "Heroe";
-        super.vidaActual = 97;
-        super.vidaMaxima = 161;
-        super.manaActual = 97;
-        super.manaMaximo = 161;
+        super.armadura=14;//armadura de cuero(11) + dex(3) 
+        super.vidaActual = 24;
+        super.vidaMaxima = 24;
+        super.manaActual = 50;
+        super.manaMaximo = 50;
         this.clase="Rogue";
         this.descripcion="Malandrin que utiliza el sigilo y artimañas para superar obstaculos y enemigos";
-        this.habilidad1=new Habilidad("Acuchillada", -8, 0,0,true);
-        this.habilidad2=new Habilidad("",0,0,0,true);//Tengo que buscar mas sobre los rogue
+        this.habilidad1=new Habilidad("Acuchillada", -5, 0,0,true);
+        this.habilidad2=new Habilidad("Espadazo",-8,0,0,true);//Tengo que buscar mas sobre los rogue
         this.habilidadEspecial=new Habilidad("Golpe Mortal", -15, 0,0,true);
         this.restriccion = new RestriccionDosTurnos();
         this.restriccion.setDescriRes(this.habilidadEspecial);

@@ -16,15 +16,18 @@ public class Arquero extends Core.Clases.Heroes.Heroe {
         super.turnoAnt = 0;
         super.tipo = "Heroe";
         super.armadura=13;
-        super.vidaActual = 70;
-        super.vidaMaxima = 100;
-        super.manaActual = 100;
-        super.manaMaximo = 180;
+        super.vidaActual = 28;
+        super.vidaMaxima = 28;
+        super.manaActual = 10;
+        super.manaMaximo = 10;
         this.clase="Arquero";
         this.descripcion="Guerrero santo atado a un juramento sagrado";
         this.habilidad1=new Habilidad("Disparar Flecha", -8, 0, 0,true);
-        this.habilidad2=new Habilidad("Acuchillada", 10, 0, -10,true);
-        this.habilidadEspecial=new Habilidad("Golpe Divino", -16, 0, 0,true);
+        super.modH1=5;
+        this.habilidad2=new Habilidad("Acuchillada", -7, 0,0,true);
+        super.modH2=5;
+        this.habilidadEspecial=new Habilidad("Lluvia de flechas", -17, 0, 0,true);
+        super.modEsp=4;
         this.restriccion = new RestriccionBajaVida();
         this.restriccion.setDescriRes(this.habilidadEspecial);
     }

@@ -15,16 +15,18 @@ public class Barbaro extends Heroe {
         super.turnoAnt = 0;
         super.tipo = "Heroe";
         super.armadura=14;
-        super.vidaActual = 90;
-        super.vidaMaxima = 90;
+        super.vidaActual = 32;
+        super.vidaMaxima = 32;
         //No tiene magia
         super.manaActual = 0;
         super.manaMaximo = 0;
         this.clase="Barbaro";
         this.descripcion="Guerrero feroz de origen primitivo que puede entrar en furor al luchar";
-        this.habilidad1=new Habilidad("Hachazo", -8, 0, 0,true);
-        this.habilidad2=new Habilidad("Lanzar Jabalina", 10, 0, -10,true);
-        this.habilidadEspecial=new Habilidad("Furor", -16, 0, 0,false);
+        this.habilidad1=new Habilidad("Hachazo", -10, 0, 0,true);
+        super.modH1=5;
+        this.habilidad2=new Habilidad("Lanzar Jabalina", -7, 0, 0,true);
+        super.modH2=4;
+        this.habilidadEspecial=new Habilidad("Furor", -20, 0, 0,false);
         this.restriccion = new RestricTurnosSinHabilidadEsp();
         this.restriccion.setDescriRes(this.habilidadEspecial);
     }

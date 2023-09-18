@@ -14,16 +14,18 @@ public class Brujo extends Core.Clases.Heroes.Heroe {
     public Brujo(){
         super.turnoAnt = 0;
         super.tipo = "Heroe";
-        super.armadura=14;
-        super.vidaActual = 8;
-        super.vidaMaxima = 8;
+        super.armadura=13;
+        super.vidaActual = 24;
+        super.vidaMaxima = 24;
         super.manaActual = 100;
-        super.manaMaximo = 180;
+        super.manaMaximo = 100;
         this.clase="Brujo";
         this.descripcion="Conjurador que obtiene sus poderes por linea de sangre o por un regalo del universo";
-        this.habilidad1=new Habilidad("Bastonazo", -8, 0, 0,true);
-        this.habilidad2=new Habilidad("Rayo de Escarcha", 10, 0, -10,true);
-        this.habilidadEspecial=new Habilidad("Bola de Fuego", -16, 0, 0,false);
+        this.habilidad1=new Habilidad("Espadazo", -8, 0, 0,true);
+        super.modH1=4;
+        this.habilidad2=new Habilidad("Estallido magico", -9, 0, -10,true);
+        super.modH2=5;
+        this.habilidadEspecial=new Habilidad("Bola de Fuego", -28, 0, 0,false);
         this.restriccion = new RestriccionBajaVida();
         this.restriccion.setDescriRes(this.habilidadEspecial);
     }

@@ -14,10 +14,10 @@ public class Clerigo extends Core.Clases.Heroes.Heroe{
     public Clerigo(){
         super.tipo = "Heroe";
         super.armadura=15;
-        super.vidaActual = 120;
-        super.vidaMaxima = 150;
-        super.manaActual = 96;
-        super.manaMaximo = 160;
+        super.vidaActual = 24;
+        super.vidaMaxima = 24;
+        super.manaActual = 100;
+        super.manaMaximo = 100;
         this.clase="Clerigo";
         this.descripcion="Guerrero sacerdotal que ejerce magia divina en servicio de un poder superior";
         this.habilidad1=new Habilidad("Bendicion", 0, 4, 15,false);

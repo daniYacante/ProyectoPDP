@@ -113,6 +113,13 @@ public abstract class Human {
 	 * la habilidad especial del Heroe o Jefe (los heroes tienen restricciones, mientras que los jefes para usarla no)
 	 */
 	protected Habilidad habilidadEspecial;
+	/**
+	 * Suma al ataque para ver si pasa la armadura del oponente
+	 * es decir si saco un 8 y tengo un +3 comparo 11 contra la armadura del oponente
+	 */
+	protected int modH1=0;
+	protected int modH2=0;
+	protected int modEsp=0;
 
     //Metodos
 
@@ -253,7 +260,7 @@ public abstract class Human {
         boolean usar=false;
         if (this.getHabilidad1().isTiraDado()) {
         	int d20=this.tirarDado();
-        	if (d20<this.armadura) {
+        	if (d20<objetivo.armadura) {
         		Game.imprimir(String.format("%s sabe como defenderse...\no el oponente es muy malo...\nno se ha asestado el golpe",objetivo.nombre));
         	}else {
         		usar=true;
@@ -287,7 +294,7 @@ public abstract class Human {
         boolean usar=false;
         if (this.getHabilidad2().isTiraDado()) {
         	int d20=this.tirarDado();
-        	if (d20<this.armadura) {
+        	if (d20<objetivo.armadura) {
         		Game.imprimir(String.format("%s sabe como defenderse...\no el oponente es muy malo...\nno se ha asestado el golpe",objetivo.nombre));
         	}else {
         		usar=true;
@@ -318,7 +325,7 @@ public abstract class Human {
         boolean usar=false;
         if (this.getHabilidadEspecial().isTiraDado()) {
         	int d20=this.tirarDado();
-        	if (d20<this.armadura) {
+        	if (d20<objetivo.armadura) {
         		Game.imprimir(String.format("%s sabe como defenderse...\no el oponente es muy malo...\nno se ha asestado el golpe",objetivo.nombre));
         	}else {
         		usar=true;

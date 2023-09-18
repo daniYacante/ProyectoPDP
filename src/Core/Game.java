@@ -109,7 +109,7 @@ public class Game {
 	        	seleccionHeroe.setNombre(readConsoleString(String.format("Ingrese nombre para el %s",seleccionHeroe.getClase())));
 	        	listaHeroesVivos.add(seleccionHeroe);
 	        }
-        } while (listaHeroesVivos.size()<2); //CAMBIO 5 POR 1 PARA PROBAR
+        } while (listaHeroesVivos.size()<5); //CAMBIO 5 POR 1 PARA PROBAR
         imprimir("¡Los jugadores estan listos! comenzamos...");
         //Crea la lista de aliados
         for (Heroe heroe: listaHeroesVivos) {
@@ -149,7 +149,7 @@ public class Game {
         	}
     		System.out.println("A luchaaaaar!!!!");
     		status=lucha(stage);
-    		if ((status==-1) || (nSala==2)) {
+    		if ((status==-1) || (nSala==0)) {
         		Fin=true;
         	}else {
         		nSala++;

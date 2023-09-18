@@ -1,9 +1,7 @@
 package Core.Clases.Heroes;
 import java.util.ArrayList;
-
 import Core.Clases.Cartas.Item;
 import Core.Clases.Human;
-import Core.Clases.Cartas.Carta;
 import Core.Clases.Restricciones.Restriccion;
 
 //Solo la utilizo para definir que paladin, mago, clerigo y rogue son de tipo heroe
