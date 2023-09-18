@@ -316,7 +316,7 @@ public abstract class Human {
 	public void usarEsp(Human objetivo) {
         String usuario = this.getTipo();
         boolean usar=false;
-        if (this.getHabilidad1().isTiraDado()) {
+        if (this.getHabilidadEspecial().isTiraDado()) {
         	int d20=this.tirarDado();
         	if (d20<this.armadura) {
         		Game.imprimir(String.format("%s sabe como defenderse...\no el oponente es muy malo...\nno se ha asestado el golpe",objetivo.nombre));

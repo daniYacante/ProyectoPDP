@@ -1,6 +1,8 @@
 package Core;
 import Core.Clases.Jefes.*;
+import Core.Clases.Human;
 import Core.Clases.Cartas.*;
+import Core.Clases.Jefes.Esbirros.Ayudante;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -8,7 +10,7 @@ import java.util.Random;
  * La clase Sala, en la que ocurren los acontecimientos de lucha, busqueda, etc
  */
 public class Sala {
-	private ArrayList<Jefe> listaEnemigos= new ArrayList<Jefe>(3);
+	private ArrayList<Human> listaEnemigos= new ArrayList<Human>(3);
 	private Carta item = null;
 	private papelAluminio itemTroll = null;
 
@@ -17,8 +19,15 @@ public class Sala {
 	 * @param nivelDeSala se da el nivel de la sala
 	 */
 	public Sala(int nivelDeSala) {
-		for (int i=0;i<3;i++) {
-			listaEnemigos.add(new Jefe1(String.format("Profe %d", i)));
+		switch (nivelDeSala) {
+		case 1:
+			listaEnemigos.add(new Jefe1("Pablo"));
+			listaEnemigos.add(new Ayudante("Bauti"));
+			listaEnemigos.add(new Ayudante("Facu"));
+			break;
+
+		default:
+			break;
 		}
 		Random rn =new Random();
 		//50% de chances de que en la sala haya un objeto
@@ -35,7 +44,7 @@ public class Sala {
 	 * La lista de enemigos en la sala
 	 * @return ArrayList que muestra los jefes vivos
 	 */
-	public ArrayList<Jefe> getListaEnemigo() {
+	public ArrayList<Human> getListaEnemigo() {
 		return this.listaEnemigos;
 	}
 

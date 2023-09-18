@@ -3,7 +3,6 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 import Core.Clases.*;
-import Core.Clases.Cartas.Carta;
 import Core.Clases.Cartas.Item;
 import Core.Clases.Heroes.*;
 //import java.util.concurrent.TimeUnit;
@@ -26,16 +25,22 @@ public class Game {
 	private static String msg;
 	private static ArrayList<Heroe> listaHeroesVivos= new ArrayList<Heroe>(nHeroes);
 	public static Random intRandom=new Random();
+	public static final String ANSI_RESET = "\u001B[0m";
+	public static final String ANSI_RED = "\u001B[31m";
+	public static final String ANSI_GREEN = "\u001B[32m";
+	public static final String ANSI_YELLOW = "\u001B[33m";
+	
 	public static void main(String[] args) {
 		
-		System.out.println("\u001B[32m"+" _____       _       _                                ______           __                              \r\n"
+		System.out.println(ANSI_GREEN+" _____       _       _                                ______           __                              \r\n"
 				+ "/  __ \\     | |     | |                               | ___ \\         / _|                             \r\n"
 				+ "| /  \\/ __ _| | __ _| |__   ___ _______  ___   _   _  | |_/ / __ ___ | |_ ___  ___  ___  _ __ ___  ___ \r\n"
 				+ "| |    / _` | |/ _` | '_ \\ / _ \\_  / _ \\/ __| | | | | |  __/ '__/ _ \\|  _/ _ \\/ __|/ _ \\| '__/ _ \\/ __|\r\n"
 				+ "| \\__/\\ (_| | | (_| | |_) | (_) / / (_) \\__ \\ | |_| | | |  | | | (_) | ||  __/\\__ \\ (_) | | |  __/\\__ \\\r\n"
 				+ " \\____/\\__,_|_|\\__,_|_.__/ \\___/___\\___/|___/  \\__, | \\_|  |_|  \\___/|_| \\___||___/\\___/|_|  \\___||___/\r\n"
 				+ "                                                __/ |                                                  \r\n"
-				+ "                                               |___/                                                   "+"\u001B[0m");
+				+ "                                               |___/                                                   "
+				+ ANSI_RESET);
         imprimir("Existe la profecia de unos estudiantes que lograrian completar la carrera en 5 años, los profesores creian que esto era un absurdo, que nadie asi llegaria algun dia...\nHASTA ESTE DIA... TU ERES UNO.");
         pressToContinue();
         System.out.println("----------------------------------------------------------------------------------------------------------");
@@ -152,6 +157,24 @@ public class Game {
         	
         } while (!Fin);
         //End Lucha
+        if (status==-1) {
+        	imprimir("Nuestros queridos heroes no han podido pasar los finales mas dificiles de la carrera...lamentablemente tendran que recursar el año que viene.");
+        	System.out.println(ANSI_RED+" _____  ___ ___  ________   _____ _   _ ___________ \r\n"
+        			+ "|  __ \\/ _ \\|  \\/  |  ___| |  _  | | | |  ___| ___ \\\r\n"
+        			+ "| |  \\/ /_\\ \\ .  . | |__   | | | | | | | |__ | |_/ /\r\n"
+        			+ "| | __|  _  | |\\/| |  __|  | | | | | | |  __||    / \r\n"
+        			+ "| |_\\ \\ | | | |  | | |___  \\ \\_/ | \\_/ / |___| |\\ \\ \r\n"
+        			+ " \\____|_| |_|_|  |_|____/   \\___/ \\___/\\____/\\_| \\_|"+ANSI_RESET);
+        }else {
+        	imprimir("Habiendo derrotado a los temibles profesores junto a la ayuda de tus compañeros has logrado avanzar en la carrera contra todo pronostico..."
+        			+ "ve y sal a festejar con tus compañeros que te lo mereces crack!");
+        	System.out.println(ANSI_GREEN+" _   _ _____ _____ _____ ___________ _____ ___      \r\n"
+        			+ "| | | |_   _/  __ \\_   _|  _  | ___ \\_   _/ _ \\     \r\n"
+        			+ "| | | | | | | /  \\/ | | | | | | |_/ / | |/ /_\\ \\    \r\n"
+        			+ "| | | | | | | |     | | | | | |    /  | ||  _  |    \r\n"
+        			+ "\\ \\_/ /_| |_| \\__/\\ | | \\ \\_/ / |\\ \\ _| || | | |    \r\n"
+        			+ " \\___/ \\___/ \\____/ \\_/  \\___/\\_| \\_|\\___|_| |_/"+ANSI_RESET);
+        }
     }
 
     /**
@@ -227,14 +250,19 @@ public class Game {
 						respAccion=readConsoleInt(msg, 3);
 						respObjetivo=readConsoleInt("¿A...\n1-\u001B[32mAliados\u001B[0m?\n2-\u001B[31mEnemigo\u001B[0m?",2);
 						if (respObjetivo==1) {
-							int cont=1;
-							msg="Aliados:\n";
-							for (Human aliado: heroe.getAliados()) {
-								msg=msg.concat(String.format("[%d]- %s\n",cont ,aliado.getNombre()));
-								cont++;
+							if (heroe.getAliados().size()!=0) {
+								int cont=1;
+								msg="Aliados:\n";
+								for (Human aliado: heroe.getAliados()) {
+									msg=msg.concat(String.format("[%d]- %s\n",cont ,aliado.getNombre()));
+									cont++;
+								}
+								respObjetivo=readConsoleInt(msg, heroe.getAliados().size());
+								target=heroe.getAliados().get(respObjetivo-1);
+							}else {
+								imprimir(String.format("Solamente queda %s...el destino de la carrera esta sobre sus hombros",heroe.getNombre()));
+								continue;
 							}
-							respObjetivo=readConsoleInt(msg, heroe.getAliados().size());
-							target=heroe.getAliados().get(respObjetivo-1);
 						}else {
 							int cont=1;
 							msg="Enemigos:\n";
@@ -295,8 +323,8 @@ public class Game {
 					System.out.println(String.format("%s ataca!!", enemigo.getNombre()));
 					// cAMBIE PARA PROBAR
 					indice = 0;
-					//target=listaHeroesVivos.get(intRandom.nextInt(listaHeroesVivos.size()-1));
-					target=listaHeroesVivos.get(0);
+					target=listaHeroesVivos.get(intRandom.nextInt(listaHeroesVivos.size()-1));
+					//target=listaHeroesVivos.get(0);
 					enemigo.usarH1(target);
 					if (target.checkDead()) {
 							System.out.println(String.format("%s ha caido", target.getNombre()));
