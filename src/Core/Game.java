@@ -43,34 +43,36 @@ public class Game {
 				+ ANSI_RESET);
         imprimir("Existe la profecia de unos estudiantes que lograrian completar la carrera en 5 años, los profesores creian que esto era un absurdo, que nadie asi llegaria algun dia...\nHASTA ESTE DIA... TU ERES UNO.");
         pressToContinue();
-        System.out.println("----------------------------------------------------------------------------------------------------------");
-        System.out.println("                                           Menu                                                           ");
-        System.out.println("----------------------------------------------------------------------------------------------------------");
-//Menu de opciones:
-        int valor = 0;
-        msg="Por favor, elija una opcion\n[1] JUGAR\n[2] COMO JUGAR\n[3] CREDITOS\n[4] SALIR\n";
-        //imprimir(msg);
-        valor=readConsoleInt(msg, 4);
-        switch(valor){
-            case 1:
-                opcion1();
-                break;
-            case 2:
-                opcion2();
-                //Para que empiece el menu de vuelta luego de la opcion 2 y 3, podria ser con esto?:
-                //respuesta = false;
-                break;
-            case 3: 
-                opcion3();
-                //respuesta = false;
-                break;
-            case 4: 
-                System.out.println("¡Gracias por jugar!");
-                break;
-            default:
-                System.out.println("El numero: "+ valor +" no es ninguna opcion, el juego se cerrara automaticamente.");
-                break;
-        }
+        imprimir("\t\t\t\t\tMenu");
+        //Menu de opciones:
+        boolean salir=false;
+        do {
+			int valor = 0;
+	        msg="Por favor, elija una opcion\n[1] JUGAR\n[2] COMO JUGAR\n[3] CREDITOS\n[4] SALIR\n";
+	        //imprimir(msg);
+	        valor=readConsoleInt(msg, 4);
+	        switch(valor){
+	            case 1:
+	                opcion1();
+	                break;
+	            case 2:
+	                opcion2();
+	                //Para que empiece el menu de vuelta luego de la opcion 2 y 3, podria ser con esto?:
+	                //respuesta = false;
+	                break;
+	            case 3: 
+	                opcion3();
+	                //respuesta = false;
+	                break;
+	            case 4: 
+	                System.out.println("¡Gracias por jugar!");
+	                salir=true;
+	                break;
+	            default:
+	                System.out.println("El numero: "+ valor +" no es ninguna opcion, el juego se cerrara automaticamente.");
+	                break;
+	        }
+        } while (!salir);
         
 	}
 
@@ -179,15 +181,20 @@ public class Game {
      * La opcion 2 del juego, una explicacion sobre como jugar
      */
     public static void opcion2(){
-        //Mejorar el texto de explicacion, esto nada mas se hizo para ver como luce.
-        System.out.println("----------------------------------------------------------------------------------------------------------");
-        System.out.println("Este es un manual de como jugar Calabozos y Profesores.");
-        System.out.println("Como has podido ver en el menu para acceder aca, es un videojuego con el que interactua con el usuario a traves de preguntas y respuestas tomadas por teclado");
-        System.out.println("Calabozos y Profesores es un videojuego de solo un jugador o multijugador (hasta 4 maximo)");
-        System.out.println("Te adentraras a un mundo donde los profesores haran de tu vida una desgracia para que no te recibas en 5 a�os");
-        System.out.println("Pero yo confio en ti jugador, �Suerte!");
-        System.out.println("----------------------------------------------------------------------------------------------------------");
-        System.out.println("Presione alguna tecla para volver al menu.");
+    	imprimir("Te daremos una breve descripcion de como jugar el juego."
+    			+ "El objetivo del juego es superar a los jefes que te iras encontrando hasta el final."
+    			+ "Para ello se te dara a elegir 5 clases de personajes. Los cuales tendras que cuidar ya que si mueren"
+    			+ "estaran moridos/muertos para siempre(hasta que reinicies :P)"
+    			+ "Cada una de estas clases tienen distintos atributos de armadura, vida y mana, como asi tambien"
+    			+ "distintas habilidades, asi que piensa bien antes de elegir."
+    			+ "Para supera a los jefes y a sus esbirros tendras que luchar contra ellos en una batalla de baile...\n"
+    			+ "ok no\n"
+    			+ "Pero si tendras que derrotarlos, y para hacerte las cosas un poco mas faciles hay objetos que te daran algo bueno...a cambio de algo negativo"
+    			+ "Cada vez que se realice un ataque, ya sea heroe o enemigo, se lanzara un dado d20 (dado de 20 caras) o icosaedro para los mas ñoños"
+    			+ "de la geometria. Este dado sumado a un valor magico que tiene cada personaje tendra que superar o igualar la armadura del objetivo."
+    			+ "Si se supera el golpe hara daño, sino no."
+    			+ "Espero que se haya entendido y si quedan dudas...seguro se te van jugando que tampoco es tan complicado."
+    			+ "Suerte y que lo disfrutes!!");
         pressToContinue();
     }
 
@@ -195,18 +202,11 @@ public class Game {
      * La opcion 3, los creditos
      */
     public static void opcion3(){
-        System.out.println("----------------------------------------------------------------------------------------------------------");
-        System.out.println("Hecho por: ");
-        System.out.println("");
-        System.out.println("?Mauro Sorbello?");
-        System.out.println("");
-        System.out.println("?Daniel Yacante?");
-        System.out.println("");
-        System.out.println("?Joaquin Villegas?");
-        System.out.println("");
-        System.out.println("Para: Paradigmas");
-        System.out.println("----------------------------------------------------------------------------------------------------------");
-        System.out.println("Presione alguna tecla para volver al menu.");
+        imprimir("Hecho por:\n\n"
+        		+ "*Mauro Sorbello*\n\n"
+        		+ "*Daniel Yacante*\n\n"
+        		+ "*Joaquin Villegas*\n\n"
+        		+ "Para: Paradigmas");
         pressToContinue();
     }
 
@@ -290,8 +290,7 @@ public class Game {
 							//System.out.println(heroe.getuseEsp());
 							heroe.getRestriccion().setRestriccion(heroe);
 							if (heroe.getRestriccion().getValorRestriccion() == true) {
-								System.out.println(String.format("El heroes usara %s, recordamos que %s", heroe.getHabilidadEspecial().getNombre(), heroe.getRestriccion().getDescripcionRes()));
-								System.out.println(String.format("El heroe %s uso %s contra %s", heroe.getNombre(),heroe.getHabilidadEspecial().getNombre(),target.getNombre()));
+								imprimir(String.format("El heroe usara %s, recordamos que %s", heroe.getHabilidadEspecial().getNombre(), heroe.getRestriccion().getDescripcionRes())+"\n"+String.format("El heroe %s uso %s contra %s", heroe.getNombre(),heroe.getHabilidadEspecial().getNombre(),target.getNombre()));
 								heroe.usarEsp(target);
 								break;
 							}else
@@ -353,6 +352,8 @@ public class Game {
 		if (listaHeroesVivos.size()==0) {
 			return -1;
 		} else {
+			imprimir("Has superado con exito a los enemigos de la sala...pero no hay tiempo que perder, tienes que apresurarte para el diploma... que por algo se llama carrera...vamos vamos!!");
+			pressToContinue();
 			return 1;
 		}
 	}
@@ -366,10 +367,6 @@ public class Game {
 		Sala sala=new Sala(nSala);
 		return sala;
 	}
-
-    public static void cleanConsole(){
-        System.out.println("\n\n\n\n\n");
-    }
 
     /**
      * La logica de la interaccion del usuario a traves del teclado

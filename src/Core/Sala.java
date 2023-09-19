@@ -43,7 +43,7 @@ public class Sala {
 			listaEnemigos.add(new Ayudante("Julio"));
 			listaEnemigos.add(new Ayudante("Geogebra"));//aunque deberia ser un aliado
 			this.description="Continuando con tu camino hacia el titulo te encuentras en una sala donde el polvo"
-					+ "de tiza flota en el aire, ves a una entidad llorando en la esquina que no se ha dado cuenta de tu precensia."
+					+ "de tiza flota en el aire, ves a una entidad llorando en la esquina que no se ha dado cuenta de tu presencia."
 					+ "Como es \"normal\"... vuelves a ver algo brillando entre la niebla de tiza";
 			this.descriptionEnemigos="Frente a ti se encuentra el enemigo final...aquello que siempre has temido";
 			break;
