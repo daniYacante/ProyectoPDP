@@ -20,7 +20,7 @@ public class RestriccionDosTurnos extends Restriccion{
         }
     }
     public void setDescriRes(Habilidad especial){
-        this.descripcionRes = String.format("Despues de utilizar %s (Habilidad Especial),\n\t no podras utilizar a Rogue por 2 turnos", especial.getNombre());
+        this.descripcionRes = String.format("Despues de utilizar %s (Habilidad Especial),\n\t no podras utilizar al heroe por 2 turnos", especial.getNombre());
     }
 
 }

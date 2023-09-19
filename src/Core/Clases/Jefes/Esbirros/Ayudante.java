@@ -1,8 +1,9 @@
 package Core.Clases.Jefes.Esbirros;
 import java.util.Random;
 import Core.Clases.Habilidad;
+import Core.Clases.Jefes.Jefe;
 
-public class Ayudante extends Core.Clases.Human {
+public class Ayudante extends Jefe {
     public Ayudante(String nombre){
         super.nombre = nombre;
         super.armadura=12;

@@ -1,5 +1,4 @@
 package Core.Clases.Heroes;
-
 import Core.Clases.Habilidad;
 import Core.Clases.Restricciones.RestriccionDosTurnos;
 

@@ -1,5 +1,4 @@
 package Core.Clases.Heroes;
-import Core.Game;
 import Core.Clases.Habilidad;
 import Core.Clases.Restricciones.RestriccionBajaVida;
 
@@ -28,9 +27,6 @@ public class Brujo extends Core.Clases.Heroes.Heroe {
         this.habilidadEspecial=new Habilidad("Bola de Fuego", -28, 0, 0,false);
         this.restriccion = new RestriccionBajaVida();
         this.restriccion.setDescriRes(this.habilidadEspecial);
-    }
-    public static void getStats() {
-    	Game.imprimir("");
     }
 }
 

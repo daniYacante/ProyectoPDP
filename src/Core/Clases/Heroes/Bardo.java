@@ -1,5 +1,4 @@
 package Core.Clases.Heroes;
-import Core.Game;
 import Core.Clases.Habilidad;
 import Core.Clases.Restricciones.RestriccionDosTurnos;
 
@@ -27,9 +26,6 @@ public class Bardo extends Core.Clases.Heroes.Heroe {
         this.habilidadEspecial=new Habilidad("Inspiracion", -16, 0, 0,false);
         this.restriccion = new RestriccionDosTurnos();
         this.restriccion.setDescriRes(this.habilidadEspecial);
-    }
-    public static void getStats() {
-    	Game.imprimir("");
     }
 }
 

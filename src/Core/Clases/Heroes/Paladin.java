@@ -1,5 +1,4 @@
 package Core.Clases.Heroes;
-import Core.Game;
 import Core.Clases.*;
 import Core.Clases.Restricciones.RestricTurnosSinHabilidadEsp;
 
@@ -31,9 +30,6 @@ public class Paladin extends Core.Clases.Heroes.Heroe {
         this.habilidadEspecial=new Habilidad("Golpe Divino", -16, 0, 0,false);
         this.restriccion = new RestricTurnosSinHabilidadEsp();
         this.restriccion.setDescriRes(this.habilidadEspecial);
-    }
-    public static void getStats() {
-    	Game.imprimir("");
     }
 }
 

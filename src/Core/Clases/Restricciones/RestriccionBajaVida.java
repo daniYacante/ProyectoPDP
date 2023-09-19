@@ -10,6 +10,6 @@ public class RestriccionBajaVida extends Restriccion {
         atacante.recibirDmg(vida);
     }
     public void setDescriRes(Habilidad especial){
-        this.descripcionRes = String.format("Despues de utilizar %s (Habilidad Especial),\n\t tu vida disminuira un 10%", especial.getNombre());
+        this.descripcionRes = String.format("Despues de utilizar %s (Habilidad Especial),\n\t tu vida disminuira un 10%s", especial.getNombre(),"%");
     }
 }

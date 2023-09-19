@@ -1,5 +1,4 @@
 package Core.Clases.Heroes;
-import Core.Game;
 import Core.Clases.Habilidad;
 import Core.Clases.Restricciones.RestriccionBajaVida;
 
@@ -30,9 +29,6 @@ public class Arquero extends Core.Clases.Heroes.Heroe {
         super.modEsp=4;
         this.restriccion = new RestriccionBajaVida();
         this.restriccion.setDescriRes(this.habilidadEspecial);
-    }
-    public static void getStats() {
-    	Game.imprimir("");
     }
 }
 

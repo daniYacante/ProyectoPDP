@@ -1,7 +1,7 @@
 package Core.Clases;
 import java.util.ArrayList;
 import java.util.Random;
-import Core.Game;
+import Core.utilidades;
 
 /**
  * La clase Human, una de las mas importantes, de aca heredan tanto heroes como jefes. Se crea aca atributos y metodos que tengan en comun
@@ -260,9 +260,9 @@ public abstract class Human {
         boolean usar=false;
         if (this.getHabilidad1().isTiraDado()) {
         	int d20=this.tirarDado()+this.modH1;
-        	Game.imprimir(String.format("Valor de tirada: %d", d20));
+        	utilidades.imprimir(String.format("Valor de tirada: %d", d20));
         	if (d20<objetivo.armadura) {
-        		Game.imprimir(String.format("%s sabe como defenderse...\no el oponente es muy malo...\nno se ha asestado el golpe",objetivo.nombre));
+        		utilidades.imprimir(String.format("%s sabe como defenderse...\no el oponente es muy malo...\nno se ha asestado el golpe",objetivo.nombre));
         	}else {
         		usar=true;
         	}
@@ -295,9 +295,9 @@ public abstract class Human {
         boolean usar=false;
         if (this.getHabilidad2().isTiraDado()) {
         	int d20=this.tirarDado()+this.modH2;
-        	Game.imprimir(String.format("Valor de tirada: %d", d20));
+        	utilidades.imprimir(String.format("Valor de tirada: %d", d20));
         	if (d20<objetivo.armadura) {
-        		Game.imprimir(String.format("%s sabe como defenderse...\no el oponente es muy malo...\nno se ha asestado el golpe",objetivo.nombre));
+        		utilidades.imprimir(String.format("%s sabe como defenderse...\no el oponente es muy malo...\nno se ha asestado el golpe",objetivo.nombre));
         	}else {
         		usar=true;
         	}
@@ -327,9 +327,9 @@ public abstract class Human {
         boolean usar=false;
         if (this.getHabilidadEspecial().isTiraDado()) {
         	int d20=this.tirarDado()+this.modEsp;
-        	Game.imprimir(String.format("Valor de tirada: %d", d20));
+        	utilidades.imprimir(String.format("Valor de tirada: %d", d20));
         	if (d20<objetivo.armadura) {
-        		Game.imprimir(String.format("%s sabe como defenderse...\no el oponente es muy malo...\nno se ha asestado el golpe",objetivo.nombre));
+        		utilidades.imprimir(String.format("%s sabe como defenderse...\no el oponente es muy malo...\nno se ha asestado el golpe",objetivo.nombre));
         	}else {
         		usar=true;
         	}
@@ -366,39 +366,25 @@ public abstract class Human {
 	 */
 	public int tirarDado() {
 		//nextInt va de 0 a 19, como los dados d20 van del 1-20, se le suma 1
-		Game.imprimir("Necesitas tirar un d20");
-		Game.pressToContinue();
+		utilidades.imprimir("Necesitas tirar un d20");
+		utilidades.pressToContinue();
 		int valorDado=dado.nextInt(20)+1;
-		//Game.imprimir(String.format("Has sacado un %d", valorDado));
+		//utilidades.imprimir(String.format("Has sacado un %d", valorDado));
 		return valorDado;
 	}
-    //Durante o antes de un combate, el jugador deberia tener la opcion de usar algun consumible de los objetos que lleva.
-    //Revisara cuales objetos son consumibles y los muestra por pantalla.
-    protected void usarObjeto(){
-    
-    }
-    
-    protected void subirNivel(){
-    
-    }
-    
-    protected void recuperarMana(){
-    
-    }
-
 	/**
 	 * para el uso de la Carta del Masoquista, se da una gran cantidad de mana al human
 	 * @see Core.Clases.Cartas.CartaMasoquista
 	 * @param cantMana la cantidad de mana que se setea luego de usar la carta
 	 */
-	public void setMana(int cantMana){
-        this.manaActual += cantMana;
-    }
     //Para una carta:
     public int getVidaMaxima(){
         return this.vidaMaxima;
     }
     //Para una carta:
+    public void setMana(int cantMana){
+    	this.manaActual += cantMana;
+    }
 
 	/**
 	 * Para el uso de la Carta de la Ultima Esperanza, se cura el portador
