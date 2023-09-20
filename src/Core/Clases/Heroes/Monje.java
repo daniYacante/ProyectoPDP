@@ -25,7 +25,7 @@ public class Monje extends Core.Clases.Heroes.Heroe {
         super.modH1=5;
         this.habilidad2=new Habilidad("Lanzar Dardos", -6, 0, -10,true);
         super.modH2=4;
-        this.habilidadEspecial=new Habilidad("Golpe Divino", -16, 0, 0,true);//Buscar
+        this.habilidadEspecial=new Habilidad("Golpe Divino", -16, 0, -20,true);//Buscar
         this.restriccion = new RestriccionBajaVida();
         this.restriccion.setDescriRes(this.habilidadEspecial);
     }

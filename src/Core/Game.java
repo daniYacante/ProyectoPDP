@@ -94,7 +94,7 @@ public class Game {
     	Sala stage;
     	String nombre = utilidades.readConsoleString("Jugador, ¿cual es tu nombre?");
         utilidades.imprimir("Muy bien, "+nombre+". Elige tus 5 personajes que iran en el equipo:");
-        do {
+        while (listaHeroesVivos.size()<5) { //CAMBIO 5 POR 1 PARA PROBAR
 	        msg=String.format("Heroe %d/5\nRoles:\n"
 	        		+ "[1]  Arquero\n"
 	        		+ "[2]  Barbaro\n"
@@ -119,7 +119,7 @@ public class Game {
 	        	seleccionHeroe.setNombre(utilidades.readConsoleString(String.format("Ingrese nombre para el %s",seleccionHeroe.getClase())));
 	        	listaHeroesVivos.add(seleccionHeroe);
 	        }
-        } while (listaHeroesVivos.size()<5); //CAMBIO 5 POR 1 PARA PROBAR
+        }
         utilidades.imprimir("¡Los jugadores estan listos! comenzamos...");
         //Crea la lista de aliados
         for (Heroe heroe: listaHeroesVivos) {
@@ -339,7 +339,11 @@ public class Game {
 					Human enemigo=listaEnemigos.get(contEnemigos);
 					System.out.println(String.format("%s ataca!!", enemigo.getNombre()));
 					// cAMBIE PARA PROBAR
-					indice = intRandom.nextInt(listaHeroesVivos.size()-1);
+					if (listaHeroesVivos.size()!=1) {
+						indice = intRandom.nextInt(listaHeroesVivos.size()-1);
+					} else {
+						indice=0;
+					}
 					target=listaHeroesVivos.get(indice);
 					//target=listaHeroesVivos.get(0);
 					enemigo.usarH1(target);

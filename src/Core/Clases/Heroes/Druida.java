@@ -23,7 +23,7 @@ public class Druida extends Core.Clases.Heroes.Heroe {
         this.habilidad1=new Habilidad("Espadazo", -8, 0, 0,true);
         super.modH1=4;
         this.habilidad2=new Habilidad("Fuego feérico", -3, -3, -10,false);
-        this.habilidadEspecial=new Habilidad("Curar Heridas en Area", 20, 0, 0,false);
+        this.habilidadEspecial=new Habilidad("Curar Heridas en Area", 20, 0, 20,false);
         this.restriccion = new RestricTurnosSinHabilidadEsp();
         this.restriccion.setDescriRes(this.habilidadEspecial);
     }

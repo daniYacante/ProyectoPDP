@@ -24,7 +24,7 @@ public class Brujo extends Core.Clases.Heroes.Heroe {
         super.modH1=4;
         this.habilidad2=new Habilidad("Estallido magico", -9, 0, -10,true);
         super.modH2=5;
-        this.habilidadEspecial=new Habilidad("Bola de Fuego", -28, 0, 0,false);
+        this.habilidadEspecial=new Habilidad("Bola de Fuego", -28, 0, -40,false);
         this.restriccion = new RestriccionBajaVida();
         this.restriccion.setDescriRes(this.habilidadEspecial);
     }

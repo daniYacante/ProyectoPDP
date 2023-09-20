@@ -25,7 +25,7 @@ public class Arquero extends Core.Clases.Heroes.Heroe {
         super.modH1=5;
         this.habilidad2=new Habilidad("Acuchillada", -7, 0,0,true);
         super.modH2=5;
-        this.habilidadEspecial=new Habilidad("Lluvia de flechas", -17, 0, 0,true);
+        this.habilidadEspecial=new Habilidad("Lluvia de flechas", -17, 0, -2,true);
         super.modEsp=4;
         this.restriccion = new RestriccionBajaVida();
         this.restriccion.setDescriRes(this.habilidadEspecial);
