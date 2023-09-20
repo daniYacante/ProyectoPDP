@@ -6,7 +6,7 @@ public interface Item {
     String getNombreCarta();
     void realizarEfecto();
 
-    void imprimirDescripcion();
+    String imprimirDescripcion();
 
     void setPortador(Heroe portador);
 }

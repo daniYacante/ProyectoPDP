@@ -54,8 +54,8 @@ public class Sala {
 		Random rn =new Random();
 		//50% de chances de que en la sala haya un objeto
 		pickCard pC = new pickCard();
-		int prob=rn.nextInt(2);
-		if (prob==1) {
+		int prob=rn.nextInt(3);
+		if (prob!=1) {
 			this.item=pC.pick();
 		}else {
 			this.itemTroll=new papelAluminio();
@@ -76,12 +76,10 @@ public class Sala {
 	 */
 	public Item investigar() {
 		if (item != null){
-			System.out.println(String.format("Buscando en la sala has encontrado %s",this.item.getNombreCarta()));
-			this.item.imprimirDescripcion();
+			utilidades.imprimir(String.format("Buscando en la sala has encontrado %s\n%s",this.item.getNombreCarta(),this.item.imprimirDescripcion()));
 			return item;
 		} else {
-			System.out.println(String.format("Buscando en la sala has encontrado %s",this.itemTroll.getNombreCarta()));
-			this.itemTroll.imprimirDescripcion();
+			utilidades.imprimir(String.format("Buscando en la sala has encontrado %s\n%s",this.itemTroll.getNombreCarta(),this.itemTroll.imprimirDescripcion()));
 			return itemTroll;
 		}
 

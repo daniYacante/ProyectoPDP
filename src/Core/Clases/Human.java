@@ -268,7 +268,7 @@ public abstract class Human {
         	}
         }else{
 			//Hago este else debido a que para habilidades como modificacion de daño no se estan tomando en cuenta
-			if (this.getHabilidad1().getEfectoManaLanzador() < this.manaActual){
+			if (this.getHabilidad1().getEfectoManaLanzador() <= this.manaActual){
 				this.getHabilidad1().usar(objetivo, 0);
 				this.manaActual -= this.getHabilidad1().getEfectoManaLanzador();
 			}
@@ -278,7 +278,7 @@ public abstract class Human {
 	        if (usuario.equals("Enemigo")){
 	            this.getHabilidad1().usar(objetivo, this.modAtaquete);
 	        //Si es heroe verifica el mana
-	        }else if (this.getHabilidad1().getEfectoManaLanzador()<this.manaActual) {
+	        }else if (this.getHabilidad1().getEfectoManaLanzador()<=this.manaActual) {
 				this.getHabilidad1().usar(objetivo, this.modAtaquete);
 				this.manaActual-=this.getHabilidad1().getEfectoManaLanzador();
 			}
@@ -302,7 +302,7 @@ public abstract class Human {
         		usar=true;
         	}
         } else {
-			if (this.getHabilidad2().getEfectoManaLanzador() < this.manaActual){
+			if (this.getHabilidad2().getEfectoManaLanzador() <=this.manaActual){
 				this.getHabilidad2().usar(objetivo, this.modAtaquete);
 				this.manaActual -= this.getHabilidad2().getEfectoManaLanzador();
 			}
@@ -311,7 +311,7 @@ public abstract class Human {
 	        if (usuario.equals("Enemigo")){
 	            this.getHabilidad2().usar(objetivo, this.modAtaquete);
 	        }
-			else if (this.getHabilidad2().getEfectoManaLanzador()<this.manaActual) {
+			else if (this.getHabilidad2().getEfectoManaLanzador()<=this.manaActual) {
 	            this.getHabilidad2().usar(objetivo, this.modAtaquete);
 	            this.manaActual-=this.getHabilidad2().getEfectoManaLanzador();
 			}
@@ -334,7 +334,7 @@ public abstract class Human {
         		usar=true;
         	}
         } else {
-			if (this.getHabilidadEspecial().getEfectoManaLanzador() < this.manaActual){
+			if (this.getHabilidadEspecial().getEfectoManaLanzador() <= this.manaActual){
 				this.getHabilidadEspecial().usar(objetivo, this.modAtaquete);
 				this.manaActual -= this.getHabilidadEspecial().getEfectoManaLanzador();
 			}
@@ -343,7 +343,7 @@ public abstract class Human {
 	        if (usuario.equals("Enemigo")){
 	            this.getHabilidadEspecial().usar(objetivo, 0);
 	        }
-			else if (this.getHabilidadEspecial().getEfectoManaLanzador()<this.manaActual) {
+			else if (this.getHabilidadEspecial().getEfectoManaLanzador()<=this.manaActual) {
 				this.getHabilidadEspecial().usar(objetivo,this.modAtaquete);
 				this.manaActual-=this.getHabilidadEspecial().getEfectoManaLanzador();
 	            this.useEsp = 1;

@@ -23,7 +23,7 @@ public class Bardo extends Core.Clases.Heroes.Heroe {
         this.habilidad1=new Habilidad("Espadazo", -8, 0, 0,true);
         super.modH1=4;
         this.habilidad2=new Habilidad("Curar Heridas", 10, 0, -10,false);
-        this.habilidadEspecial=new Habilidad("Inspiracion", -16, 0, 0,false);
+        this.habilidadEspecial=new Habilidad("Inspiracion", 0, 5, 0,false);
         this.restriccion = new RestriccionDosTurnos();
         this.restriccion.setDescriRes(this.habilidadEspecial);
     }

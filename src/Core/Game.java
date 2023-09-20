@@ -13,6 +13,9 @@ import Core.Clases.Heroes.*;
  * @author Joaquin Villegas
  * la clase Game es por asi decirlo la clase main, donde se va a ejecutar el juego.
  */
+/**
+ * La clase Game tiene el nucleo del juego, en ella se encuentran la mayoria de las mecanicas de lucha y comprobacion de ellas.
+ */
 public class Game {
 	private static boolean Fin=false;
 	private static int nSala=1;
@@ -307,8 +310,9 @@ public class Game {
 								listaHeroesVivos.remove(respObjetivo-1);
 							}
 							if (listaEnemigos.size()==0)break;
-						}else {
-							System.out.println(String.format("La vida de %s es: %d", target.getNombre(),target.getVida()));
+						//}else {
+							//System.out.println(String.format("La vida de %s es: %d", target.getNombre(),target.getVida()));
+							
 						}
 					}else {
 						if (heroe.getCartaElegida()!=null) {
@@ -330,24 +334,43 @@ public class Game {
 					Human enemigo=listaEnemigos.get(contEnemigos);
 					System.out.println(String.format("%s ataca!!", enemigo.getNombre()));
 					// cAMBIE PARA PROBAR
-					indice = 0;
-					target=listaHeroesVivos.get(intRandom.nextInt(listaHeroesVivos.size()-1));
+					indice = intRandom.nextInt(listaHeroesVivos.size()-1);
+					target=listaHeroesVivos.get(indice);
 					//target=listaHeroesVivos.get(0);
 					enemigo.usarH1(target);
-					utilidades.pressToContinue();
 					//Ponemos rondas hasta usar la especial?
 					if (target.checkDead()) {
 						System.out.println(String.format("%s ha caido", target.getNombre()));
 						listaHeroesVivos.remove(indice);
 						if (listaHeroesVivos.size() == 0) break;
 					}else {
-						System.out.println(String.format("La vida de %s es: %d", target.getNombre(),target.getVida()));
+						utilidades.imprimir(String.format("La vida de %s es: %d", target.getNombre(),target.getVida()));
 					}
+					utilidades.pressToContinue();
 					contEnemigos++;
 					}else {
 						break;
 					}
 				}
+			msg="Estado al final de la ronda:\n"
+					+ "\tHeroes:\n";
+			for (Human alumno:listaHeroesVivos) {
+				msg=msg.concat(String.format("\t%s:\n\t\tVida: %s\n", alumno.getNombre(),alumno.getVida()));
+			}
+			msg=msg.concat("\tEnemigos:\n");
+			for (Human enemigo:listaEnemigos) {
+				if (enemigo.getVida()<enemigo.getVidaMaxima()*0.3) {
+					msg=msg.concat(String.format("\t\t%s: Se ve bastante golpeado, debe de quedarle poco para caer.\n", enemigo.getNombre()));
+				}else if (enemigo.getVida()<enemigo.getVidaMaxima()*0.7) {
+					msg=msg.concat(String.format("\t\t%s: Esta algo golpeado, pero aun puede dar pelea.\n", enemigo.getNombre()));
+				}else if (enemigo.getVida()==enemigo.getVidaMaxima()){
+					msg=msg.concat(String.format("\t\t%s: Esta fresco como lechuga, aun te puede hacer pupa.\n", enemigo.getNombre()));
+				}else {
+					msg=msg.concat(String.format("\t\t%s: Te mira y dice '¿Esto es todo lo que tienes?'.\n", enemigo.getNombre()));
+				}
+			}
+			utilidades.imprimir(msg);
+			utilidades.pressToContinue();
 		} 
 		if (listaHeroesVivos.size()==0) {
 			return -1;

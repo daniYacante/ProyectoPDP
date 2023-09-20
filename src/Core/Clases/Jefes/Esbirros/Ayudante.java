@@ -8,6 +8,7 @@ public class Ayudante extends Jefe {
         super.nombre = nombre;
         super.armadura=12;
         super.vidaActual = 20;
+        super.vidaMaxima = 20;
         super.tipo = "Enemigo";
         this.descripcion="Ayudante de catedra";
         this.habilidad1=new Habilidad("Bastonazo", -5, 0, 0,true);

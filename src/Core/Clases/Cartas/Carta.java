@@ -32,8 +32,8 @@ public abstract class Carta implements Item{
     /**
      * Nos muestra la descripcion de la carta, el efecto bueno y el efecto malo
      */
-    public void imprimirDescripcion(){
-        System.out.println(String.format("Tu carta hara lo siguiente: %s", this.descripcion));
+    public String imprimirDescripcion(){
+        return String.format("Tu carta hara lo siguiente: %s", this.descripcion);
     }
 
     /**

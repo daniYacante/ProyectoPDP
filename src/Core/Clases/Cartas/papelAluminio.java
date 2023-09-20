@@ -22,8 +22,8 @@ public class papelAluminio implements Item {
 	 * Nos muestra la descripcion del papel aluminio, nada bueno
 	 */
 	@Override
-	public void imprimirDescripcion() {
-		System.out.println(this.descripcionItem);
+	public String imprimirDescripcion() {
+		return this.descripcionItem;
 	}
 
 	@Override
