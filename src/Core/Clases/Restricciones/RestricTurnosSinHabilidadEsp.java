@@ -21,11 +21,10 @@ public class RestricTurnosSinHabilidadEsp extends Restriccion{
      */
     public void setRestriccion(Heroe atacante){
         this.restriccion = true;
-        if((atacante.getTurno() - turnoAnt) > 2){
+        if((atacante.getTurno() - turnoAnt) >= 2){
             this.turnoAnt = atacante.getTurno();
             this.restriccion = true;
-            atacante.changeCanUse();
-        }else if((atacante.getTurno()-turnoAnt)==0)atacante.changeCanUse();
+        }else this.restriccion=false;
     }
 
     /**
@@ -33,6 +32,6 @@ public class RestricTurnosSinHabilidadEsp extends Restriccion{
      * @param especial se toma cual es la habilidad especial a tratar
      */
     public void setDescriRes(Habilidad especial){
-        this.descripcionRes = String.format("Despues de utilizar %s (Habilidad Especial),\n\t no podras utilizar al heroe por 2 turnos", especial.getNombre());
+        this.descripcionRes = String.format("El heroe podra utilizar la habilidad %s (Habilidad Especial),\n despues de 2 turnos", especial.getNombre());
     }
 }

@@ -22,17 +22,12 @@ public class RestriccionDosTurnos extends Restriccion{
      * @param atacante el heroe que va a atacar con la habilidad especial
      */
     public void setRestriccion(Heroe atacante){
-        this.restriccion = true;
-        useE = atacante.getuseEsp();
-        if (useE == 0){
-            turnoAnt = atacante.getTurno();
+    	this.restriccion = true;
+        if((atacante.getTurno() - turnoAnt) > 2){
+            this.turnoAnt = atacante.getTurno();
+            this.restriccion = true;
             atacante.changeCanUse();
-        }
-        if ((atacante.getTurno() - turnoAnt) == 1) {
-            atacante.changeCanUse();
-            turnoAnt = atacante.getTurno();
-            atacante.changeUesEsp();
-        }
+        }else if((atacante.getTurno()-turnoAnt)==0)atacante.changeCanUse();
     }
 
     /**
