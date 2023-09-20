@@ -21,10 +21,11 @@ public class RestricTurnosSinHabilidadEsp extends Restriccion{
      */
     public void setRestriccion(Heroe atacante){
         this.restriccion = true;
-        if((atacante.getTurno() - turnoAnt) >= 2){
+        if((atacante.getTurno() - turnoAnt) > 2){
             this.turnoAnt = atacante.getTurno();
             this.restriccion = true;
-        }else this.restriccion = false;
+            atacante.changeCanUse();
+        }else if((atacante.getTurno()-turnoAnt)==0)atacante.changeCanUse();
     }
 
     /**
