@@ -72,7 +72,7 @@ public class Sala {
 
 	/**
 	 * Funcion la cual se da cuando los heroes quieren investigar la sala
-	 * @return Carta la carta que fue encontrada en la sala
+	 * @return Item el item que fue encontrada en la sala
 	 */
 	public Item investigar() {
 		if (item != null){
@@ -84,9 +84,19 @@ public class Sala {
 		}
 
 	}
+
+	/**
+	 * toma la descripcion de la sala
+	 * @return String descripcion del ambiente, contexto.
+	 */
 	public String getDescription() {
 		return description;
 	}
+
+	/**
+	 * toma la descripcion de con quien te encuentras
+	 * @return String descripcion
+	 */
 	public String getDescriptionEnemigos() {
 		return descriptionEnemigos;
 	}

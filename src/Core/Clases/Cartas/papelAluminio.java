@@ -7,8 +7,17 @@ import Core.Clases.Heroes.Heroe;
  */
 public class papelAluminio implements Item {
 
+	/**
+	 * el nombre del item
+	 */
 	protected String nombreItem;
+	/**
+	 * Su descripcion
+	 */
 	protected String descripcionItem;
+	/**
+	 * Quien es el que la lleva
+	 */
 	protected Heroe heroePortador;
 	/**
 	 * constructor para la creacion del papel aluminio
@@ -26,14 +35,27 @@ public class papelAluminio implements Item {
 		return this.descripcionItem;
 	}
 
+	/**
+	 * Nos devuelve el nombre (papel aluminio)
+	 * @return String de papel aluminio
+	 */
 	@Override
 	public String getNombreCarta(){
 		return this.nombreItem;
 	}
 
+	/**
+	 * No realiza nada
+	 */
+
 	public void realizarEfecto(){
 		System.out.println("No hay ningun efecto");
 	}
+
+	/**
+	 * Se le setea el portador
+	 * @param portador heroe quien lleve el item
+	 */
 
 	@Override
 	public void setPortador(Heroe portador) {

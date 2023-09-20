@@ -14,6 +14,7 @@ public abstract class Human {
     protected String nombre="";
 	/**
 	 * un int que nos indica si utilizo la habilidad especial
+	 * useEsp en 0 significa que la puedo usar, 1 significa que no
 	 */
     protected int useEsp = 0;
 	/**
@@ -114,11 +115,17 @@ public abstract class Human {
 	 */
 	protected Habilidad habilidadEspecial;
 	/**
-	 * Suma al ataque para ver si pasa la armadura del oponente
+	 * Suma al ataque para ver si pasa la armadura del oponente con habilidad 1
 	 * es decir si saco un 8 y tengo un +3 comparo 11 contra la armadura del oponente
 	 */
 	protected int modH1=0;
+	/**
+	 * Suma al ataque para ver si pasa la armadura del oponente con habilidad 2
+	 */
 	protected int modH2=0;
+	/**
+	 * Suma al ataque para ver si pasa la armadura del oponente con habilidad especial
+	 */
 	protected int modEsp=0;
 
     //Metodos
@@ -351,11 +358,20 @@ public abstract class Human {
         }
 	}
 
+	/**
+	 * Cambio del valor de useEsp
+	 * @see Human#useEsp
+	 */
 	public void changeUesEsp(){
 		if (useEsp == 0) useEsp = 1;
 		else useEsp = 0;
 	}
 
+	/**
+	 * Retornamos el valor de useEsp
+	 * @see Human#useEsp
+	 * @return int el valor de useEsp
+	 */
 	public int getuseEsp(){
 		return useEsp;
 	}
@@ -372,15 +388,20 @@ public abstract class Human {
 		//utilidades.imprimir(String.format("Has sacado un %d", valorDado));
 		return valorDado;
 	}
+
 	/**
-	 * para el uso de la Carta del Masoquista, se da una gran cantidad de mana al human
-	 * @see Core.Clases.Cartas.CartaMasoquista
-	 * @param cantMana la cantidad de mana que se setea luego de usar la carta
+	 * para devolver la vida maxima del Human
+	 * @return int a la vida maxima que puede llegar
 	 */
     //Para una carta:
     public int getVidaMaxima(){
         return this.vidaMaxima;
     }
+	/**
+	 * para el uso de la Carta del Masoquista, se da una gran cantidad de mana al human
+	 * @see Core.Clases.Cartas.CartaMasoquista
+	 * @param cantMana la cantidad de mana que se setea luego de usar la carta
+	 */
     //Para una carta:
     public void setMana(int cantMana){
     	this.manaActual += cantMana;
