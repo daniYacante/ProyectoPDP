@@ -8,6 +8,9 @@ import Core.Clases.Restricciones.RestriccionBajaVida;
  * @see Heroe
  */
 public class Monje extends Core.Clases.Heroes.Heroe {
+    /**
+     * Constructor del monje, sus stats y habilidades
+     */
     public Monje(){
         super.turnoAnt = 0;
         super.tipo = "Heroe";

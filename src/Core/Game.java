@@ -28,6 +28,11 @@ public class Game {
 	public static final String ANSI_RED = "\u001B[31m";
 	public static final String ANSI_GREEN = "\u001B[32m";
 	public static final String ANSI_YELLOW = "\u001B[33m";
+
+    /**
+     * Ejecucion del juego, el main
+     * @param args
+     */
 	public static void main(String[] args) {
 		utilidades.imprimir("Disclaimer!!! en este juego se utilizan algunos caracteres ANSI especiales para darle color al texto\n"
 				+ "Si ves bien esto es que no tendras problemas:"+ANSI_RED+"Rojo"+ANSI_RESET);

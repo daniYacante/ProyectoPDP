@@ -6,7 +6,7 @@ import Core.Clases.Habilidad;
 
 import Core.Clases.Heroes.*;
 /**
- * La interface Restriccion, que se implementa en los heroes para ver si ya cumplen para usar la habilidad especial
+ * La Clase Restriccion, que se  en los heroes para ver si ya cumplen para usar la habilidad especial
  */
 public class Restriccion {
     /**
@@ -18,19 +18,12 @@ public class Restriccion {
      */
     public boolean restriccion = false;
     public boolean canUse = true;
+    /**
+     * El turno anterior del que se jugo
+     */
 	protected int turnoAnt = 0;
 
-    /**
-     * La restriccion en cada uno de los heroes
-     * @see Arquero#setRestriccion()
-     * @see Barbaro#setRestriccion()
-     * @see Bardo#setRestriccion()
-     * @see Brujo#setRestriccion()
-     * @see Druida#setRestriccion()
-     * @see Monje#setRestriccion()
-     * @see Paladin#setRestriccion()
-     * @see Rogue#setRestriccion()
-     */
+
    /* public void setRestriccion();
 
 	public boolean getRestriccion();
@@ -40,17 +33,35 @@ public class Restriccion {
     public void progresoCond();
     */
 
+    /**
+     * Seteo de restriccion, no hay cuerpo
+     * @param atacante el heroe que usara la habilidad especial
+     */
     public void setRestriccion(Heroe atacante){
     }
 	
 	public void progresoCond(){//No se si lo vamos a implementar
 	}
+
+    /**
+     * devuelve el valor booleano de la restricicon
+     * @see Restriccion#restriccion
+     * @return boolean true si se puede, false si no
+     */
 	public boolean getValorRestriccion(){
 		return restriccion;
 	}
 
+    /**
+     * Setea la descripcion de la restriccion
+     * @param especial la habilidad especial que se va a usar
+     */
     public void setDescriRes(Habilidad especial){}
 
+    /**
+     * Devuelve la descripcion de la restriccion
+     * @return String con la descripcion
+     */
 	public String getDescripcionRes(){
 		return descripcionRes;
 	}
